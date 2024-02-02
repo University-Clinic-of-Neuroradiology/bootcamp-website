@@ -13,7 +13,7 @@
 title: Python Bootcamp
 
 # Your name to show in the footer
-author: Eric Einspänner
+author: Clinic of Neuroradiology, Magdeburg
 
 ###############################################
 # --- List of links in the navigation bar --- #
@@ -31,7 +31,7 @@ navbar-links:
     - Data Management: "/courses/data_management"
     - Deep Learning: "/courses/deep_learning"
     - Time Analysis: "/courses/time_analysis"
-  FAQ: "faq"
+  FAQ: "/pages/faq"
   Discussion: "https://github.com/University-Clinic-of-Neuroradiology/python-bootcamp/discussions"
 
 ################
