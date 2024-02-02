@@ -63,6 +63,8 @@ The chapters are available as Jupyter notebooks on <a href="https://github.com/U
 
 - [https://forms.gle/oEtNoE6NVvW2CnM28]
 
+- {% include buttons.html button_name="My Button" button_class="primary" %}
+
 
 ## 🙏 Credits
 This course material is under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License (CC BY-NC-SA 4.0).
