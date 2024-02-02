@@ -28,8 +28,6 @@ By the end of these notebooks, you should feel more comfortable with:
 - You can read and write basic Python code.
 - Read and use error output from exceptions.
 
-Please give us feedback after you finished the skill track: [Feedback](https://forms.gle/oEtNoE6NVvW2CnM28).
-
 
 ## 📣 Current announcements
 This directory contains a few basic notebooks to get you going. It is recommended to start with these before tackling any of the others.
