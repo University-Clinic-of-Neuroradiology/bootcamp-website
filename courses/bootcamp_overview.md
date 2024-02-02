@@ -63,7 +63,10 @@ The chapters are available as Jupyter notebooks on <a href="https://github.com/U
 
 - [https://forms.gle/oEtNoE6NVvW2CnM28]
 
-- {% include buttons.html button_name="My Button" button_class="primary" %}
+- [![Button Example]][Linkhttps://forms.gle/oEtNoE6NVvW2CnM28]
+
+:Buttons
+:Button label=GitHub, url=https://github.com
 
 
 ## 🙏 Credits
