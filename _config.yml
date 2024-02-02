@@ -10,21 +10,29 @@
 ############################
 
 # Name of website
-title: My website
+title: Python Bootcamp
 
 # Your name to show in the footer
-author: Some Person
+author: Eric Einspänner
 
 ###############################################
 # --- List of links in the navigation bar --- #
 ###############################################
 
 navbar-links:
-  About Me: "aboutme"
-  Resources:
-    - Beautiful Jekyll: "https://beautifuljekyll.com"
-    - Learn markdown: "https://www.markdowntutorial.com/"
-  Author's home: "https://deanattali.com"
+  Technical Notes:
+    - Installation Guide: "/technical/installation_guide"
+    - Google Colab: "/technical/google_colab"
+  Course Overview:
+    - Overview: "/courses/bootcamp_overview"
+    - Introductory: "/courses/python_basics"
+    - DICOM: "/courses/dicom"
+    - Image Analysis: "/courses/image_analysis"
+    - Data Management: "/courses/data_management"
+    - Deep Learning: "/courses/deep_learning"
+    - Time Analysis: "/courses/time_analysis"
+  FAQ: "faq"
+  Discussion: "https://github.com/University-Clinic-of-Neuroradiology/python-bootcamp/discussions"
 
 ################
 # --- Logo --- #
@@ -32,7 +40,7 @@ navbar-links:
 
 # Image to show in the navigation bar - works best with a square image
 # Remove this parameter if you don't want an image in the navbar
-avatar: "/assets/img/avatar-icon.png"
+avatar: "/assets/img/logo_python.jpg"
 
 # By default, the image is cut into a circle. You can disable this behaviour by setting 'round-avatar: false'
 round-avatar: true
@@ -50,40 +58,40 @@ round-avatar: true
 # You can change the order that they show up on the page by changing the order here.
 # Uncomment the links you want to show and add your information to each one.
 social-network-links:
-  email: "someone@example.com"
-  rss: true  # remove this line if you don't want to show an RSS link at the bottom
-  facebook: deanattali
-  github: daattali
-  twitter: daattali
-  patreon: DeanAttali
-  youtube: "@daattali"
-#  medium: yourname
-#  reddit: yourname
-#  linkedin: daattali
-#  xing: yourname
-#  stackoverflow: "3943160/daattali"
-#  snapchat: deanat78
-#  instagram: deanat78
-#  spotify: yourname
-#  telephone: +14159998888
-#  steam: deanat78
-#  twitch: yourname
-#  yelp: yourname
-#  telegram: yourname
-#  calendly: yourname
-#  mastodon: instance.url/@username
-#  bluesky: yourname
-#  ORCID: your ORCID ID
-#  google-scholar: your google scholar
-#  discord: "invite_code" or "users/userid" or "invite/invite_code" 
-#  kaggle: yourname
-#  hackerrank: yourname
-#  gitlab: yourname
-#  itchio: yourname
+#  email: "someone@example.com"
+#  rss: true
+#  facebook: 
+  github: University-Clinic-of-Neuroradiology
+#  twitter: 
+#  patreon: 
+#  youtube: 
+#  medium:
+#  reddit: 
+#  linkedin:
+#  xing:
+#  stackoverflow:
+#  snapchat:
+#  instagram:
+#  spotify:
+#  telephone:
+#  steam:
+#  twitch:
+#  yelp:
+#  telegram:
+#  calendly:
+#  mastodon:
+#  bluesky:
+#  ORCID:
+#  google-scholar:
+#  discord:
+#  kaggle:
+#  hackerrank:
+#  gitlab:
+#  itchio:
 
 # If you want your website to generate an RSS feed, provide a description
 # The URL for the feed will be https://<your_website>/feed.xml
-rss-description: This website is a virtual proof that I'm awesome
+rss-description: This website is a virtual proof that we're awesome.
 
 ###########################
 # --- General options --- #
@@ -91,14 +99,14 @@ rss-description: This website is a virtual proof that I'm awesome
 
 # Select which social network share links to show in posts
 share-links-active:
-  twitter: true
-  facebook: true
+  twitter: false
+  facebook: false
   linkedin: true
   vk: false
 
 # How to display the link to your website in the footer
 # Remove this if you don't want a link in the footer
-url-pretty: "MyWebsite.com"
+url-pretty: "https://university-clinic-of-neuroradiology.github.io/python-bootcamp/"
 
 # Add the website title to the title of every page
 title-on-all-pages: true
@@ -116,7 +124,7 @@ feed_show_tags: true
 post_search: true
 
 # Add a button in the footer to edit the current page. Only works if your website is hosted on GitHub
-edit_page_button: true
+edit_page_button: false
 
 # Allow sub-menu items (second-level navigation menu items) to be longer than the top-level menu
 # If this setting is off, then long sub-menu words might get cut off

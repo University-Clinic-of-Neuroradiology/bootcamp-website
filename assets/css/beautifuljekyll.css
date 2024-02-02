@@ -992,7 +992,6 @@ pre {
 
 /* Search bar */
 #beautifuljekyll-search-overlay {
-  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   display: none;
   z-index: 999999;
   position: fixed;
@@ -1004,7 +1003,6 @@ pre {
   text-align: center;
   padding: 1rem;
 }
-
 #nav-search-exit {
   position: absolute;
   top: 1.5rem;
@@ -1033,7 +1031,6 @@ pre {
   border: none;
   padding: 0 3rem;
 }
-
 @media (max-width: 1199px) {
   #nav-search-input {
     width: 75%;
