@@ -61,13 +61,6 @@ The chapters are available as Jupyter notebooks on <a href="https://github.com/U
 ## ❓ Feedback
 - Please give us feedback after you finished the skill track: [Feedback](https://forms.gle/oEtNoE6NVvW2CnM28).
 
-- [https://forms.gle/oEtNoE6NVvW2CnM28]
-
-- [Button][https://forms.gle/oEtNoE6NVvW2CnM28]
-
-:Buttons
-:Button label=GitHub, url=https://github.com
-
 
 ## 🙏 Credits
 This course material is under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License (CC BY-NC-SA 4.0).
