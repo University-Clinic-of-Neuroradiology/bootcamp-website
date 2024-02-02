@@ -61,7 +61,7 @@ The chapters are available as Jupyter notebooks on <a href="https://github.com/U
 ## ❓ Feedback
 Please give us feedback after you finished the skill track: [Feedback](https://forms.gle/oEtNoE6NVvW2CnM28).
 
-{% include buttons.html url="https://forms.gle/oEtNoE6NVvW2CnM28" %}
+[https://forms.gle/oEtNoE6NVvW2CnM28]
 
 
 ## 🙏 Credits
