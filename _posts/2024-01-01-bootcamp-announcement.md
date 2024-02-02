@@ -40,4 +40,4 @@ Practical Application: Learn skills directly applicable to the medical field.
 
 Secure your spot now and embark on a coding adventure that seamlessly integrates with your medical expertise! Let's revolutionize healthcare through the power of Python.
 
-Visit [Bootcamp Overview](../courses/bootcamp_overview.md) for more details and the skill tracks. Don't miss out – the world of Python programming awaits your medical touch! 🚀👩‍⚕️👨‍⚕️
+Visit [Bootcamp Overview](../courses/bootcamp_overview) for more details and the skill tracks. Don't miss out – the world of Python programming awaits your medical touch! 🚀👩‍⚕️👨‍⚕️
