@@ -19,23 +19,17 @@ Introductory course into the Python programming language. The course is condense
 
 
 ## 📣 Current announcements
-This is a demo box ...
+We would like to introduce you to our first version of the Python Bootcamp. The content is certainly not yet perfect and will be improved and expanded by us in the future. We are always happy to receive feedback, so please get in touch if you have any ideas, requests or suggestions, or if you spot a bug.
 
 
 ## ❗ Course requirements
 - a laptop or desktop computer (no specific requirements except an internet connection)
-- during the course, please visit this website OR the GitHub repository to stay up to date (see Current announcements section).
+- during the course, please visit this website OR the GitHub repository to stay up to date.
 
----
 **Note**
 
-Before the course starts, please make sure, that Google Colab is working on your device. We can not provide installation or technical assistance during the course.
+Before the course starts, please make sure, that Google Colab is working on your device. We can not provide installation or technical assistance during the course. Please, ensure before the beginning of the course, that you can access the online compiler of your choice (e.g., create a Google account) and that you know how to operate it (again, during the course we can not provide installation or technical assistance).
 
-**Trouble shootings**
-
-If you have problems with your computer and/or Anaconda, you can use an online Python compiler, e.g., Google Colab ꜛ. Please, ensure before the beginning of the course, that you can access the online compiler of your choice (e.g., create a Google account) and that you know how to operate it (again, during the course we can not provide installation or technical assistance).
-
----
 
 ## 📋 Syllabus
 We recommend the following sequence of skill tracks:
@@ -59,8 +53,8 @@ The chapters are available as Jupyter notebooks on <a href="https://github.com/U
 
 
 ## ❓ Feedback
-- Please give us feedback after you finished the skill track: [Feedback](https://forms.gle/oEtNoE6NVvW2CnM28).
+Please give us feedback after you finished the skill track: <a href="https://forms.gle/oEtNoE6NVvW2CnM28"><img src="https://img.shields.io/badge/Feedback-red.svg" alt="Generic badge" /></a>
 
 
 ## 🙏 Credits
-This course material is under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License (CC BY-NC-SA 4.0).
+This course material is under [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0).
