@@ -25,11 +25,13 @@ By the end of these notebooks, you should feel more comfortable with:
 
 
 ## 📣 Current announcements
-...
+In this skill track, the notebooks build on each other. Therefore, complete them in the order given!
 
 
 ## ❗ Course requirements
-- more ...
+- you should have understood the basic concepts of Python, otherwise have another look at the [Introductory](./python_basics.md) notebooks
+- in this notebook we use data from open-source databases (the references are at the bottom of the page); in Google Colab the data is loaded automatically at the beginning of the notebook
+- have a look at the theoretical basics before you start with the notebooks
 
 
 ## 📒 Syllabus
@@ -40,7 +42,7 @@ By the end of these notebooks, you should feel more comfortable with:
 
 
 ## 📝 Theoretical basics
-For some information on the topic, take a look at the [slides](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/ImageAnalysis/slides/ImageAnalysis.slides.html#/).
+For some information on the topic, take a look at the [![Slides](https://img.shields.io/badge/Go%20to-slides-pink.svg)](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/ImageAnalysis/slides/ImageAnalysis.slides.html#/).
 
 
 ## ☝️ References

@@ -36,7 +36,7 @@ This directory contains a few basic notebooks to get you going. It is recommende
 ## ❗ Course requirements
 - make sure that Google Colab OR your local installation (jupyter notebooks, anaconda) is working
 - these notebooks are intended as an introduction to the syntax and functionality of Python
-- take a look at the theoretical basics before you start with the notebooks 
+- have a look at the theoretical basics before you start with the notebooks 
 
 
 ## 📒 Syllabus
@@ -46,7 +46,7 @@ This directory contains a few basic notebooks to get you going. It is recommende
 
 
 ## 📝 Theoretical basics
-For some information on the topic, take a look at the [![Slides](https://img.shields.io/badge/Go%20to-slides-pink.svg)](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/Introductory/slides/Introductory.slides.html#/)
+For some information on the topic, take a look at the [![Slides](https://img.shields.io/badge/Go%20to-slides-pink.svg)](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/Introductory/slides/Introductory.slides.html#/).
 
 
 Python is one of the most popular programming languages in the world. It is used for a wide variety of tasks, including data analysis. It has also become the language of choice for machine learning. 

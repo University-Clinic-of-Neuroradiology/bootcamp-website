@@ -11,6 +11,8 @@ subtitle: Introduction to Data Management.
 - [❗ Course requirements](#-course-requirements)
 - [📒 Syllabus](#-syllabus)
 - [📝 Theoretical basics](#-theoretical-basics)
+  - [Series and DataFrames](#series-and-dataframes)
+  - [Medical data file formats](#medical-data-file-formats)
 - [☝️ References](#️-references)
 
 
@@ -19,25 +21,48 @@ This directory contains a few basic notebooks to learn wo work with databases an
 
 By the end of these notebooks, you should feel more comfortable with:
 
-- more ...
+- You'll learn the basic concepts of Pandas.
+- How to load different file formats with Pandas.
+- How to analyze sample lung desease data.
+- How to analyze sleep EEG data.
 
 
 ## 📣 Current announcements
-...
+In this skill track, the notebooks build on each other. Therefore, complete them in the order given!
 
 
 ## ❗ Course requirements
-- more ...
+- you should have understood the basic concepts of Python, otherwise have another look at the [Introductory](./python_basics.md) notebooks
+- in this notebook we use data from open-source databases (the references are at the bottom of the page); in Google Colab the data is loaded automatically at the beginning of the notebook
+- have a look at the theoretical basics before you start with the notebooks
 
 
 ## 📒 Syllabus
 - Basic concepts of data management <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DataManagement/01_introduction.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-- Data Analysis - Lung Deseases <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DataManagement/02_lung_deseases_dataAnalysis.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-- Data Analysis - Sleep <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DataManagement/03_sleep_data_analysis.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Basic concepts of loading file formats <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DataManagement/02_load_files.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Data Analysis - Lung Deseases <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DataManagement/03_lung_deseases_dataAnalysis.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Data Analysis - Sleep <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DataManagement/04_sleep_data_analysis.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
 ## 📝 Theoretical basics
-For some information on the topic, take a look at the [slides](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/DataManagement/slides/Datamanagement.slides.html#/).
+For some information on the topic, take a look at the [![Slides](https://img.shields.io/badge/Go%20to-slides-pink.svg)](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/DataManagement/slides/Datamanagement.slides.html#/).
+
+### Series and DataFrames
+The primary two components of pandas are the `Series` and `DataFrame`.
+
+A `Series` is essentially a column, and a `DataFrame` is a multi-dimensional table made up of a collection of Series.
+
+
+
+### Medical data file formats
+| Format Name | File Extension | Origin                                         |
+|-------------|----------------|------------------------------------------------|
+| XML         | .xml           | Extensible Markup Language                     |
+| RD          | .rd            | R Documentation                                |
+| EDF         | .edf           | European Data Format                           |
+| BDF         | .bdf           | BioSemi Data Format                            |
+| CSV         | .csv           | Comma Separated Values                         |
+| XLSX        | .xlsx          | Microsoft Excel Spreadsheet                    |
 
 
 ## ☝️ References

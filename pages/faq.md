@@ -48,3 +48,6 @@ Can I access the course content after it ends?
 
 Will there be any support during the Bootcamp?
 : Yes, there will be dedicated discussion forums and channels for communication. Instructors and teaching assistants will be available to answer your questions and provide assistance.
+
+Is there an e-mail address I can contact?
+Yes, and we'll give it to you too: python.bootcamp@med.ovgu.de. We will try to respond to mail enquiries as quickly as possible. But you can get faster help via our discussion forum!
