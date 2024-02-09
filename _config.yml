@@ -32,6 +32,7 @@ navbar-links:
     - Deep Learning: "/courses/deep_learning"
     - Time Analysis: "/courses/time_analysis"
   FAQ: "/pages/faq"
+  Wiki: "https://github.com/University-Clinic-of-Neuroradiology/python-bootcamp/wiki"
   Discussion: "https://github.com/University-Clinic-of-Neuroradiology/python-bootcamp/discussions"
 
 ################
