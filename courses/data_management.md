@@ -55,6 +55,7 @@ A `Series` is essentially a column, and a `DataFrame` is a multi-dimensional tab
 
 
 ### Medical data file formats
+
 | Format Name | File Extension | Origin                                         |
 |-------------|----------------|------------------------------------------------|
 | XML         | .xml           | Extensible Markup Language                     |
