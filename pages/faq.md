@@ -6,12 +6,12 @@ subtitle: Answers to probably the most important question...so far...
 
 ## 📋 Content
 - [📋 Content](#-content)
-- [General](#general)
-- [Procedure](#procedure)
-- [Support](#support)
+- [📗 General](#-general)
+- [📙 Procedure](#-procedure)
+- [📘 Support](#-support)
 
 
-## General
+## 📗 General
 
 What is this Python Bootcamp about?
 : This Python Bootcamp is designed specifically for medical students with no prior programming experience. It aims to teach you the fundamentals of Python programming and how to apply it in the context of medical data analysis.
@@ -29,7 +29,7 @@ Is there any cost associated with the Bootcamp?
 : No, this Bootcamp is entirely free. You only need a Google Account for access to Google Colab, which is also free.
 
 
-## Procedure
+## 📙 Procedure
 
 How does the online course work?
 : The entire course is conducted online. All you need is a browser and a Google Account for Google Colab. Lectures (slides), exercises, and assignments will be accessible through our online platform.
@@ -44,7 +44,7 @@ Can I access the course content after it ends?
 : Yes, participants will have access to the course materials for a specified duration even after the Bootcamp concludes. This allows you to review and revisit the content at your own pace.
 
 
-## Support
+## 📘 Support
 
 Will there be any support during the Bootcamp?
 : Yes, there will be dedicated discussion forums and channels for communication. Instructors and teaching assistants will be available to answer your questions and provide assistance.

@@ -10,6 +10,7 @@ subtitle: Overview of the Bootcamp courses
 - [📣 Current announcements](#-current-announcements)
 - [❗ Course requirements](#-course-requirements)
 - [📋 Syllabus](#-syllabus)
+- [🚩 Project](#-project)
 - [❓ Feedback](#-feedback)
 - [🙏 Credits](#-credits)
 
@@ -28,7 +29,7 @@ We would like to introduce you to our first version of the Python Bootcamp. The 
 
 **Note**
 
-Before the course starts, please make sure, that Google Colab is working on your device. We can not provide installation or technical assistance during the course. Please, ensure before the beginning of the course, that you can access the online compiler of your choice (e.g., create a Google account) and that you know how to operate it (again, during the course we can not provide installation or technical assistance).
+Before the course starts, please make sure, that Google Colab is working on your device. We can not provide installation or technical assistance during the course for each participant. Please, ensure before the beginning of the course, that you can access the online compiler of your choice (e.g., create a Google account) and that you know how to operate it (again, during the course we can not provide installation or technical assistance for each participant).
 
 
 ## 📋 Syllabus
@@ -42,18 +43,22 @@ We recommend the following sequence of skill tracks:
 So we offer also an optional skill track, what else you can do: [Time Analysis](./time_analysis.md)
 
 ---
-**Project**
-
-After the first part of this course, feel free to solve this ...
-
----
 **Note**
 
 The chapters are available as Jupyter notebooks on <a href="https://github.com/University-Clinic-of-Neuroradiology/python-bootcamp/main"><img src="https://img.shields.io/badge/Go%20to-GitHub-green.svg" alt="Generic badge" /></a>, which can also be opened on <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
 
+## 🚩 Project
+
+**This service is initially only available to students of the OvGU Magdeburg. We are planning to expand it at a later date. Please note the news/posts on our website.**
+
+Once you have completed all the skill tracks, a final project is prepared. In this project, you will work on a problem set by us. To do this, you should have understood all the content you have already completed, otherwise you will repeat the corresponding notebooks.
+
+After completing the project, you can send us your solution by e-mail. You will then receive feedback after you have checked it. 
+
+
 ## ❓ Feedback
-Please give us feedback after you finished the skill track: [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/oEtNoE6NVvW2CnM28)
+Please give us feedback after you finished the skill track: [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/oEtNoE6NVvW2CnM28).
 
 
 ## 🙏 Credits
