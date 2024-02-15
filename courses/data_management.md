@@ -20,11 +20,9 @@ subtitle: Introduction to Data Management.
 This directory contains a few basic notebooks to learn wo work with databases and how to manage and analyse these.
 
 By the end of these notebooks, you should feel more comfortable with:
-
-- You'll learn the basic concepts of Pandas.
-- How to load different file formats with Pandas.
-- How to analyze sample lung desease data.
-- How to analyze sleep EEG data.
+- feel more confident in dealing with Pandas
+- have a basic understanding of data processing and editing
+- process medical data sets and extract important information
 
 
 ## 📣 Current announcements
