@@ -11,8 +11,11 @@ subtitle: Introduction to Data Management.
 - [❗ Course requirements](#-course-requirements)
 - [📒 Syllabus](#-syllabus)
 - [📝 Theoretical basics](#-theoretical-basics)
+  - [Pandas](#pandas)
   - [Series and DataFrames](#series-and-dataframes)
   - [Medical data file formats](#medical-data-file-formats)
+  - [Read CSV](#read-csv)
+  - [Read JSON](#read-json)
 - [☝️ References](#️-references)
 
 
@@ -45,12 +48,21 @@ In this skill track, the notebooks build on each other. Therefore, complete them
 ## 📝 Theoretical basics
 For some information on the topic, take a look at the [![Slides](https://img.shields.io/badge/Go%20to-slides-pink.svg)](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/DataManagement/slides/Datamanagement.slides.html#/).
 
+### Pandas
+`pandas` is a spreadsheet application for Python and offers user-friendly functions for data tables. Importing the `pandas` library gives IPython notebooks fast, flexible, and expressive data structures designed to make working with “relational” or “labeled” data both easy and intuitive.
+<center>
+<a title="BruceBlaus, CC BY 3.0 &lt;https://creativecommons.org/licenses/by/3.0&gt;, via Wikimedia Commons" href="https://pandas.pydata.org/docs/getting_started/intro_tutorials/02_read_write.html"><img height="512" alt="Data Types" src="https://pandas.pydata.org/docs/_images/02_io_readwrite.svg"></a>
+
+</center>
+
 ### Series and DataFrames
 The primary two components of pandas are the `Series` and `DataFrame`.
 
-A `Series` is essentially a column, and a `DataFrame` is a multi-dimensional table made up of a collection of Series.
+A `Series` is essentially a column, and a `DataFrame` is a multi-dimensional table made up of a collection of `Series`.
 
+A Pandas `DataFrame` is a two-dimensional, labeled data structure within the Pandas library for Python. Resembling a table or spreadsheet, it consists of rows and columns, where each column can hold different data types (numeric, string, boolean, etc.). The `DataFrame` provides powerful tools for data manipulation, cleaning, analysis, and exploration. It allows for easy indexing, slicing, merging, reshaping, and aggregating data, making it a versatile and fundamental tool in data science and analysis workflows.
 
+A Pandas `Series` is a one-dimensional labeled array capable of holding various data types (integers, strings, floats, etc.) in a tabular form. It resembles a column in a spreadsheet or a simple array/list with associated index labels for each element.
 
 ### Medical data file formats
 
@@ -62,6 +74,22 @@ A `Series` is essentially a column, and a `DataFrame` is a multi-dimensional tab
 | BDF         | .bdf           | BioSemi Data Format                            |
 | CSV         | .csv           | Comma Separated Values                         |
 | XLSX        | .xlsx          | Microsoft Excel Spreadsheet                    |
+
+### Read CSV
+The `pandas.read_csv()` function is a versatile tool in the Pandas library used to read and load data from a CSV (Comma-Separated Values) file into a Pandas `DataFrame`. It offers a simple and efficient way to import data by specifying the file path or URL. This function supports a wide range of parameters to handle various CSV file formats, handle missing or malformed data, specify delimiters, and customize data types.
+```python
+import pandas as pd
+
+csv2df = pd.read_csv('/Data/data.csv')
+```
+
+### Read JSON
+The `pandas.read_json()` function within the Pandas library is designed to efficiently read and load JSON (JavaScript Object Notation) data into a Pandas `DataFrame`. It provides a straightforward method to ingest JSON data from a file, string, or URL and convert it into a structured Dat`DataFrame`aFrame format. This function supports various options for handling JSON data with different structures, including nested objects and arrays.
+```python
+import pandas as pd
+
+json2df = pd.read_json('/Data/data.json') 
+```
 
 
 ## ☝️ References
