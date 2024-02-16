@@ -54,7 +54,9 @@ The chapters are available as Jupyter notebooks on <a href="https://github.com/U
 
 Once you have completed all the skill tracks, a final project is prepared. In this project, you will work on a problem set by us. To do this, you should have understood all the content you have already completed, otherwise you will repeat the corresponding notebooks.
 
-After completing the project, you can send us your solution by e-mail. You will then receive feedback after you have checked it. 
+After completing the project, you can send us your solution by e-mail. You will then receive feedback after you have checked it.
+
+Click here for the project: [Project](./project.md).
 
 
 ## ❓ Feedback
