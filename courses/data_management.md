@@ -99,6 +99,6 @@ In this skill track, you'll work with different Open-Source datasets:
 - Sleep EEG [UCI](http://kdd.ics.uci.edu/databases/eeg/eeg.html)
 
 <a id="1">[1]</a> 
-Wang, Xiaosong, et al. (2017)
-Chestx-ray8: Hospital-scale chest x-ray database and benchmarks on weakly-supervised classification and localization of common thorax diseases.
+Wang, Xiaosong, et al. (2017),
+Chestx-ray8: Hospital-scale chest x-ray database and benchmarks on weakly-supervised classification and localization of common thorax diseases,
 Proceedings of the IEEE conference on computer vision and pattern recognition.

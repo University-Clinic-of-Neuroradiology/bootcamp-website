@@ -56,16 +56,16 @@ In this skill track, you'll work with different Open-Source datasets:
 
 
 <a id="1">[1]</a>
-Radau, P. et al.
-Evaluation Framework for Algorithms Segmenting Short Axis Cardiac MRI.
+Radau, P. et al.,
+Evaluation Framework for Algorithms Segmenting Short Axis Cardiac MRI,
 The MIDAS Journal – Cardiac MR Left Ventricle Segmentation Challenge, http://hdl.handle.net/10380/3070
 
 <a id="2">[2]</a>
-Lionheart, W. R. B. et al. (2015)
-An MRI DICOM data set of the head of a normal male human aged 52 [Data set]
+Lionheart, W. R. B. et al. (2015),
+An MRI DICOM data set of the head of a normal male human aged 52 [Data set],
 Zenodo, https://doi.org/10.5281/zenodo.16956
 
 <a id="3">[3]</a> 
-Marcus, DS et al. 
-Open Access Series of Imaging Studies (OASIS): Cross-Sectional MRI Data in Young, Middle Aged, Nondemented, and Demented Older Adults 
+Marcus, DS et al.,
+Open Access Series of Imaging Studies (OASIS): Cross-Sectional MRI Data in Young, Middle Aged, Nondemented, and Demented Older Adults,
 Journal of Cognitive Neuroscience, 19, 1498-1507. doi: 10.1162/jocn.2007.19.9.1498
