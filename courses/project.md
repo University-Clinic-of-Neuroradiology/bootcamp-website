@@ -10,6 +10,7 @@ subtitle: Final Project
 - [📣 Current announcements](#-current-announcements)
 - [❗ Course requirements](#-course-requirements)
 - [📝 Submission process](#-submission-process)
+- [🔗 Project Link](#-project-link)
 - [☝️ References](#️-references)
 
 
@@ -36,6 +37,10 @@ After completing the project, send your solutions to the following e-mail addres
 Save your solution to Google Drive with all outputs or download it to your computer. You can find the options in the tab under "File" in the top left corner.
 
 Make sure that all the necessary cells are readable. To be able to send us the files you have to create zip-files of your files, because .py or .ipynb are blocked by Outlook.
+
+
+## 🔗 Project Link
+Click here for the Google Colab notebook: <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/projects/project.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
 ## ☝️ References
