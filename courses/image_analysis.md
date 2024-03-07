@@ -100,10 +100,7 @@ The amount of physical space covered by an image is its field of view, which is 
 - Array shape, the number of data elements on each axis.
 - Sampling resolution, the amount of physical space covered by each pixel.
 
-<p align="center">
-  <img src="../assets/img/theoretical_basics/shape_sampling.png" />
-</p>
-
+![Image shape and sampling](../assets/img/theoretical_basics/shape_sampling.png)
 
 ## ☝️ References
 In this skill track, you'll work with different Open-Source datasets:
