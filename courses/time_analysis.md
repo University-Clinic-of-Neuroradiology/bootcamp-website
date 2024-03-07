@@ -65,9 +65,9 @@ For some information on the topic, take a look at the [slides](https://raw.githa
 |             | .xdf,.xdfz           | XDF data                                       |
 | ECG         | .qrs                 | Fractal Image Format                           |  
 |             | .xws                 | European data Format                           |
-|             | .dat/.hea            | Header( Analyze Software, Mayo Clinic )        |
+|             | .dat,.hea            | Header (Analyze Software, Mayo Clinic)         |
 | EMG         | .txt                 | Text                                           |  
-|             | .mat/.hea            | Header  Analyze Software, Mayo Clinic          |
+|             | .mat,.hea            | Header (Analyze Software, Mayo Clinic)         |
 
 
 ## ☝️ References
