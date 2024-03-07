@@ -16,6 +16,10 @@ subtitle: Introduction to Data Management.
   - [Medical data file formats](#medical-data-file-formats)
   - [Read CSV](#read-csv)
   - [Read JSON](#read-json)
+  - [What is data preprocessing?](#what-is-data-preprocessing)
+  - [Working with data types](#working-with-data-types)
+  - [Exploring data types](#exploring-data-types)
+  - [Converting a column type](#converting-a-column-type)
 - [☝️ References](#️-references)
 
 
@@ -89,6 +93,41 @@ The `pandas.read_json()` function within the Pandas library is designed to effic
 import pandas as pd
 
 json2df = pd.read_json('/Data/data.json') 
+```
+
+### What is data preprocessing?
+Data processing refers to several steps:
+- Beyond cleaning and exploratory data analysis
+- Prepping data for modeling
+- Modeling in python requires numerical input
+
+### Working with data types
+There are different dtypes in pandas:
+- `object`: string/mixed types
+- `int64`: integer
+- `float64`: float
+- `datetime64`: datetime
+
+### Exploring data types
+We want to know what types we'll be working with as we start to do more preprocessing:
+```python
+df = pd.read_csv('/dataset/brain_volumes.csv')
+
+print(df.dtypes)
+```
+```bash
+patient_id          object
+brain_vol           object
+```
+
+### Converting a column type
+If you take a look at the dataset types, you'll see that the column `brain_vol` is type `object`. But, if you actually look at the column, you'll see that it consists of integers. Let's convert that column to type `int`.
+```python
+# Convert the brain_vol column to type int
+df['brain_vol'] = df['brain_vol'].astype(int)
+
+# Look at the dtypes of the dataset
+print(df.dtypes)
 ```
 
 
