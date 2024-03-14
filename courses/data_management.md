@@ -12,6 +12,9 @@ subtitle: Introduction to Data Management.
 - [📒 Syllabus](#-syllabus)
 - [📝 Theoretical basics](#-theoretical-basics)
   - [Pandas](#pandas)
+  - [What is pandas used for?](#what-is-pandas-used-for)
+  - [Where to find help?](#where-to-find-help)
+  - [How to get pandas?](#how-to-get-pandas)
   - [Series and DataFrames](#series-and-dataframes)
   - [Medical data file formats](#medical-data-file-formats)
   - [Read CSV](#read-csv)
@@ -37,6 +40,11 @@ In this skill track, the notebooks build on each other. Therefore, complete them
 
 
 ## ❗ Course requirements
+This workshop is intended for learners who have a basic understanding of working with Python like:
+- Variables, data types, functions
+- Loops, comditionals
+
+Please note:
 - you should have understood the basic concepts of Python, otherwise have another look at the [Introductory](./python_basics.md) notebooks
 - in this notebook we use data from open-source databases (the references are at the bottom of the page); in Google Colab the data is loaded automatically at the beginning of the notebook
 - have a look at the theoretical basics before you start with the notebooks
@@ -58,6 +66,25 @@ For some information on the topic, take a look at the [![Slides](https://img.shi
 <a title="BruceBlaus, CC BY 3.0 &lt;https://creativecommons.org/licenses/by/3.0&gt;, via Wikimedia Commons" href="https://pandas.pydata.org/docs/getting_started/intro_tutorials/02_read_write.html"><img height="512" alt="Data Types" src="https://pandas.pydata.org/docs/_images/02_io_readwrite.svg"></a>
 
 </center>
+
+`pandas` ia a framework - i.e. a collection of functionality, not a program on its own. It is based on the numerical mathmatics framework `numpy`.
+
+While `numpy` is more directed to highly optimized numeric calculations, `pandas` offers additional convenience and utility for dealing with tabular data. In turn, it sacrifices some processing speed.
+
+### What is pandas used for?
+Its main application cases is data processing. This includes: Reading, exploring, cleaning, transforming and visualizing data.
+
+Common areas that make use of it are:
+- Data Science
+- Machine Learning
+
+### Where to find help?
+Here you will find all the necessary information about `pandas` and their functionalities: [Official Documentation](https://pandas.pydata.org/docs/).
+
+{: .box-note} Note: This is a notification box.
+
+### How to get pandas?
+It can be installed via `pip` (c.f. pandas on pypi.org). Make sure that the dependencies are installed as well.
 
 ### Series and DataFrames
 The primary two components of pandas are the `Series` and `DataFrame`.

@@ -73,7 +73,6 @@ For some information on the topic, take a look at the [slides](https://raw.githa
 ## ☝️ References
 In this skill track, you'll work with different Open-Source datasets:
 - [Waveform Database Software Package (WFDB) for Python](https://physionet.org/content/wfdb-python/4.1.0/) [1]
-- 
 
 <a id="1">[1]</a>
 Xie, C. et al. (2023),
