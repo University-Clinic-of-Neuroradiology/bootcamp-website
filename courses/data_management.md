@@ -15,16 +15,21 @@ subtitle: Introduction to Data Management.
   - [What is pandas used for?](#what-is-pandas-used-for)
   - [Where to find help?](#where-to-find-help)
   - [How to get pandas?](#how-to-get-pandas)
+  - [Working with data types](#working-with-data-types)
   - [Series and DataFrames](#series-and-dataframes)
     - [Creating a Series](#creating-a-series)
     - [Extra Information](#extra-information)
   - [Crating Dataframes](#crating-dataframes)
     - [Turn around](#turn-around)
+  - [Accessing Data](#accessing-data)
+    - [Selecting Columns](#selecting-columns)
+    - [Selecting Rows](#selecting-rows)
+    - [Acess via loc](#acess-via-loc)
+    - [Access via iloc](#access-via-iloc)
   - [Medical data file formats](#medical-data-file-formats)
   - [Read CSV](#read-csv)
   - [Read JSON](#read-json)
   - [What is data preprocessing?](#what-is-data-preprocessing)
-  - [Working with data types](#working-with-data-types)
   - [Exploring data types](#exploring-data-types)
   - [Converting a column type](#converting-a-column-type)
 - [☝️ References](#️-references)
@@ -91,6 +96,13 @@ Here you will find all the necessary information about `pandas` and their functi
 
 ### How to get pandas?
 It can be installed via `pip` (c.f. pandas on pypi.org). Make sure that the dependencies are installed as well.
+
+### Working with data types
+There are different dtypes in pandas:
+- `object`: string/mixed types
+- `int64`: integer
+- `float64`: float
+- `datetime64`: datetime
 
 ### Series and DataFrames
 The primary two components of pandas are the `Series` and `DataFrame`.
@@ -231,6 +243,46 @@ Don’t forget to store the transposed dataframe in a new variable (or overwrite
                 - Dataframes have row and column indices
                 - Dataframes may be transposed to switch rows and columns
 
+### Accessing Data
+#### Selecting Columns
+To get all available column names, run
+```python
+print(measurements.columns.values)
+```
+We can extract a singular column by using the `[]`-operator:
+```python
+print(measurements["Sneezes"])
+```
+Note that the output is a series again
+
+To access a selection of columns, we pass in a list of column names in the desired order:
+```python
+print(measurements[ ["Humidity", "Sneezes"] ])
+```
+
+#### Selecting Rows
+To access given rows you can use the slicing operation as known from lists:
+```python
+print(measurements[0:3])
+```
+{: .box-warning}
+**Warning**: If you pass in a singular number instead of [start:stop] pandas will look for a row with that number as a label. This will fail in our example since the rows are not numbered.
+
+#### Acess via loc
+The property `loc` gives label-based access to the elements of a dataframe. It follows the pattern `dataframe.loc[row_slice, column_slice]`. For example:
+```python
+print(measurements.loc["Monday": "Friday", "Temperature":"Humidity"])
+```
+
+#### Access via iloc
+The `iloc`-property works similar to `loc`, except that it takes integer-based indexes instead of row/column labels:
+```python
+print(measurements.iloc[0:5, 1:])
+```
+
+{: .box-success}
+**Key Points**: - Rows and columns can be selected ba their label, with the loc- or iloc-methods
+
 ### Medical data file formats
 
 | Format Name | File Extension | Origin                                         |
@@ -264,12 +316,6 @@ Data processing refers to several steps:
 - Prepping data for modeling
 - Modeling in python requires numerical input
 
-### Working with data types
-There are different dtypes in pandas:
-- `object`: string/mixed types
-- `int64`: integer
-- `float64`: float
-- `datetime64`: datetime
 
 ### Exploring data types
 We want to know what types we'll be working with as we start to do more preprocessing:
