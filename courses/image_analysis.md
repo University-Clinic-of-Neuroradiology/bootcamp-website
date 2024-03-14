@@ -11,11 +11,6 @@ subtitle: Introduction to Image Analysis.
 - [❗ Course requirements](#-course-requirements)
 - [📒 Syllabus](#-syllabus)
 - [📝 Theoretical basics](#-theoretical-basics)
-  - [Load images](#load-images)
-  - [Metadata](#metadata)
-  - [Plot images](#plot-images)
-  - [Load volumes](#load-volumes)
-  - [Field of view](#field-of-view)
 - [☝️ References](#️-references)
 
 
@@ -47,7 +42,7 @@ In this skill track, the notebooks build on each other. Therefore, complete them
 
 
 ## 📝 Theoretical basics
-For some information on the topic, take a look at the [![Slides](https://img.shields.io/badge/Go%20to-slides-pink.svg)](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/ImageAnalysis/slides/ImageAnalysis.slides.html#/).
+For some information on the topic, take a look at some [Basics](./theoretical_basics/image_analysis.md).
 
 
 ## ☝️ References

@@ -177,7 +177,7 @@ plt.show()
 ## Anatomy of a Plot
 Knowing the right terms for the subject can help to better search for help, understand documentation and communicate issues and solutions. In the following image you can find the naming of the elements in a plot as used by `matplotlib`:
 
-![Matplotlib Plot Anatomy](/assets/img/theoretical_basics/matplotlib_anatomy.png)
+![Matplotlib Plot Anatomy](./assets/img/theoretical_basics/matplotlib_anatomy.png)
 
 There are further terms that you may want to keep in mind when working with the framework.
 
