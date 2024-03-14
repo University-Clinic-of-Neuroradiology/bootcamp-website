@@ -82,7 +82,6 @@ Common areas that make use of it are:
 Here you will find all the necessary information about `pandas` and their functionalities: [Official Documentation](https://pandas.pydata.org/docs/).
 
 {: .box-note}
-**Key Points:**
 - pandas is a data processing framework based on numpy
 - It offers additional utility functions but sacrifices speed
 
