@@ -82,9 +82,8 @@ Common areas that make use of it are:
 Here you will find all the necessary information about `pandas` and their functionalities: [Official Documentation](https://pandas.pydata.org/docs/).
 
 {: .box-success}
-**Key Points**:
-  - pandas is a data processing framework based on numpy
-  - It offers additional utility functions but sacrifices speed
+**Key Points**: - pandas is a data processing framework based on numpy
+                - It offers additional utility functions but sacrifices speed
 
 ### How to get pandas?
 It can be installed via `pip` (c.f. pandas on pypi.org). Make sure that the dependencies are installed as well.
