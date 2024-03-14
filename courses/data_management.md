@@ -131,6 +131,7 @@ print(sneeze_counts)
 6    17
 dtype: int64
 ```
+
 {: .box-note}
 **Note**: Note that the Series automatically adds an index on the left side. It also automatically infers the best fitting data type for the elements (here `int64` = 64-bit integer). `pandas` introduces the series as a new data type (like `int`, `str` and all the others) and as such the value of `sneeze_counts` is actually the whole series at once.
 
@@ -265,6 +266,7 @@ To access given rows you can use the slicing operation as known from lists:
 ```python
 print(measurements[0:3])
 ```
+
 {: .box-warning}
 **Warning**: If you pass in a singular number instead of [start:stop] pandas will look for a row with that number as a label. This will fail in our example since the rows are not numbered.
 
