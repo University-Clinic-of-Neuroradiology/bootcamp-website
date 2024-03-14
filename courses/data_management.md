@@ -16,6 +16,10 @@ subtitle: Introduction to Data Management.
   - [Where to find help?](#where-to-find-help)
   - [How to get pandas?](#how-to-get-pandas)
   - [Series and DataFrames](#series-and-dataframes)
+    - [Creating a Series](#creating-a-series)
+    - [Extra Information](#extra-information)
+  - [Crating Dataframes](#crating-dataframes)
+    - [Turn around](#turn-around)
   - [Medical data file formats](#medical-data-file-formats)
   - [Read CSV](#read-csv)
   - [Read JSON](#read-json)
@@ -96,6 +100,136 @@ A `Series` is essentially a column, and a `DataFrame` is a multi-dimensional tab
 A Pandas `DataFrame` is a two-dimensional, labeled data structure within the Pandas library for Python. Resembling a table or spreadsheet, it consists of rows and columns, where each column can hold different data types (numeric, string, boolean, etc.). The `DataFrame` provides powerful tools for data manipulation, cleaning, analysis, and exploration. It allows for easy indexing, slicing, merging, reshaping, and aggregating data, making it a versatile and fundamental tool in data science and analysis workflows.
 
 A Pandas `Series` is a one-dimensional labeled array capable of holding various data types (integers, strings, floats, etc.) in a tabular form. It resembles a column in a spreadsheet or a simple array/list with associated index labels for each element.
+
+#### Creating a Series
+There are different ways we can add data to a Series. We start out with a simple list:
+```python
+from pandas import Series  # Note the initial upper-case letter
+
+sneeze_counts = Series(data=[32, 41, 56, 62, 30, 22, 17])
+print(sneeze_counts)
+```
+```bash
+0    32
+1    41
+2    56
+3    62
+4    30
+5    22
+6    17
+dtype: int64
+```
+{: .box-note}
+**Note**: Note that the Series automatically adds an index on the left side. It also automatically infers the best fitting data type for the elements (here `int64` = 64-bit integer). `pandas` introduces the series as a new data type (like `int`, `str` and all the others) and as such the value of `sneeze_counts` is actually the whole series at once.
+
+#### Extra Information
+To make the data a bit more meaningful, let’s set a custom index:
+```python
+days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+sneeze_counts.index = days_of_week
+print(sneeze_counts)
+```
+```bash
+Monday       32
+Tuesday      41
+Wednesday    56
+Thursday     62
+Friday       30
+Saturday     22
+Sunday       17
+dtype: int64
+```
+Also, we add a name to the series, so we can distinguish it later:
+```python
+sneeze_counts.name = "Sneezes"
+```
+
+Alternatively you can provide the index while creating the series by passing a dictionary:
+```python
+sneeze_counts = Series(
+    data= {
+        "Monday": 32,
+        "Tuesday": 41,
+        "Wednesday": 56,
+        "Thursday": 62,
+        "Friday": 30,
+        "Saturday": 22,
+        "Sunday": 17
+    },
+    name="Sneezes"
+)
+```
+
+{: .box-success}
+**Key Points**: - Series are a 1-dimensional data structure
+                - You can use indices to label the data and a name to label the whole Series
+
+### Crating Dataframes
+A `dataframe` can be created from a list of `series`, where each `series` forms a row in the resulting table.
+```python
+from pandas import DataFrame  # Note the camel-case spelling
+
+measurements = DataFrame(data=[sneeze_counts, temperatures, humidities])
+print(measurements)
+```
+```bash
+             Monday  Tuesday  Wednesday  Thursday  Friday  Saturday  Sunday
+Sneezes        32.0     41.0       56.0      62.0    30.0      22.0    17.0
+Temperature    10.9      8.2        7.6       7.8     9.4      11.1    12.4
+Humidity       62.5     76.3       82.4      98.2    77.4      58.9    41.2
+```
+A dataframe can also be created from a dictionary of series where each series forms a column in the resulting table.
+```python
+measurements = DataFrame(
+  data={
+    sneeze_counts.name: sneeze_counts,
+    temperatures.name: temperatures,
+    humidities.name: humidities
+  }
+)
+print(measurements)
+```
+```bash
+           Sneezes  Temperature  Humidity
+Monday          32         10.9      62.5
+Tuesday         41          8.2      76.3
+Wednesday       56          7.6      82.4
+Thursday        62          7.8      98.2
+Friday          30          9.4      77.4
+Saturday        22         11.1      58.9
+Sunday          17         12.4      41.2
+```
+
+#### Turn around
+To flip rows and columns, `dataframes` can be transposed using the `T`-property:
+```python
+column_wise = DataFrame(data=temperatures)
+row_wise = column_wise.T
+
+print(column_wise)
+print()  # Add a blank line as separator
+print(row_wise)
+```
+```bash
+           Temperature
+Monday            10.9
+Tuesday            8.2
+Wednesday          7.6
+Thursday           7.8
+Friday             9.4
+Saturday          11.1
+Sunday            12.4
+
+             Monday  Tuesday  Wednesday  Thursday  Friday  Saturday  Sunday
+Temperature    10.9      8.2        7.6       7.8     9.4      11.1    12.4
+```
+Don’t forget to store the transposed dataframe in a new variable (or overwrite the old one), as the original will not be changed by the transposition.
+
+{: .box-success}
+**Key Points**: - Dataframes represent 2-dimensional (tabular) data
+                - Each column in a dataframe is a series
+                - Dataframes have row and column indices
+                - Dataframes may be transposed to switch rows and columns
 
 ### Medical data file formats
 
