@@ -81,7 +81,8 @@ Common areas that make use of it are:
 ### Where to find help?
 Here you will find all the necessary information about `pandas` and their functionalities: [Official Documentation](https://pandas.pydata.org/docs/).
 
-{: .box-note} This is a notification box.
+{: .box-note}
+**Note:** This is a notification box.
 
 ### How to get pandas?
 It can be installed via `pip` (c.f. pandas on pypi.org). Make sure that the dependencies are installed as well.
