@@ -39,7 +39,7 @@ In this skill track, the notebooks build on each other. Therefore, complete them
 
 
 ## 📝 Theoretical basics
-For some information on the topic, take a look at the [![Slides](https://img.shields.io/badge/Go%20to-slides-pink.svg)](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/DeepLearning/slides/DeepLearning.slides.html#/).
+For some information on the topic, take a look at some [Basics](./theoretical_basics/deeplearning.md).
 
 
 ## ☝️ References

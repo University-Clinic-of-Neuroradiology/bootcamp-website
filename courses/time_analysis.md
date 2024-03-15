@@ -11,7 +11,6 @@ subtitle: Introduction to Time Analysis.
 - [❗ Course requirements](#-course-requirements)
 - [📒 Syllabus](#-syllabus)
 - [📝 Theoretical basics](#-theoretical-basics)
-  - [Medical signals file formats](#medical-signals-file-formats)
 - [☝️ References](#️-references)
 
 
@@ -42,32 +41,7 @@ This skill track is optional for the time being and is not part of the bootcamp.
 
 
 ## 📝 Theoretical basics
-For some information on the topic, take a look at the [slides](https://raw.githack.com/University-Clinic-of-Neuroradiology/python-bootcamp/main/notebooks/TimeAnalysis/slides/TimeAnalysis.slides.html#/).
-
-### Medical signals file formats
-| Signal Type | File Extension       | Origin                                         |
-|-------------|----------------------|------------------------------------------------|
-| EEG         | .fif                 | Fractal Image Format                           |  
-|             | .edf                 | European data Format                           |
-|             | .eeg                 | BrainVision                                    |
-|             | .vhdr                | BrainVision                                    |
-|             | .vmrk                | BrainVision                                    |      
-|             | .bdf                 | BioSemi data Format                            |
-|             | .gdf                 | General data Format                            |
-|             | .cnt                 | Neuroscan CNT                                  |
-|             | .egi                 | EGI simple binary                              |
-|             | .mff                 | EGI MFF                                        |
-|             | .set,.fdt            | EEGLAB files                                   |
-|             | .data                | Nicolet                                        |
-|             | .nxe                 | eXimia EEG data                                |
-|             | .lay .dat            | Persyst EEG data                               |
-|             | .eeg,.21e,.pnt,.log  | Nihon Kohden EEG data                          |
-|             | .xdf,.xdfz           | XDF data                                       |
-| ECG         | .qrs                 | Fractal Image Format                           |  
-|             | .xws                 | European data Format                           |
-|             | .dat,.hea            | Header (Analyze Software, Mayo Clinic)         |
-| EMG         | .txt                 | Text                                           |  
-|             | .mat,.hea            | Header (Analyze Software, Mayo Clinic)         |
+For some information on the topic, take a look at the [Basics](./theoretical_basics/time_analysis.md).
 
 
 ## ☝️ References
