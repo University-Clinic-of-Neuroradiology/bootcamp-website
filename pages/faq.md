@@ -2,6 +2,11 @@
 layout: page
 title: FAQ
 subtitle: Answers to probably the most important question...so far...
+faq:
+- question: "How do I add FAQ schema to my Jekyll site?"
+  answer: "simply read Jameson's <a href='https://jamesonzimmer.com/faq-schema-jekyll-liquid/'>helpful blog post</a> on the topic."
+- question: "Why bother adding FAQ schema to my site?"
+  answer: "Because it will double the size of your entry in the SERP for some queries, and help direct traffic to your most relevant pages."
 ---
 
 ## 📋 Content
