@@ -42,6 +42,7 @@ We recommend the following sequence of skill tracks:
 So we offer also an optional skill track, what else you can do: [Time Analysis](./time_analysis.md)
 
 ---
+
 {: .box-note}
 **Note**: The chapters are available as Jupyter notebooks on <a href="https://github.com/University-Clinic-of-Neuroradiology/python-bootcamp/main"><img src="https://img.shields.io/badge/Go%20to-GitHub-green.svg" alt="Generic badge" /></a>, which can also be opened on <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
