@@ -56,9 +56,3 @@ Will there be any support during the Bootcamp?
 
 Is there an e-mail address I can contact?
 : Yes, and we'll give it to you too: python.bootcamp@med.ovgu.de. We will try to respond to mail enquiries as quickly as possible. But you can get faster help via our discussion forum!
-
-faq:
-- question: "How do I add FAQ schema to my Jekyll site?"
-  answer: "simply read Jameson's <a href='https://jamesonzimmer.com/faq-schema-jekyll-liquid/'>helpful blog post</a> on the topic."
-- question: "Why bother adding FAQ schema to my site?"
-  answer: "Because it will double the size of your entry in the SERP for some queries, and help direct traffic to your most relevant pages."
