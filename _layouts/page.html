@@ -25,6 +25,10 @@ layout: base
         </div>
       {% endif %}
 
+      {% if page.faq %}
+        {% include faq-schema-content.html %}
+      {% endif %}
+
       {% include comments.html %}
     </div>
   </div>

@@ -22,4 +22,27 @@ layout: base
       {% endfor %}
     </div>
   {% endif %}
+
+  {% if page.faq %}
+    <script type="application/ld+json">
+      {
+        "@context":"https://schema.org",
+        "@type":"FAQPage",
+        "mainEntity":[
+          {% for item in page.faq %}
+            {
+              "@type":"Question",
+              "name":"{{item.question}}",
+              "acceptedAnswer":{
+                "@type":"Answer",
+                "text":"{{item.answer}}"
+              }
+            }
+            {% if forloop.last == false %},{% endif %}
+          {% endfor %}
+        ]
+      }
+    </script>
+  {% endif %}
+
 </main>
