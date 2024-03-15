@@ -11,6 +11,7 @@ subtitle: Final Project
 - [❗ Course requirements](#-course-requirements)
 - [📝 Submission process](#-submission-process)
 - [🔗 Project Link](#-project-link)
+- [✏️ Hints](#️-hints)
 - [☝️ References](#️-references)
 
 
@@ -43,6 +44,23 @@ Make sure that all the necessary cells are readable. To be able to send us the f
 Click here for the Google Colab notebook: <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/projects/project.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
+## ✏️ Hints
+For some help on the project, take a look at some [Hints](./theoretical_basics/project_hints.md).
+
+
 ## ☝️ References
 
 In this skill track, you'll work with different Open-Source datasets:
+
+- MRI DICOM data set [head of a normal male human](https://zenodo.org/record/16956#.YFMM5PtKiV5) [1] and 
+- Open Access Series of Imaging Studies [Oasis](https://www.oasis-brains.org/) [2]
+
+<a id="1">[1]</a>
+Lionheart, W. R. B. et al. (2015),
+An MRI DICOM data set of the head of a normal male human aged 52 [Data set],
+Zenodo, https://doi.org/10.5281/zenodo.16956
+
+<a id="2">[2]</a> 
+Marcus, DS et al.,
+Open Access Series of Imaging Studies (OASIS): Cross-Sectional MRI Data in Young, Middle Aged, Nondemented, and Demented Older Adults,
+Journal of Cognitive Neuroscience, 19, 1498-1507. doi: 10.1162/jocn.2007.19.9.1498

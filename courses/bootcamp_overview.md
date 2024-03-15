@@ -27,9 +27,8 @@ We would like to introduce you to our first version of the Python Bootcamp. The 
 - a laptop or desktop computer (no specific requirements except an internet connection)
 - during the course, please visit this website OR the GitHub repository to stay up to date.
 
-**Note**
-
-Before the course starts, please make sure, that Google Colab is working on your device. We can not provide installation or technical assistance during the course for each participant. Please, ensure before the beginning of the course, that you can access the online compiler of your choice (e.g., create a Google account) and that you know how to operate it (again, during the course we can not provide installation or technical assistance for each participant).
+{: .box-note}
+**Note**: Before the course starts, please make sure, that Google Colab is working on your device. We can not provide installation or technical assistance during the course for each participant. Please, ensure before the beginning of the course, that you can access the online compiler of your choice (e.g., create a Google account) and that you know how to operate it (again, during the course we can not provide installation or technical assistance for each participant).
 
 
 ## 📋 Syllabus
@@ -43,9 +42,8 @@ We recommend the following sequence of skill tracks:
 So we offer also an optional skill track, what else you can do: [Time Analysis](./time_analysis.md)
 
 ---
-**Note**
-
-The chapters are available as Jupyter notebooks on <a href="https://github.com/University-Clinic-of-Neuroradiology/python-bootcamp/main"><img src="https://img.shields.io/badge/Go%20to-GitHub-green.svg" alt="Generic badge" /></a>, which can also be opened on <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
+{: .box-note}
+**Note**: The chapters are available as Jupyter notebooks on <a href="https://github.com/University-Clinic-of-Neuroradiology/python-bootcamp/main"><img src="https://img.shields.io/badge/Go%20to-GitHub-green.svg" alt="Generic badge" /></a>, which can also be opened on <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>.
 
 
 ## 🚩 Project
