@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Theoretical Basics
-subtitle: Deep Learning
+subtitle: Time Analysis
 ---
 
 ## 📋 Content
@@ -10,6 +10,7 @@ subtitle: Deep Learning
 
 
 ## Medical signals file formats
+
 | Signal Type | File Extension       | Origin                                         |
 |-------------|----------------------|------------------------------------------------|
 | EEG         | .fif                 | Fractal Image Format                           |  
