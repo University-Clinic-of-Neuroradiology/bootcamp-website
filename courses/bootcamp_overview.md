@@ -59,7 +59,9 @@ Click here for the project: [Project](./project.md).
 
 
 ## ❓ Feedback
-Please give us feedback after you finished the skill track: [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/oEtNoE6NVvW2CnM28).
+Please take part in the following surveys:
+- Pre-survey (What are your expectations? ...) [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/yb4ALTYZNqP9iMYMA)
+- Final survey (Were your expectations met? What did you learn? ...) [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/1CAPNZQUXqmMaQYr6)
 
 
 ## 🙏 Credits

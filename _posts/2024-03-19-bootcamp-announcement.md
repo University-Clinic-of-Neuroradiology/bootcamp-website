@@ -33,9 +33,10 @@ No Math Panic Zone: Worried about complex mathematical concepts? Fret not! We've
 
 💡 Why Choose Our Python Bootcamp:
 
-Tailored for Medical Minds: We understand the unique needs of healthcare professionals.
-No Math Hassles: Dive into Python without getting lost in mathematical mazes.
-Practical Application: Learn skills directly applicable to the medical field.
+- Tailored for Medical Minds: We understand the unique needs of healthcare professionals.
+- No Math Hassles: Dive into Python without getting lost in mathematical mazes.
+- Practical Application: Learn skills directly applicable to the medical field.
+
 🚀 Ready to Transform Your Python Journey?
 
 Secure your spot now and embark on a coding adventure that seamlessly integrates with your medical expertise! Let's revolutionize healthcare through the power of Python.

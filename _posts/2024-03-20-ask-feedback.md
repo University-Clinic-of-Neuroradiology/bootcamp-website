@@ -14,7 +14,9 @@ We want to hear from you about what you like and don’t like about e.g. our not
 
 Your feedback is very important to us, and we’ll use it to make our Python Bootcamp better.
 
-You can find on each skill track a link to a Google formular!
+Please take part in the following surveys:
+- Pre-survey (What are your expectations? ...) [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/yb4ALTYZNqP9iMYMA)
+- Final survey (Were your expectations met? What did you learn? ...) [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/1CAPNZQUXqmMaQYr6)
 
 Thank you!
 
