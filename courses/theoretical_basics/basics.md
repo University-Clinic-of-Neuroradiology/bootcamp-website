@@ -19,11 +19,6 @@ subtitle: Python
 
 Python is one of the most popular programming languages in the world. It is used for a wide variety of tasks, including data analysis. It has also become the language of choice for machine learning. 
 
-<fieldset class="field-set" markdown="1">
-<legend class="leg-title">Key Points</legend>
-- bla bla
-- bla bla
-</fieldset>
 
 ## The print()-Function
 One of the first things you will probably do is output (print). To write information, you can use the `print()` function and implement it as a core function. As it is a core function, you will automatically have access to it if Python is installed. To use `print()` in your program, use an argument:

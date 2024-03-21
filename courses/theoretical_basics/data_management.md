@@ -50,9 +50,11 @@ Common areas that make use of it are:
 ## Where to find help?
 Here you will find all the necessary information about `pandas` and their functionalities: [Official Documentation](https://pandas.pydata.org/docs/).
 
-{: .box-success}
-**Key Points**: - pandas is a data processing framework based on numpy
-                - It offers additional utility functions but sacrifices speed
+<fieldset class="field-set" markdown="1">
+<legend class="leg-title">Key Points</legend>
+- pandas is a data processing framework based on numpy
+- It offers additional utility functions but sacrifices speed
+</fieldset>
 
 ## How to get pandas?
 It can be installed via `pip` (c.f. pandas on pypi.org). Make sure that the dependencies are installed as well.
@@ -133,9 +135,12 @@ sneeze_counts = Series(
 )
 ```
 
-{: .box-success}
-**Key Points**: - Series are a 1-dimensional data structure
-                - You can use indices to label the data and a name to label the whole Series
+<fieldset class="field-set" markdown="1">
+<legend class="leg-title">Key Points</legend>
+- Series are a 1-dimensional data structure
+- You can use indices to label the data and a name to label the whole Series
+</fieldset>
+
 
 ## Crating Dataframes
 A `dataframe` can be created from a list of `series`, where each `series` forms a row in the resulting table.
@@ -198,11 +203,14 @@ Temperature    10.9      8.2        7.6       7.8     9.4      11.1    12.4
 ```
 Don’t forget to store the transposed dataframe in a new variable (or overwrite the old one), as the original will not be changed by the transposition.
 
-{: .box-success}
-**Key Points**: - Dataframes represent 2-dimensional (tabular) data
-                - Each column in a dataframe is a series
-                - Dataframes have row and column indices
-                - Dataframes may be transposed to switch rows and columns
+<fieldset class="field-set" markdown="1">
+<legend class="leg-title">Key Points</legend>
+- Dataframes represent 2-dimensional (tabular) data
+- Each column in a dataframe is a series
+- Dataframes have row and column indices
+- Dataframes may be transposed to switch rows and column
+</fieldset>
+
 
 ## Accessing Data
 ### Selecting Columns
@@ -242,8 +250,11 @@ The `iloc`-property works similar to `loc`, except that it takes integer-based i
 print(measurements.iloc[0:5, 1:])
 ```
 
-{: .box-success}
-**Key Points**: - Rows and columns can be selected ba their label, with the loc- or iloc-methods
+<fieldset class="field-set" markdown="1">
+<legend class="leg-title">Key Points</legend>
+- Rows and columns can be selected ba their label, with the loc- or iloc-methods
+</fieldset>
+
 
 ## Medical data file formats
 
