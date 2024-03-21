@@ -8,6 +8,11 @@ subtitle: Python
 - [Let's keep it simple and use a list for our measurement](#lets-keep-it-simple-and-use-a-list-for-our-measurement)
 - [Average water level in meters for each month](#average-water-level-in-meters-for-each-month)
     - [Adding Details](#adding-details)
+- [First let's put in the overall decorations](#first-lets-put-in-the-overall-decorations)
+- [We want our y-axis to start at 7 and go up to 16 with a resolution of 1](#we-want-our-y-axis-to-start-at-7-and-go-up-to-16-with-a-resolution-of-1)
+- [First let's put in the overall decorations](#first-lets-put-in-the-overall-decorations-1)
+- [We want our y-axis to start at 7 and go up to 16 with a resolution of 1](#we-want-our-y-axis-to-start-at-7-and-go-up-to-16-with-a-resolution-of-1-1)
+- [Add the lines for the lowest and highest pills amount](#add-the-lines-for-the-lowest-and-highest-pills-amount)
   - [Anatomy of a Plot](#anatomy-of-a-plot)
     - [Artists and Figures](#artists-and-figures)
 
@@ -44,6 +49,7 @@ A variable requires a data type. In the previous program, `x` assumes the type `
 | Boolean type       | Boolean          | `True, False, continue = True` |
 
 You can use the `type()` function to determine the data type:
+
 {% include trinket-open type='python' %}
 a = 'Yeah, my name is ...'
 
@@ -120,7 +126,8 @@ Since we have not given any explicit x- axis values, `pyplot` has used the index
 **Note**: `Pyplot` internally keeps track of state of the plot. You as the user only get to see it once you call the `show()` function. This way of programming is calles imperative. There is also a different approach to things, which is called object oriented which is used in the underlying workings of `matplotlib`. For clarity reasons we will show pyplot first and then expand upon that a bit later. To help with understanding, imagine you want to have a cake. Imperative style is like calling a baker and describing how you want your cake to look like. Object oriented style is like ordering the ingredients and then modifying the soon-to-be-cake yourself until it looks like you want it.
 
 A simple way to plot something with specific x-values is to have separate lists of x and y values. The x-values do not need to be numbers, category names work equally as well.
-```python
+
+{% include trinket-open type='python' %}
 import matplotlib.pyplot as plt
 
 months = [
@@ -134,33 +141,62 @@ pills = [10, 12, 13, 15, 12, 11,
 
 plt.plot(months, pills)
 plt.show()
-```
+{% include trinket-close %}
+
 
 ### Adding Details
 We now have a very simple plot, but it is lacking a few things that we expect. Let us add some basic things like labels, a title and maybe a better scale for the y-axis.
-```python
-# … Data as before
+
+{% include trinket-open type='python' %}
+import matplotlib.pyplot as plt
+
+months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+]
+
+pills = [10, 12, 13, 15, 12, 11,
+         9, 8, 8, 10, 11, 12
+        ]
 
 # First let's put in the overall decorations
 plt.xlabel("Month")
 plt.ylabel("#")
 plt.title("Amount of pills per month")
 
-pyplot.plot(months, pills)
+plt.plot(months, pills)
 
 # We want our y-axis to start at 7 and go up to 16 with a resolution of 1
 amt_pills_marks = np.arange(7,17,1)
-pyplot.yticks(amt_pills_marks)
+plt.yticks(amt_pills_marks)
 
-pyplot.show()
-```
+plt.show()
+{% include trinket-close %}
+
 For the viewers convenience we also want to add horizontal lines to indicate the minimum and maximum values of the pills amount.
-```python
-# … Data as before
 
-# … Title and labels as before
+{% include trinket-open type='python' %}
+import matplotlib.pyplot as plt
+
+months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+]
+
+pills = [10, 12, 13, 15, 12, 11,
+         9, 8, 8, 10, 11, 12
+        ]
+
+# First let's put in the overall decorations
+plt.xlabel("Month")
+plt.ylabel("#")
+plt.title("Amount of pills per month")
 
 plt.plot(months, pills)
+
+# We want our y-axis to start at 7 and go up to 16 with a resolution of 1
+amt_pills_marks = np.arange(7,17,1)
+plt.yticks(amt_pills_marks)
 
 # Add the lines for the lowest and highest pills amount
 marker_lines = [min(pills), max(pills)]
@@ -172,10 +208,9 @@ plt.hlines(
     colors="lightgray"
 )
 
-# … Set the tick marks as before
-
 plt.show()
-```
+{% include trinket-close %}
+
 
 ## Anatomy of a Plot
 Knowing the right terms for the subject can help to better search for help, understand documentation and communicate issues and solutions. In the following image you can find the naming of the elements in a plot as used by `matplotlib`:
