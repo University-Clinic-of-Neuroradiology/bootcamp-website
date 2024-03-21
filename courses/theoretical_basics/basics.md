@@ -19,6 +19,12 @@ subtitle: Python
 
 Python is one of the most popular programming languages in the world. It is used for a wide variety of tasks, including data analysis. It has also become the language of choice for machine learning. 
 
+<fieldset class="field-set" markdown="1">
+<legend class="leg-title">Key Points</legend>
+- bla bla
+- bla bla
+</fieldset>
+
 ## The print()-Function
 One of the first things you will probably do is output (print). To write information, you can use the `print()` function and implement it as a core function. As it is a core function, you will automatically have access to it if Python is installed. To use `print()` in your program, use an argument:
 
@@ -148,6 +154,7 @@ plt.show()
 We now have a very simple plot, but it is lacking a few things that we expect. Let us add some basic things like labels, a title and maybe a better scale for the y-axis.
 
 {% include trinket-open type='python' %}
+import numpy as np
 import matplotlib.pyplot as plt
 
 months = [
@@ -159,12 +166,12 @@ pills = [10, 12, 13, 15, 12, 11,
          9, 8, 8, 10, 11, 12
         ]
 
+plt.plot(months, pills)
+
 # First let's put in the overall decorations
 plt.xlabel("Month")
 plt.ylabel("#")
 plt.title("Amount of pills per month")
-
-plt.plot(months, pills)
 
 # We want our y-axis to start at 7 and go up to 16 with a resolution of 1
 amt_pills_marks = np.arange(7,17,1)
@@ -176,6 +183,7 @@ plt.show()
 For the viewers convenience we also want to add horizontal lines to indicate the minimum and maximum values of the pills amount.
 
 {% include trinket-open type='python' %}
+import numpy as np
 import matplotlib.pyplot as plt
 
 months = [
@@ -187,12 +195,12 @@ pills = [10, 12, 13, 15, 12, 11,
          9, 8, 8, 10, 11, 12
         ]
 
+plt.plot(months, pills)
+
 # First let's put in the overall decorations
 plt.xlabel("Month")
 plt.ylabel("#")
 plt.title("Amount of pills per month")
-
-plt.plot(months, pills)
 
 # We want our y-axis to start at 7 and go up to 16 with a resolution of 1
 amt_pills_marks = np.arange(7,17,1)
