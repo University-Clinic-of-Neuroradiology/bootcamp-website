@@ -5,38 +5,34 @@ subtitle: Python
 ---
 
 ## 📋 Content
-- [📋 Content](#-content)
-- [The print()-Function](#the-print-function)
-- [Variables](#variables)
-- [Data types](#data-types)
-- [Converting data types](#converting-data-types)
-- [Operators](#operators)
-- [Arithmetic operators](#arithmetic-operators)
-- [Assignment operators](#assignment-operators)
-- [Getting started with pyplot](#getting-started-with-pyplot)
-  - [Creating simple plots](#creating-simple-plots)
-  - [Adding Details](#adding-details)
-- [Anatomy of a Plot](#anatomy-of-a-plot)
-  - [Artists and Figures](#artists-and-figures)
+- [Let's keep it simple and use a list for our measurement](#lets-keep-it-simple-and-use-a-list-for-our-measurement)
+- [Average water level in meters for each month](#average-water-level-in-meters-for-each-month)
+    - [Adding Details](#adding-details)
+  - [Anatomy of a Plot](#anatomy-of-a-plot)
+    - [Artists and Figures](#artists-and-figures)
 
 
 Python is one of the most popular programming languages in the world. It is used for a wide variety of tasks, including data analysis. It has also become the language of choice for machine learning. 
 
 ## The print()-Function
 One of the first things you will probably do is output (print). To write information, you can use the `print()` function and implement it as a core function. As it is a core function, you will automatically have access to it if Python is installed. To use `print()` in your program, use an argument:
-```python
+
+{% include trinket-open type='python' %}
 print('Hello World!')
-```
+{% include trinket-close %}
+
 
 ## Variables
 As one of the basics of programming, you need to know that you are processing data. Since your program works with data, you may need to remember a certain value while running the program. You use variables to do this.
 
 In the following example, a variable is declared (saved) and then output:
-```python
+
+{% include trinket-open type='python' %}
 x = 5
 
 print(x)
-```
+{% include trinket-close %}
+
 
 ## Data types
 A variable requires a data type. In the previous program, `x` assumes the type `int`. However, there are many other data types. Here are some basic examples that you are likely to come across:
@@ -48,29 +44,34 @@ A variable requires a data type. In the previous program, `x` assumes the type `
 | Boolean type       | Boolean          | `True, False, continue = True` |
 
 You can use the `type()` function to determine the data type:
-```python
+{% include trinket-open type='python' %}
 a = 'Yeah, my name is ...'
 
 print(type(a))
-```
+{% include trinket-close %}
+
 
 ## Converting data types
 Sometimes it makes sense to change the data type of a variable. This can be done as follows:
-```python
+
+{% include trinket-open type='python' %}
 a = '5'
 b = int(a)
 
 print(type(b))
-```
+{% include trinket-close %}
+
 
 ## Operators
 Operators allow you to perform various operations on variables and their values. In general, you have a left-hand side and a right-hand side and an operator in the middle:
-```python
+
+{% include trinket-open type='python' %}
 x = 10
 y = 5
 
 print(x + y)
-```
+{% include trinket-close %}
+
 Python uses two types of operators: arithmetic operators and assignments.
 
 ## Arithmetic operators
@@ -99,7 +100,8 @@ The `matplotlib` framework offers the module `pyplot` as a set of convenient sho
 
 ### Creating simple plots
 Imagine we are keeping track of the amount of medication a patient takes over a year:
-```python
+
+{% include trinket-open type='python' %}
 import matplotlib.pyplot as plt
 
 # Let's keep it simple and use a list for our measurement
@@ -110,7 +112,8 @@ pills = [10, 12, 13, 15, 12, 11,
 
 plt.plot(pills)  # This prepares a plot
 plt.show()  # Show the plot that was created
-```
+{% include trinket-close %}
+
 Since we have not given any explicit x- axis values, `pyplot` has used the index of our list for that purpose.
 
 {: .box-note}
