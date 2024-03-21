@@ -57,6 +57,21 @@ After completing the project, you can send us your solution by e-mail. You will 
 
 Click here for the project: [Project](./project.md).
 
+{% include trinket-open type='python' %}
+import turtle
+
+tina = turtle.Turtle()
+
+for c in ['red', 'green', 'yellow', 'blue']:
+    tina.color(c)
+    tina.forward(75)
+    tina.left(90)
+
+tina.penup()
+tina.backward(100)
+tina.write("Hello world!")
+{% include trinket-close %}
+
 
 ## ❓ Feedback
 Please take part in the following surveys:
