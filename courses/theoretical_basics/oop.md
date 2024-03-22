@@ -4,7 +4,12 @@ title: Theoretical Basics
 subtitle: Object Oriented Programming
 ---
 
+---
+**This skill track is under construction!!**
+---
+
 ## 📋 Content
+- [**This skill track is under construction!!**](#this-skill-track-is-under-construction)
 - [📋 Content](#-content)
 - [Objects](#objects)
   - [A Little Story](#a-little-story)
