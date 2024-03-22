@@ -28,12 +28,14 @@ A typical machine learning workflow is as follows:
 3. The network will then produce predicitions for unseen test data. Its accuracy will depend on how accurately its output matches the labels of the test data.
 
 ## Steps
+MNIST is a great dataset for getting started with deep learning and computer vision.
+
 ### Loading dataset in Keras
 ```python
 import keras
 
 # import dataset
-(train_images, train_labels), (test_images, test_labels) = ...
+(train_images, train_labels), (test_images, test_labels) = mnist.load_data()
 ```
 The multidimensional Numpy arrays, in which data is stored are called Tensors. You can think of tensors as a container for data. To be more specific tensors are a generalization of matrices to an arbitrary number of dimensions. Tensors can be defined by three key features:
 - **Number of axes:** e.g. 2D Tensor has 2 axis.
@@ -51,9 +53,39 @@ print(len(train_labels))
 # labels
 print(train_labels)
 ```
+So it appears that we have 60,000 samples in our training set, and the images are 28 x 28 pixels each.
 
 ### Preprocessing
-bla bla
+#### Preparing the image data
+When using the TensorFlow backend, you must explicitly declare a dimension for the number of channels in the input images. For example, a full-color image with all 3 RGB channels will have a channel value of 3.
+
+Our MNIST images only have 1 channel (gray-scale), but we must explicitly declare that.
+
+In other words, we want to transform our dataset from having shape (n, width, height) to (n, width, height, channels).
+
+```python
+train_images = train_imagesn.reshape(train_images.shape[0], 28, 28, 1)
+test_images = test_images.reshape(test_images.shape[0], 28, 28, 1)
+```
+
+The final preprocessing step for the input data is to convert our data type to `float32` and normalize our data values to the range [0, 1].
+
+```python
+train_images = train_images.astype('float32')
+test_images = test_images.astype('float32')
+train_images /= 255
+test_images /= 255
+```
+
+#### Encoding the labels
+The labels will also need to be categorically encoded since we cannot feed the lists of integers into a neural network.
+
+```python
+from keras.utils import to_categorical
+
+train_labels = to_categorical(train_labels)
+test_labels = to_categorical(test_labels)
+```
 
 ### Building Network architecture
 A Deep learning network essentially consists of models and layers.
