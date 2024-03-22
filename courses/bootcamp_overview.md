@@ -39,7 +39,9 @@ We recommend the following sequence of skill tracks:
 4. [Data Management](./data_management.md)
 5. [DeepLearning](./deep_learning.md)
 
-So we offer also an optional skill track, what else you can do: [Time Analysis](./time_analysis.md)
+So we offer also an optional skill track, what else you can do:
+- [Time Analysis](./time_analysis.md)
+- [Object Oriented Programming in Python](./object_oriented_programming.md)
 
 ---
 

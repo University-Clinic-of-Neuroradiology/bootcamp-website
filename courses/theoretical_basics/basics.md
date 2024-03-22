@@ -5,16 +5,19 @@ subtitle: Python
 ---
 
 ## 📋 Content
-- [Let's keep it simple and use a list for our measurement](#lets-keep-it-simple-and-use-a-list-for-our-measurement)
-- [Average water level in meters for each month](#average-water-level-in-meters-for-each-month)
-    - [Adding Details](#adding-details)
-- [First let's put in the overall decorations](#first-lets-put-in-the-overall-decorations)
-- [We want our y-axis to start at 7 and go up to 16 with a resolution of 1](#we-want-our-y-axis-to-start-at-7-and-go-up-to-16-with-a-resolution-of-1)
-- [First let's put in the overall decorations](#first-lets-put-in-the-overall-decorations-1)
-- [We want our y-axis to start at 7 and go up to 16 with a resolution of 1](#we-want-our-y-axis-to-start-at-7-and-go-up-to-16-with-a-resolution-of-1-1)
-- [Add the lines for the lowest and highest pills amount](#add-the-lines-for-the-lowest-and-highest-pills-amount)
-  - [Anatomy of a Plot](#anatomy-of-a-plot)
-    - [Artists and Figures](#artists-and-figures)
+- [📋 Content](#-content)
+- [The print()-Function](#the-print-function)
+- [Variables](#variables)
+- [Data types](#data-types)
+- [Converting data types](#converting-data-types)
+- [Operators](#operators)
+- [Arithmetic operators](#arithmetic-operators)
+- [Assignment operators](#assignment-operators)
+- [Getting started with pyplot](#getting-started-with-pyplot)
+  - [Creating simple plots](#creating-simple-plots)
+  - [Adding Details](#adding-details)
+- [Anatomy of a Plot](#anatomy-of-a-plot)
+  - [Artists and Figures](#artists-and-figures)
 
 
 Python is one of the most popular programming languages in the world. It is used for a wide variety of tasks, including data analysis. It has also become the language of choice for machine learning. 
@@ -31,13 +34,12 @@ print('Hello World!')
 ## Variables
 As one of the basics of programming, you need to know that you are processing data. Since your program works with data, you may need to remember a certain value while running the program. You use variables to do this.
 
-In the following example, a variable is declared (saved) and then output:
-
-{% include trinket-open type='python' %}
+In the following example, a variable is declared (saved) and then output. Try:
+``` python
 x = 5
 
 print(x)
-{% include trinket-close %}
+```
 
 
 ## Data types
@@ -49,24 +51,22 @@ A variable requires a data type. In the previous program, `x` assumes the type `
 | Text type     | String     | `str = "a literal string"`                  |
 | Boolean type       | Boolean          | `True, False, continue = True` |
 
-You can use the `type()` function to determine the data type:
-
-{% include trinket-open type='python' %}
+You can use the `type()` function to determine the data type, try:
+```python
 a = 'Yeah, my name is ...'
 
 print(type(a))
-{% include trinket-close %}
+```
 
 
 ## Converting data types
-Sometimes it makes sense to change the data type of a variable. This can be done as follows:
-
-{% include trinket-open type='python' %}
+Sometimes it makes sense to change the data type of a variable. This can be done as follows, try:
+```python
 a = '5'
 b = int(a)
 
 print(type(b))
-{% include trinket-close %}
+```
 
 
 ## Operators
@@ -111,8 +111,6 @@ Imagine we are keeping track of the amount of medication a patient takes over a 
 {% include trinket-open type='python' %}
 import matplotlib.pyplot as plt
 
-# Let's keep it simple and use a list for our measurement
-# Average water level in meters for each month
 pills = [10, 12, 13, 15, 12, 11,
          9, 8, 8, 10, 11, 12
         ]
@@ -126,9 +124,8 @@ Since we have not given any explicit x- axis values, `pyplot` has used the index
 {: .box-note}
 **Note**: `Pyplot` internally keeps track of state of the plot. You as the user only get to see it once you call the `show()` function. This way of programming is calles imperative. There is also a different approach to things, which is called object oriented which is used in the underlying workings of `matplotlib`. For clarity reasons we will show pyplot first and then expand upon that a bit later. To help with understanding, imagine you want to have a cake. Imperative style is like calling a baker and describing how you want your cake to look like. Object oriented style is like ordering the ingredients and then modifying the soon-to-be-cake yourself until it looks like you want it.
 
-A simple way to plot something with specific x-values is to have separate lists of x and y values. The x-values do not need to be numbers, category names work equally as well.
-
-{% include trinket-open type='python' %}
+A simple way to plot something with specific x-values is to have separate lists of x and y values. The x-values do not need to be numbers, category names work equally as well. Try:
+```python
 import matplotlib.pyplot as plt
 
 months = [
@@ -142,26 +139,13 @@ pills = [10, 12, 13, 15, 12, 11,
 
 plt.plot(months, pills)
 plt.show()
-{% include trinket-close %}
+```
 
 
 ### Adding Details
 We now have a very simple plot, but it is lacking a few things that we expect. Let us add some basic things like labels, a title and maybe a better scale for the y-axis.
-
-{% include trinket-open type='python' %}
-import numpy as np
-import matplotlib.pyplot as plt
-
-months = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-]
-
-pills = [10, 12, 13, 15, 12, 11,
-         9, 8, 8, 10, 11, 12
-        ]
-
-plt.plot(months, pills)
+```python
+# ... add this to the code above
 
 # First let's put in the overall decorations
 plt.xlabel("Month")
@@ -173,34 +157,10 @@ amt_pills_marks = np.arange(7,17,1)
 plt.yticks(amt_pills_marks)
 
 plt.show()
-{% include trinket-close %}
+```
 
 For the viewers convenience we also want to add horizontal lines to indicate the minimum and maximum values of the pills amount.
-
-{% include trinket-open type='python' %}
-import numpy as np
-import matplotlib.pyplot as plt
-
-months = [
-    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
-]
-
-pills = [10, 12, 13, 15, 12, 11,
-         9, 8, 8, 10, 11, 12
-        ]
-
-plt.plot(months, pills)
-
-# First let's put in the overall decorations
-plt.xlabel("Month")
-plt.ylabel("#")
-plt.title("Amount of pills per month")
-
-# We want our y-axis to start at 7 and go up to 16 with a resolution of 1
-amt_pills_marks = np.arange(7,17,1)
-plt.yticks(amt_pills_marks)
-
+```python
 # Add the lines for the lowest and highest pills amount
 marker_lines = [min(pills), max(pills)]
 plt.hlines(
@@ -212,7 +172,7 @@ plt.hlines(
 )
 
 plt.show()
-{% include trinket-close %}
+```
 
 
 ## Anatomy of a Plot
