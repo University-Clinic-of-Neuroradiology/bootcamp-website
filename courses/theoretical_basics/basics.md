@@ -6,6 +6,8 @@ subtitle: Python
 
 ## 📋 Content
 - [📋 Content](#-content)
+- [Why should we learn a scientific programming language?](#why-should-we-learn-a-scientific-programming-language)
+- [Why Python?](#why-python)
 - [The print()-Function](#the-print-function)
 - [Variables](#variables)
 - [Data types](#data-types)
@@ -18,10 +20,31 @@ subtitle: Python
   - [Adding Details](#adding-details)
 - [Anatomy of a Plot](#anatomy-of-a-plot)
   - [Artists and Figures](#artists-and-figures)
+  - [Where to find help?](#where-to-find-help)
 
 
-Python is one of the most popular programming languages in the world. It is used for a wide variety of tasks, including data analysis. It has also become the language of choice for machine learning. 
+## Why should we learn a scientific programming language?
+Statistical tools like **Excel** do already a very good job regarding statistical analysis and visualization. And: They are easy- and ready-to-use.
+Scientific programming languages perform the same job, the mathematical background behind them is the same (with some exceptions in the numerical implementation). But: There is no Graphical User Interface (GUI), we have to write each analysis step by our own.
 
+So, why should we learn Python …? The answer is:
+- Automatization
+  - At the beginning it takes a little longer to get where you want to go.
+  - But when you’re done, you have a powerful tool to process all of your current (and future) data, without manually repeating your analysis steps!
+- Standardization and Reproducibility
+  - By pipelining your data through an automatized analysis, you ensure, that each of your data sets is processed and analyzed the same way (if it makes sense!).
+  - This standardization ensures reproducibility of your results for you and for others and enables inter- dataset/-group comparisons.
+- Perform more complex tasks
+  - You can go beyond the scope of any black-boxed suite-solution.
+
+## Why Python?
+Python is one of the most popular programming languages in the world. It is used for a wide variety of tasks, including data analysis. It has also become the language of choice for machine learning. Here are some more points:
+- **Open-source:** Free and continuously improved by a worldwide community.
+- **Portable:** You can install Python wherever you want to (PC, Mac, ...), your code will work everywhere.
+- **“Interpreted“:** Your code is directly executed without previously being compiled into the actual machine-language instructions (i.e. machine-code, the language, your computer is operating with).
+- **“High-level“ programming language:** Use natural language elements to “tell“ the computer what you want.
+- **Extensive support of libraries:** Install as much additional modules as and when you need to, e.g. fancy plotting toolboxes, statistics toolboxes … they are all free (in other programming solutions you have to pay for such add-ons).
+- **Collaboration:** collaborate and exchange with your local or worldwide colleagues, who also use Python.
 
 ## The print()-Function
 One of the first things you will probably do is output (print). To write information, you can use the `print()` function and implement it as a core function. As it is a core function, you will automatically have access to it if Python is installed. To use `print()` in your program, use an argument:
@@ -187,3 +210,12 @@ There are further terms that you may want to keep in mind when working with the 
 
 ### Artists and Figures
 An artist determines the rendering style of plot elements. The `figure` is the collection of all plot elements. Figures can be nested into other figures. The nested element is called a `subfigure`. Implementation-wise, the figure is an artist (i.e. it controls its own plotting style). The rectangle for the figure’s background is contained in the attribute `patch`.
+
+
+### Where to find help?
+The official developers’ documentation websites act as a glossary paired with very good examples and often tutorials:
+
+- https://www.python.org/doc/, https://docs.python.org/3/
+- https://matplotlib.org
+- https://numpy.org/doc/
+- https://pandas.pydata.org/docs/
