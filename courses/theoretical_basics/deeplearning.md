@@ -5,30 +5,72 @@ subtitle: Deep Learning
 ---
 
 ## 📋 Content
+- [📋 Content](#-content)
+- [Introduction to ML](#introduction-to-ml)
+- [WTF is DeepLearning (DL)?](#wtf-is-deeplearning-dl)
+- [How does a neural network learn?](#how-does-a-neural-network-learn)
+- [Further Reading](#further-reading)
+- [Keras: The Python DL library](#keras-the-python-dl-library)
+- [Typical Workflow](#typical-workflow)
+- [Steps](#steps)
+  - [Loading dataset in Keras](#loading-dataset-in-keras)
+  - [Preprocessing](#preprocessing)
+    - [Preparing the image data](#preparing-the-image-data)
+    - [Encoding the labels](#encoding-the-labels)
+  - [Building Network architecture](#building-network-architecture)
+    - [Layers](#layers)
+    - [Model](#model)
+    - [Model Building](#model-building)
+  - [Network Compilation](#network-compilation)
+  - [Training the network](#training-the-network)
+  - [Testing on Test Data](#testing-on-test-data)
 
 
-## WTF is DeepLearning?
+## Introduction to ML
+An outlook on machine learning (ML): [WTF is MachineLearning](./machinelearning.md).
+
+## WTF is DeepLearning (DL)?
 
 ![AI, ML and DL ](../../assets/img/theoretical_basics/ai_ml_dl.png)
 
-DeepLearning, a distinct subset of machine learning, focuses on acquiring successive layers of progressively meaningful representations. The term "deep" signifies the utilization of these successive layers in learning. Neural networks, organized in literal stacked layers, are the models through which these layered representations are acquired in deep learning.
+DL, a distinct subset of ML, focuses on acquiring successive layers of progressively meaningful representations. The term "deep" signifies the utilization of these successive layers in learning. Neural networks, organized in literal stacked layers, are the models through which these layered representations are acquired in DL.
 
-## Keras: The Python DeepLearning library
-Keras is a framework for building deep neural networks with Python. Keras enables us to build state-of-the-art, deep learning systems just like those used at Google and Facebook, with little complexity and also with a few lines of code. Some of its key features are:
+Artificial neural networks consist of multiple layers of neurons that essentially define a deeply nested function. This architecture is why the technique is called DL, and the models it creates are often referred to as deep neural networks (DNNs). You can use deep neural networks for many types of ML problems, including regression and classification, as well as more specialised models for linguistic data processing and machine vision.
+
+Just like other ML techniques discussed in this module, DL involves fitting training data to a function that can predict a label (`y`) based on the value of one or more features (`x`). The function (`f(x)`) is the outer layer of a nested function in which each layer of the neural network encapsulates features related to `x` and the associated values for the weights (`w`). The algorithm used to train the model involves iteratively passing the feature values (`x`) in the training data through the layers to calculate output values for `ŷ`. This involves checking the model to determine how far the calculated `ŷ` values deviate from the known `y` values (thus quantifying the amount of error or loss in the model). The weights (`w`) are then changed to reduce the loss. The trained model contains the final weighting values that lead to the most accurate predictions.
+
+## How does a neural network learn?
+The weights in a neural network significantly influence how the predicted values for labels are calculated. During the training process, the model learns the weights that lead to the most accurate predictions. We will explore the training process in more detail to understand how this learning takes place.
+
+![DL Intro](../../assets/img/theoretical_basics/dl_intro_flowchart.png)
+
+1. The datasets for training and validation are defined and the training features are fed into the input layer.
+2. The neurons in each layer of the network apply their weights (which are initially assigned randomly) and transmit the data over the network.
+3. The output layer generates a vector containing the calculated values for `ŷ`.
+4. A loss function is used to compare the predicted `ŷ`-values with the known `y`-values and aggregate the difference (which is called loss). 
+5. Since the entire network is essentially a large nested function, an optimisation function can use a differential calculation to determine what influence the individual weights in the network have on the loss. It can then determine how the weights can be adjusted up or down to reduce the overall loss. The specific optimisation method can vary, but typically involves a gradient descent where each weight is increased or decreased to minimise the loss.
+6. The changes to the weights are reapplied to the layers in the mesh, replacing the previously used values.
+7. The process is repeated over several iterations (referred to as epochs) until the loss is minimised and the model provides a prediction with acceptable accuracy.
+
+## Further Reading
+A very good open-source overview article on DL is: [Alzubaidi et al. J Big Data (2021) 8:53](https://journalofbigdata.springeropen.com/articles/10.1186/s40537-021-00444-8).
+
+## Keras: The Python DL library
+Keras is a framework for building deep neural networks with Python. Keras enables us to build state-of-the-art, DL systems just like those used at Google and Facebook, with little complexity and also with a few lines of code. Some of its key features are:
 
 User-friendly API
 Built-In support for convolutional networks (for computer vision), recurrent networks (for sequence processing), and any combination of both.
 Supports arbitrary network architectures: multi-input or multi-output models, layer sharing, model sharing, and so on.
-Keras is a front-end layer written in Python that runs on top of other popular deep learning toolkits like TensorFlow, Theano and Microsoft Cognitive Toolkit (CNTK). Any piece of code that you write with Keras can be run with any of these backends without having to change anything in the code. Via TensorFlow/Theano /CNTK, Keras can run seamlessly on both CPUs and GPUs.
+Keras is a front-end layer written in Python that runs on top of other popular Dl toolkits like TensorFlow, Theano and Microsoft Cognitive Toolkit (CNTK). Any piece of code that you write with Keras can be run with any of these backends without having to change anything in the code. Via TensorFlow/Theano /CNTK, Keras can run seamlessly on both CPUs and GPUs.
 
 ## Typical Workflow
-A typical machine learning workflow is as follows:
+A typical ML workflow is as follows:
 1. Feed the network with pre-processed training data.
 2. The network then learns to associate the inputs of training data and their corresponding labels.
 3. The network will then produce predicitions for unseen test data. Its accuracy will depend on how accurately its output matches the labels of the test data.
 
 ## Steps
-MNIST is a great dataset for getting started with deep learning and computer vision.
+MNIST is a great dataset for getting started with DL and computer vision.
 
 ### Loading dataset in Keras
 ```python
@@ -88,10 +130,10 @@ test_labels = to_categorical(test_labels)
 ```
 
 ### Building Network architecture
-A Deep learning network essentially consists of models and layers.
+A DL network essentially consists of models and layers.
 
 #### Layers
-A layer is a core building block of a neural network. It acts as a kind of a data processing module. Layers extract representations out of the input data, that is fed into them. Inherently, Deep learning consists of stacking up these layers to form a model.
+A layer is a core building block of a neural network. It acts as a kind of a data processing module. Layers extract representations out of the input data, that is fed into them. Inherently, DL consists of stacking up these layers to form a model.
 
 #### Model
 A model is a linear stack of layers. It is like a sieve for data processing made of a succession of increasing refined data filters called layers. The simplest model in Keras is sequential, which is built by stacking layers sequentially.
