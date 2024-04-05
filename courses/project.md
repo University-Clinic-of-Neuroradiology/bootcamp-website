@@ -24,9 +24,9 @@ We have set aside about 2 hours for the final project.
 
 
 ## 📣 Current announcements
-After completing the project, send your solutions to the following e-mail address: python.bootcamp@med.ovgu.de.
+After you have completed the project, we have prepared a sample solution for you that presents the solution. **Remember:** There are many possible solutions and we only present one possible alternative in the sample solution!
 
-**NOTE: Checking the results is currently only possible for students of the OvGU Magdeburg!**
+If you want us to check your solution, have a look at the [📝 Submission process](#-submission-process).
 
 
 ## ❗ Course requirements
@@ -38,6 +38,8 @@ After completing the project, send your solutions to the following e-mail addres
 Save your solution to Google Drive with all outputs or download it to your computer. You can find the options in the tab under "File" in the top left corner.
 
 Make sure that all the necessary cells are readable. To be able to send us the files you have to create zip-files of your files, because .py or .ipynb are blocked by Outlook.
+
+You can then contact the e-mail address python.bootcamp@med.ovgu.de.
 
 
 ## 🔗 Project Link

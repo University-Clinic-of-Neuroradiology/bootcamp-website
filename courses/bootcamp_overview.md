@@ -50,12 +50,7 @@ So we offer also an optional skill track, what else you can do:
 
 
 ## 🚩 Project
-
-**This service is initially only available to students of the OvGU Magdeburg. We are planning to expand it at a later date. Please note the news/posts on our website.**
-
 Once you have completed all the skill tracks, a final project is prepared. In this project, you will work on a problem set by us. To do this, you should have understood all the content you have already completed, otherwise you will repeat the corresponding notebooks.
-
-After completing the project, you can send us your solution by e-mail. You will then receive feedback after you have checked it.
 
 Click here for the project: [Project](./project.md).
 
