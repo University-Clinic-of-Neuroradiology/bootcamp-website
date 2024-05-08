@@ -32,14 +32,14 @@ A useful introduction to the notebook interface [can be found here](http://jupyt
 
 ## Getting the Data
 
-Some exercises use data that you will need.
+Some exercises use data that you will need. The data is always stored in the respective skill track and is loaded directly into the notebooks. So you don't have to do anything else!
 
 
 ## Get started with the course
 
 All notebooks are located in several subdirectories, see [overview](../courses/bootcamp_overview.md). Each have a short introduction that you should read beforehand, as some notebooks have special requirements.
 
-Start with the [Introductory](../courses/python_basics.md) skill track..
+Start with the [Introductory](../courses/python_basics.md) skill track.
 
 ## Appendix
 

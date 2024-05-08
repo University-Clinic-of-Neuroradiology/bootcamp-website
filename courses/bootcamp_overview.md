@@ -56,9 +56,15 @@ Click here for the project: [Project](./project.md).
 
 
 ## ❓ Feedback
-Please take part in the following surveys:
-- Pre-survey (What are your expectations? ...) [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/yb4ALTYZNqP9iMYMA)
-- Final survey (Were your expectations met? What did you learn? ...) [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/1CAPNZQUXqmMaQYr6)
+Ready to make your voice heard? Dive into our surveys:
+
+- Pre-survey: Set the stage. What are your expectations? Lay it all out for us.
+  - English: [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/yb4ALTYZNqP9iMYMA)
+  - German: [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/6BqMkjzTYnbCj2Jo6)
+
+- Final survey: Reflect and rejoice. Did we hit the mark? What pearls of wisdom did you gather?
+  - English: [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/1CAPNZQUXqmMaQYr6)
+  - German: [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/JLGC237pbgSWyrv3A)
 
 
 ## 🙏 Credits
