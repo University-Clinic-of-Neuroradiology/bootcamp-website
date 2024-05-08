@@ -21,8 +21,8 @@ author: Clinic of Neuroradiology, Magdeburg
 
 navbar-links:
   Technical Notes:
-    - Installation Guide: "/technical/installation_guide"
-    - Google Colab: "/technical/google_colab"
+    - Installation Guide: "https://github.com/University-Clinic-of-Neuroradiology/python-bootcamp/wiki/Installation-guide-(offline)"
+    - Google Colab: "https://github.com/University-Clinic-of-Neuroradiology/python-bootcamp/wiki/Instructions-for-Google-Colab"
   Course Overview:
     - Overview: "/courses/bootcamp_overview"
     - Introductory: "/courses/python_basics"
