@@ -20,4 +20,4 @@ We have also designed a flyer for our bootcamp:
     <img src="../assets/img/promotion/flyer_02.png" alt="alt text" style="width: 45%;">
 </div>
 
-Contact us if you have any questions about the bootcamp or [start your coding journey today](../courses/bootcamp_overview.md)!. 🚀
+Contact us if you have any questions about the bootcamp or [start your coding journey today](../courses/bootcamp_overview)! 🚀
