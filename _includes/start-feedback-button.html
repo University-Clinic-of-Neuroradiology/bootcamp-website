@@ -1,0 +1,10 @@
+{% include create-button-with-link.html %}
+
+<script>createButtonWithLink({
+    diameter: 56,
+    backgroundColor: 'rgb(102, 255, 178)',
+    innerHTML: 'Feedback ❓',
+    link: './pages/feedback',
+    css: "#" + id + "{background:" + backgroundColor + ";-webkit-border-radius:10%;-moz-border-radius:10%;border-radius:10%;bottom:" + (cornerOffset + 50) + "px;-webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,.26);-moz-box-shadow:0 2px 5px 0 rgba(0,0,0,.26);box-shadow:0 2px 5px 0 rgba(0,0,0,.26);color:" + textColor + ";cursor:pointer;display:block;height:auto;width:200px;padding:10px;opacity:1;outline:0;position:fixed;right:" + cornerOffset + "px;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-transition:bottom .2s,opacity .2s;-o-transition:bottom .2s,opacity .2s;-moz-transition:bottom .2s,opacity .2s;transition:bottom .2s,opacity .2s;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:" + zIndex + "}",
+    textColor: '#fff'
+  })</script>
