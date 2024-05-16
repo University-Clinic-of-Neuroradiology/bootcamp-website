@@ -1,29 +1,5 @@
-<script>
-    function createButtonWithLink() {
-    var options = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
-    var backgroundColor = options.backgroundColor === undefined ? "#000" : options.backgroundColor;
-    var cornerOffset = options.cornerOffset === undefined ? 20 : options.cornerOffset;
-    var diameter = options.diameter === undefined ? 56 : options.diameter;
-    var id = options.id === undefined ? "button-with-link" : options.id;
-    var innerHTML = options.innerHTML === undefined ? 'Test button!' : options.innerHTML;
-    var link = options.link === undefined ? './pages/404.html' : options.link;
-    var size = options.size === undefined ? diameter : options.size;
-    var textColor = options.textColor === undefined ? "#fff" : options.textColor;
-    var zIndex = options.zIndex === undefined ? 1 : options.zIndex;
+{% include create-button-with-link.html %}
 
-    var css = "#" + id + "{background:" + backgroundColor + ";-webkit-border-radius:10%;-moz-border-radius:10%;border-radius:10%;bottom:" + (cornerOffset + 100) + "px;-webkit-box-shadow:0 2px 5px 0 rgba(0,0,0,.26);-moz-box-shadow:0 2px 5px 0 rgba(0,0,0,.26);box-shadow:0 2px 5px 0 rgba(0,0,0,.26);color:" + textColor + ";cursor:pointer;display:block;height:auto;width:200px;padding:10px;opacity:1;outline:0;position:fixed;right:" + cornerOffset + "px;-webkit-tap-highlight-color:transparent;-webkit-touch-callout:none;-webkit-transition:bottom .2s,opacity .2s;-o-transition:bottom .2s,opacity .2s;-moz-transition:bottom .2s,opacity .2s;transition:bottom .2s,opacity .2s;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none;z-index:" + zIndex + "}";
-    var style = document.createElement("style");
-    style.appendChild(document.createTextNode(css));
-    document.head.insertAdjacentElement("afterbegin", style);
-
-    var button = document.createElement("a");
-    button.id = id;
-    button.innerHTML = innerHTML;
-    button.href = link;
-    button.target = "_blank";
-    document.body.appendChild(button);
-    }
-</script>
 <script>createButtonWithLink({
     diameter: 56,
     backgroundColor: 'rgb(255, 102, 102)',
