@@ -4,6 +4,8 @@ layout: page
 
 {{ content }}
 
+{% include start-journey-button.html %}
+
 {% assign posts = paginator.posts | default: site.posts %}
 
 <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
