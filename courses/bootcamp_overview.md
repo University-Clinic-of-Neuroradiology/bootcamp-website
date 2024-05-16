@@ -16,7 +16,7 @@ subtitle: Overview of the Bootcamp courses
 
 
 ## 📄 Description
-Introductory course into the Python programming language. The course is condensed to the minimum requirements for the use of Python in medical data analysis. This is the preliminary course to the ....
+Unlock the power of Python in healthcare data analysis with our condensed introductory course. Dive into the essentials, decode medical data, and pave the way for transformative innovations. This is your first step toward a future where code heals.
 
 
 ## 📣 Current announcements
@@ -69,3 +69,8 @@ Ready to make your voice heard? Dive into our surveys:
 
 ## 🙏 Credits
 This course material is under [![License](https://img.shields.io/badge/license-Apache%202.0-green.svg)](https://opensource.org/licenses/Apache-2.0).
+
+This course is based on other successful courses such as:
+- [datacamp.com](https://www.datacamp.com/)
+- [Microsoft Learn](https://learn.microsoft.com/)
+and has been adapted and expanded for medical content. 
