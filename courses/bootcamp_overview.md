@@ -73,4 +73,5 @@ This course material is under [![License](https://img.shields.io/badge/license-A
 This course is based on other successful courses such as:
 - [datacamp.com](https://www.datacamp.com/)
 - [Microsoft Learn](https://learn.microsoft.com/)
+
 and has been adapted and expanded for medical content. 
