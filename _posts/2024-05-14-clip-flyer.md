@@ -7,7 +7,7 @@ gh-badge: [star, fork, follow]
 author: Eric Einspänner
 ---
 
-🎉 Exciting Announcement: We now have a promotional material! 🐍💊
+🎉 Exciting Announcement: We now have a promotional material!
 
 Join us in our journey of discovery with our new promotional clip – innovation in action at the University Clinic of Neuroradiology Magdeburg!
 <video width="100%" preload="auto" muted controls>
