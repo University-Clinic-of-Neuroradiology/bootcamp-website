@@ -24,7 +24,7 @@ subtitle: Python
 
 
 ## Why should we learn a scientific programming language?
-Statistical tools like **Excel** do already a very good job regarding statistical analysis and visualization. And: They are easy- and ready-to-use.
+Statistical tools like **Excel** already do a very good job regarding statistical analysis and visualization. And: They are easy- and ready-to-use.
 Scientific programming languages perform the same job, the mathematical background behind them is the same (with some exceptions in the numerical implementation). But: There is no Graphical User Interface (GUI), we have to write each analysis step by our own.
 
 So, why should we learn Python …? The answer is:
@@ -145,7 +145,7 @@ plt.show()  # Show the plot that was created
 Since we have not given any explicit x- axis values, `pyplot` has used the index of our list for that purpose.
 
 {: .box-note}
-**Note**: `Pyplot` internally keeps track of state of the plot. You as the user only get to see it once you call the `show()` function. This way of programming is calles imperative. There is also a different approach to things, which is called object oriented which is used in the underlying workings of `matplotlib`. For clarity reasons we will show pyplot first and then expand upon that a bit later. To help with understanding, imagine you want to have a cake. Imperative style is like calling a baker and describing how you want your cake to look like. Object oriented style is like ordering the ingredients and then modifying the soon-to-be-cake yourself until it looks like you want it.
+**Note**: `Pyplot` internally keeps track of state of the plot. You as the user only get to see it once you call the `show()` function. This way of programming is called imperative. There is also a different approach to things, which is called object oriented which is used in the underlying workings of `matplotlib`. For clarity reasons we will show pyplot first and then expand upon that a bit later. To help with understanding, imagine you want to have a cake. Imperative style is like calling a baker and describing how you want your cake to look like. Object oriented style is like ordering the ingredients and then modifying the soon-to-be-cake yourself until it looks like you want it.
 
 A simple way to plot something with specific x-values is to have separate lists of x and y values. The x-values do not need to be numbers, category names work equally as well. Try:
 ```python
