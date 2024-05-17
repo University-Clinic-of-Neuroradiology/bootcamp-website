@@ -6,10 +6,10 @@ subtitle: Introduction to Object Oriented Programming in Python.
 
 ---
 **This skill track is under construction!!**
+
 ---
 
 ## 📋 Content
-- [**This skill track is under construction!!**](#this-skill-track-is-under-construction)
 - [📋 Content](#-content)
 - [📄 Description](#-description)
 - [📣 Current announcements](#-current-announcements)
