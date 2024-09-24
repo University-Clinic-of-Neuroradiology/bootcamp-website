@@ -9,7 +9,6 @@ subtitle: Final Project
 - [📄 Description](#-description)
 - [📣 Current announcements](#-current-announcements)
 - [❗ Course requirements](#-course-requirements)
-- [📝 Submission process](#-submission-process)
 - [🔗 Project Link](#-project-link)
 - [✏️ Hints](#️-hints)
 - [☝️ References](#️-references)
@@ -26,27 +25,18 @@ We have set aside about 2 hours for the final project.
 ## 📣 Current announcements
 After you have completed the project, we have prepared a sample solution for you that presents the solution. **Remember:** There are many possible solutions and we only present one possible alternative in the sample solution!
 
-If you want us to check your solution, have a look at the [📝 Submission process](#-submission-process).
-
 
 ## ❗ Course requirements
 - you should have completed all previous skill tracks
 - in this notebook we use data from open-source databases (the references are at the bottom of the page); in Google Colab the data is loaded automatically at the beginning of the notebook
 
 
-## 📝 Submission process
-Save your solution to Google Drive with all outputs or download it to your computer. You can find the options in the tab under "File" in the top left corner.
-
-Make sure that all the necessary cells are readable. To be able to send us the files you have to create zip-files of your files, because .py or .ipynb are blocked by Outlook.
-
-You can then contact the e-mail address python.bootcamp@med.ovgu.de.
-
-
 ## 🔗 Project Link
 We have some small projects where you can test your skills:
-- project <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/projects/project.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- OASIS Analysis <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/projects/oasis_analysis.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 - Hypothesis Testing in Healthcare: Drug Safety <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/projects/hypothesis_testing_drug_safety.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 - SeHCAT Analysis <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/projects/sehcat_analysis.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- AI for Beginners <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/projects/AI_for_beginners.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
 ## ✏️ Hints
