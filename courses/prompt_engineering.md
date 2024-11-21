@@ -36,7 +36,7 @@ For this skill track, it doesn't matter what kind of chatbot you prefer to use. 
 
 
 ## 📝 Theoretical basics
-For some information on the topic, take a look at some [Basics](./theoretical_basics/prompt_engeneering.md).
+For some information on the topic, take a look at some [Basics](./theoretical_basics/prompt_engineering.md).
 
 
 ## ☝️ References
