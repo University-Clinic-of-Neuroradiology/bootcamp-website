@@ -39,6 +39,10 @@ subtitle: Prompt Engineering
   - [When to Use Each Type](#when-to-use-each-type)
   - [Summary](#summary-3)
 - [Advanced Prompting Techniques](#advanced-prompting-techniques)
+  - [Chain-of-Thought (CoT) Prompting](#chain-of-thought-cot-prompting)
+  - [Multi-Step Prompting](#multi-step-prompting)
+  - [Self-Consistency Prompting](#self-consistency-prompting)
+  - [Role-Specific Prompting](#role-specific-prompting)
   - [Summary](#summary-4)
 - [Iterative Prompt Refinement](#iterative-prompt-refinement)
   - [Summary](#summary-5)
@@ -406,17 +410,120 @@ outputs, unlocking the full potential of language models.
 
 
 ## Advanced Prompting Techniques
-bla bla
+As users seek more precise and nuanced outputs from LLMs, they often turn to advanced prompting techniques.
+These methods enhance the model's ability to tackle complex tasks, encourage detailed reasoning, and generate creative or multi-step responses.
+This section explores key advanced prompting techniques, their use cases, and practical examples.
+
+### Chain-of-Thought (CoT) Prompting
+**Definition:**
+Chain-of-Thought prompting encourages the model to reason through a problem step-by-step before arriving at an answer.
+This method is particularly effective for complex reasoning tasks where logical progression is crucial.
+
+**Use Cases:**
+- Mathematical problem-solving.
+- Ethical dilemmas requiring detailed analysis.
+- Scientific explanations.
+
+**Example:**
+- Prompt: "You start with 15 books in your collection. At the bookstore, you purchase 8 more. Then, you lend 3
+to a friend and 2 to a cousin. Later, you buy 5 additional books. How many books do you have now? Let’s think step by step."
+- Output:
+  - Start with 15 books.
+  - Purchase 8 more: 15 + 8 = 23 books.
+  - Lend 3 to a friend: 23 - 3 = 20 books.
+  - Lend 2 to a cousin: 20 - 2 = 18 books.
+  - Purchase 5 more: 18 + 5 = 23 books.
+  - Final Answer: "You have 23 books."
+
+**Benefits:**
+- Improves logical consistency.
+- Reduces errors in tasks requiring sequential reasoning.
+
+### Multi-Step Prompting
+**Definition:**
+Multi-step prompting divides complex tasks into smaller, manageable steps, guiding the model through each
+phase to achieve a cohesive final result.
+
+**Use Cases:**
+- Writing detailed reports or essays.
+- Creating structured plans or workflows.
+- Sequential problem-solving.
+
+**Example:**
+- Prompt: "Write a travel blog about a trip to Paris in three steps:
+  - Describe the city and its atmosphere.
+  - Share personal experiences, including specific places visited.
+  - Conclude with tips for future travelers."
+- Output:
+  - "Paris, the City of Light, is renowned for its romantic atmosphere, iconic landmarks like the Eiffel Tower
+    and charming streets filled with cafés and boutiques."
+  - "During my visit, I explored the Louvre Museum, strolled along the Seine River, and enjoyed croissants at
+    a small café in Montmartre."
+  - "For future travelers, I recommend booking tickets to attractions in advance, wearing comfortable shoes
+    and immersing yourself in the local culture."
+  
+**Benefits:**
+- Ensures comprehensive and well-structured outputs.
+- Maintains focus and avoids skipping critical elements.
+  
+### Self-Consistency Prompting
+**Definition:**
+This technique generates multiple responses to a single prompt and selects the most consistent answer through
+majority voting. It is useful for minimizing errors and improving reliability in responses.
+
+**Use Cases:**
+- Critical decision-making scenarios.
+- Tasks requiring high accuracy.
+- Ambiguous or open-ended questions.
+
+**Example:**
+- Prompt: "If there are 10 cars in a parking lot and 3 more arrive, then half the original cars leave, followed
+  by half the remaining cars arriving, how many cars are there now? Provide reasoning."
+
+- Outputs:
+  - Response 1: "There are 8 cars."
+  - Response 2: "There are 10 cars."
+  - Response 3: "There are 8 cars."
+
+- Final Output (via majority vote): "There are 8 cars."
+
+**Benefits:**
+- Reduces the risk of incorrect outputs due to occasional reasoning errors.
+- Provides a consensus-based approach to ambiguous tasks.
+
+### Role-Specific Prompting
+**Definition:**
+Role-specific prompting assigns the model a particular persona or role, such as an expert, teacher, or storyteller.
+This enhances the relevance and depth of responses tailored to specific contexts.
+
+**Use Cases:**
+- Educational content creation.
+- Customer support simulations.
+- Storytelling or creative writing.
+
+**Example:**
+- Prompt: "You are an expert medical researcher. Explain the role of AI in detecting breast cancer in mammograms."
+- Output: "AI in breast cancer detection has significantly improved diagnostic accuracy by analyzing mammograms for
+  abnormalities that may indicate malignancies. These systems reduce false negatives and assist radiologists by providing
+  secondary reviews, particularly in high-volume screening environments."
+
+**Benefits:**
+- Ensures outputs are relevant to the assigned role.
+- Tailors language and tone to specific audiences.
 
 ### Summary
+Advanced prompting techniques empower users to achieve more accurate, detailed, and contextually relevant outputs.
+
 1. Chain-of-Thought (CoT) Prompting
   - Encourages step-by-step reasoning before answering.
   - Example: "Let’s think step by step: [detailed reasoning]."
 2. Multi-Step Prompting
   - Breaks complex tasks into sequential steps for clarity.
-  - Example: Writing a blog post with separate steps for introduction, content, and conclusion​(prompt3)​(prompts_for_developers2).
+  - Example: Writing a blog post with separate steps for introduction, content, and conclusion.
 3. Self-Consistency Prompting
-  - Generates multiple responses and selects the most consistent output via majority voting​(prompts_for_developers2).
+  - Generates multiple responses and selects the most consistent output via majority voting.
+4. Role-Specific Prompting
+  - Enhances the relevance and depth of responses tailored to specific contexts.
 
 ## Iterative Prompt Refinement
 bla bla
