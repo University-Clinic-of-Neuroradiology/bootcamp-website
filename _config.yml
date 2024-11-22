@@ -32,7 +32,7 @@ navbar-links:
     - Deep Learning: "/courses/deep_learning"
     - Prompt Engineering: "/courses/prompt_engineering"
     # - Time Analysis: "/courses/time_analysis"
-    - Object Oriented Programming: "/courses/object_oriented_programming"
+    # - Object Oriented Programming: "/courses/object_oriented_programming"
     - Project: "/courses/project"
   FAQ: "/pages/faq"
   Wiki: "https://github.com/University-Clinic-of-Neuroradiology/python-bootcamp/wiki"
