@@ -33,22 +33,53 @@ Prompt Engineering is the skill of communicating with AI systems in a way that e
   - Learn about zero-shot, few-shot, and instructional prompting
   
   - Understand how to formulate clear, concise, and effective prompts
+
+⚙️ Intermediate Level: Structuring and Refining Prompts
+
+  - Dive deeper into chain-of-thought prompting and prompt scaffolding
   
+  - Explore format control, role prompting, and multi-turn interactions
+  
+  - Handle ambiguous or sensitive queries with prompt precision
+  
+  - Apply intermediate techniques to clinical data generation, patient education materials, and more
+    
   Practice with examples tailored to medical scenarios (e.g., summarizing discharge notes, explaining diagnoses)
-🎓 Who Can Join:
+  
+🚀 Advanced Level: Prompting with Control and Strategy
 
-- Medical professionals curious about Python
-- Healthcare students eager to enhance their skill set
-- Anyone interested in the intersection of technology and medicine
+  - Master recursive prompting, tool use, and self-reflection techniques
+  
+  - Experiment with multi-agent prompting, role alternation, and AI moderation
+  
+  - Solve complex medical and ethical reasoning tasks
+  
+  - Design robust, reproducible prompts for research and clinical AI workflows
 
-💡 Why Choose Our Python Bootcamp:
+🎓 Who Should Join?
 
-- Tailored for Medical Minds: We understand the unique needs of healthcare professionals.
-- No Math Hassles: Dive into Python without getting lost in mathematical mazes.
-- Practical Application: Learn skills directly applicable to the medical field.
+  - Medical professionals curious about AI language models
+  
+  - Healthcare students, educators, and researchers
+  
+  - Clinicians exploring medical automation and NLP tools
+  
+  - Anyone working at the intersection of healthcare, data, and AI
 
-🚀 Ready to Transform Your Python Journey?
+💡 Why Learn Prompt Engineering?
 
-Secure your spot now and embark on a coding adventure that seamlessly integrates with your medical expertise! Let's revolutionize healthcare through the power of Python.
+  - No Programming Needed: This is a low-code/no-code course — just you and your words
+  
+  - Tailored to Medicine: Every example is grounded in real healthcare contexts
+  
+  - Practical & Reproducible: Learn techniques that scale across tools and platforms
+  
+  - Ethical Awareness: Includes discussion of hallucination, bias, and patient safety in prompt design
 
-Visit [Bootcamp Overview](../courses/bootcamp_overview) for more details and the skill tracks. Don't miss out – the world of Python programming awaits your medical touch! 🚀👩‍⚕️👨‍⚕️
+🗂️ Course Materials
+
+Delivered as interactive Colab notebooks you can run online or locally. Includes practice sections, explanations, and reflection prompts.
+
+📍 Visit the Bootcamp Overview to access the course content and get started.
+
+Let’s shape the future of healthcare through intelligent interaction with AI — one prompt at a time. 🩺✨
