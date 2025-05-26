@@ -1,85 +1,74 @@
 ---
 layout: post
-title: Announcement - Prompt Engineering Course for Healthcare and Beyond
-subtitle: Announcement - Prompt Engineering Course for Healthcare and Beyond
-gh-repo: University-Clinic-of-Neuroradiology/python-bootcamp
+title: Meet Mohammad Rezapourian
+subtitle: Introduction of a new Author!
+gh-repo: "University-Clinic-of-Neuroradiology/python-bootcamp"
 gh-badge: [star, fork, follow]
 author: Mohammad Rezapourian
 ---
+Hey there, Python and AI enthusiasts!
 
-🎉 Exciting Announcement: Python Bootcamp for Prompt Engineering Course for Healthcare and Beyond! 🐍💊
+## Who am I?
+Hey there! I’m Mohammad Rezapourian, a researcher and AI developer passionate about medical imaging, deep learning, and generative AI. My academic journey began with a B.Sc. in Medical Engineering (Bio-electrics) at the University of Isfahan, where I started working with AI for medical applications early in my studies. Currently, I’m pursuing my M.Sc. in Medical Systems Engineering at Otto-von-Guericke University Magdeburg, specializing in AI-driven solutions for healthcare.
 
-Calling all healthcare professionals, researchers, and curious minds! We're thrilled to introduce our latest course offering — a Prompt Engineering Bootcamp designed to empower medical and scientific professionals with the skills to effectively harness the power of large language models like ChatGPT.
+Over the past few years, I’ve worked extensively in AI-driven medical imaging, computer vision, and augmented reality (AR) for surgical guidance. I have contributed to various research projects that blend deep learning, robotics, and real-time tracking to improve needle segmentation, 3D localization, and AI-assisted diagnostics.
 
-🧠 What is Prompt Engineering?
+## Why I am here?
 
-Prompt Engineering is the skill of communicating with AI systems in a way that extracts precise, high-quality, and safe responses. Whether you're a doctor, nurse, researcher, or student, these techniques can help you:
-  - Write better documentation
-  
-  - Summarize medical records
-  
-  - Translate clinical findings into lay language
-  
-  - Generate insights from scientific literature
-  
-  - Support decision-making and communication
+At Universitätsklinik für Neuroradiologie, Klinikum Magdeburg, my role is to:
+✅ Develop and optimize the website for AI-related courses and research content.
+✅ Create Jupyter Notebooks and structured projects to enhance AI education.
+✅ Assist students and researchers in learning the latest AI advancements, particularly in medical AI and prompt engineering.
 
-📚 Course Overview
+Alongside my work at the Klinikum, I’m also a Research Assistant at the STIMULATE Research Campus, where I contribute to AI-driven medical imaging, computer vision, and augmented reality (AR) for surgical navigation. My research integrates deep learning, robotics, and real-time tracking to improve needle segmentation, 3D localization, and AI-assisted diagnostics.
 
-🔰 Beginner Level: Foundations of Prompting
+## Why Did I Decide to Work Here?
+Joining Universitätsklinik für Neuroradiologie, Klinikum Magdeburg was a natural step in my journey, as it allows me to combine my expertise in AI, web development, and education to contribute to meaningful projects in medical AI. My role here involves:
 
-  - Introduction to prompt engineering and use cases in healthcare
-  
-  - Learn about zero-shot, few-shot, and instructional prompting
-  
-  - Understand how to formulate clear, concise, and effective prompts
+✅ Developing and optimizing the AI course website, ensuring accessibility and usability for researchers and students.
 
-⚙️ Intermediate Level: Structuring and Refining Prompts
+✅ Creating structured Jupyter Notebooks and interactive learning materials to make AI concepts easier to grasp.
 
-  - Dive deeper into chain-of-thought prompting and prompt scaffolding
-  
-  - Explore format control, role prompting, and multi-turn interactions
-  
-  - Handle ambiguous or sensitive queries with prompt precision
-  
-  - Apply intermediate techniques to clinical data generation, patient education materials, and more
-    
-  Practice with examples tailored to medical scenarios (e.g., summarizing discharge notes, explaining diagnoses)
-  
-🚀 Advanced Level: Prompting with Control and Strategy
+✅ Collaborating on AI-driven projects that enhance research and clinical applications.
 
-  - Master recursive prompting, tool use, and self-reflection techniques
-  
-  - Experiment with multi-agent prompting, role alternation, and AI moderation
-  
-  - Solve complex medical and ethical reasoning tasks
-  
-  - Design robust, reproducible prompts for research and clinical AI workflows
+✅ Helping researchers and students learn the latest advancements in AI, particularly in Prompt Engineering and medical imaging applications.
 
-🎓 Who Should Join?
+I’m excited to continue learning, sharing, and collaborating with like-minded researchers and professionals. Let’s shape the future of AI in medicine together!
 
-  - Medical professionals curious about AI language models
-  
-  - Healthcare students, educators, and researchers
-  
-  - Clinicians exploring medical automation and NLP tools
-  
-  - Anyone working at the intersection of healthcare, data, and AI
+## What Have I Done So Far?
 
-💡 Why Learn Prompt Engineering?
+🔹 Research Assistant (AI Developer) at STIMULATE Research Campus
+  Developed deep learning models for needle detection and segmentation in CT images.
+  Integrated AI with camera tracking systems to enhance real-time surgical navigation.
+  Worked on 3D tracking algorithms to improve precision in needle base and tip localization.
 
-  - No Programming Needed: This is a low-code/no-code course — just you and your words
-  
-  - Tailored to Medicine: Every example is grounded in real healthcare contexts
-  
-  - Practical & Reproducible: Learn techniques that scale across tools and platforms
-  
-  - Ethical Awareness: Includes discussion of hallucination, bias, and patient safety in prompt design
+🔹 Intern at SURAG Medical GmbH
+  Worked on robotic control strategies for surgical applications using Franka Emika robots.
+  Designed and optimized motion planning algorithms for needle insertion in robotic surgery.
 
-🗂️ Course Materials
+🔹 Research Assistant at AIDIA Lab, University of Isfahan
+  Developed deep learning models for medical image segmentation and detection, focusing on OCT images.
+  Researched transformers and GANs for medical image enhancement.
+  Implemented self-supervised learning and attention-based architectures to improve AI model performance.
 
-Delivered as interactive Colab notebooks you can run online or locally. Includes practice sections, explanations, and reflection prompts.
 
-📍 Visit the Bootcamp Overview to access the course content and get started.
+## Why Am I Interested in Generative AI?
+Generative AI is revolutionizing medical imaging by enabling better image reconstruction, segmentation, and even synthetic data generation for training AI models. My research has already explored GANs, transformers, and self-supervised learning in OCT segmentation, laryngeal lesion classification, and CT image denoising.
 
-Let’s shape the future of healthcare through intelligent interaction with AI — one prompt at a time. 🩺✨
+I believe that Generative AI holds immense potential for personalized medicine, where models can simulate and predict treatment outcomes, aid in diagnosis, and even assist in surgery planning. By harnessing LLMs, diffusion models, and transformer-based architectures, we can push the boundaries of AI-assisted healthcare.
+
+## Why Should You Learn Prompt Engineering?
+With LLMs becoming integral to fields like healthcare, research, and content creation, knowing how to communicate effectively with these systems is a game-changer.
+
+🎯 Beginners can quickly learn how to optimize AI interactions.
+
+🎯 Developers can build smarter applications powered by LLMs.
+
+🎯 AI enthusiasts can deepen their understanding of LLM capabilities.
+
+We’re working on exciting new courses in Prompt Engineering, designed to help you harness the full power of AI-driven interactions.
+
+## Have Questions or Ideas?
+I’m excited to collaborate, learn, and share knowledge with fellow researchers and AI enthusiasts. If you have ideas, questions, or want to discuss AI in medicine, feel free to reach out!
+
+📢 Follow us here or on https://www.linkedin.com/in/rezapourian/ to stay updated on our work.
