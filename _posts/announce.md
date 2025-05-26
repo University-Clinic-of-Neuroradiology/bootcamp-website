@@ -1,30 +1,40 @@
 ---
 layout: post
 title: Announcement - Python Bootcamp with a Medical Twist
-subtitle: Unlock the Power of Python in Healthcare - A Unique Learning Experience
+subtitle: Announcement - Prompt Engineering Course for Healthcare and Beyond
 gh-repo: University-Clinic-of-Neuroradiology/python-bootcamp
 gh-badge: [star, fork, follow]
-author: Eric Einspänner
+author: Mohammad Rezapourian
 ---
 
-🎉 Exciting Announcement: Python Bootcamp with a Medical Twist for Healthcare Professionals! 🐍💊
+🎉 Exciting Announcement: Python Bootcamp for Prompt Engineering Course for Healthcare and Beyond! 🐍💊
 
-Hey aspiring Python enthusiasts and medical mavens! 🌟 We're thrilled to unveil our latest initiative - a Python Bootcamp tailored specifically for healthcare professionals like you!
+Calling all healthcare professionals, researchers, and curious minds! We're thrilled to introduce our latest course offering — a Prompt Engineering Bootcamp designed to empower medical and scientific professionals with the skills to effectively harness the power of large language models like ChatGPT.
 
-👩‍⚕️👨‍⚕️ Unlock the Power of Python in Healthcare: A Unique Learning Experience
+🧠 What is Prompt Engineering?
 
-Are you curious about Python but worried about diving into the deep end of programming complexities? Fear not! Our Python Bootcamp is designed with YOU in mind. No need for extensive math or physics background – we're here to make coding accessible, engaging, and applicable to your medical world.
+Prompt Engineering is the skill of communicating with AI systems in a way that extracts precise, high-quality, and safe responses. Whether you're a doctor, nurse, researcher, or student, these techniques can help you:
+  - Write better documentation
+  
+  - Summarize medical records
+  
+  - Translate clinical findings into lay language
+  
+  - Generate insights from scientific literature
+  
+  - Support decision-making and communication
 
-🧑‍💻 What to Expect:
+📚 Course Overview
 
-Python Fundamentals: Dive into the basics of Python programming. From variables to loops, we've got you covered, making coding as easy as diagnosing common ailments.
+🔰 Beginner Level: Foundations of Prompting
 
-Introduction to Data Processing: Explore the fascinating world of data handling without the headache of complicated formulas. Learn how to manage medical data efficiently.
-
-Image Processing for Medics: Unleash the potential of Python in medical imaging. Discover how to enhance, analyze, and interpret medical images with ease.
-
-No Math Panic Zone: Worried about complex mathematical concepts? Fret not! We've crafted this bootcamp to be math-phobia-friendly, ensuring that you grasp the essentials without breaking a sweat.
-
+  - Introduction to prompt engineering and use cases in healthcare
+  
+  - Learn about zero-shot, few-shot, and instructional prompting
+  
+  - Understand how to formulate clear, concise, and effective prompts
+  
+  Practice with examples tailored to medical scenarios (e.g., summarizing discharge notes, explaining diagnoses)
 🎓 Who Can Join:
 
 - Medical professionals curious about Python
