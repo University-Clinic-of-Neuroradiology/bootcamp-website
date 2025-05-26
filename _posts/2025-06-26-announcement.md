@@ -2,6 +2,7 @@
 layout: post
 title: Announcement - Prompt Engineering Course for Healthcare and Beyond
 subtitle: Announcement - Prompt Engineering Course for Healthcare and Beyond
+date: 2025-05-26 10:00:00 +0200
 gh-repo: University-Clinic-of-Neuroradiology/python-bootcamp
 gh-badge: [star, fork, follow]
 author: Mohammad Rezapourian
