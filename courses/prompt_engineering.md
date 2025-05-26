@@ -35,9 +35,9 @@ For this skill track, it doesn't matter what kind of chatbot you prefer to use. 
 
 
 ## 📒 Syllabus
-- Basic Concepts of DeepLearning <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/01_introduction_DL.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-- Basic Concepts of Keras <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/02_introduction_keras.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-- MedNIST Dataset <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/03_introduction_MNIST.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Beginner Prompt Engineering Notebook <a href="https://colab.research.google.com/drive/1aX8K-1K50D7Ex05qRdDm4tbi8qkRB5rC#scrollTo=uYvRRU9WrcuP"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Intermediate Prompt Engineering Notebook <a href="https://colab.research.google.com/drive/1kUOV9ofSY_S9WO4Qm76nPoqg8PufGwlq"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Advanced_Prompt_Engineering_I_Notebook <a href="https://colab.research.google.com/drive/1MWOsbU2M41jZpQjQ3ThmnXrNPPxWetSE"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
 ## 📝 Theoretical basics
