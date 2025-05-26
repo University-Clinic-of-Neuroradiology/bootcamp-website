@@ -7,7 +7,6 @@ subtitle: Introduction to Prompt Engineering.
 ---
 
 ## 📋 Content
-- [**This skill track is under construction!!**](#this-skill-track-is-under-construction)
 - [📋 Content](#-content)
 - [📄 Description](#-description)
 - [📣 Current announcements](#-current-announcements)
@@ -18,12 +17,15 @@ subtitle: Introduction to Prompt Engineering.
 
 
 ## 📄 Description
-This directory contains a few basic notebooks to expand your deep learning knowledge. Working with Keras and TensorFlow, you’ll learn about neural networks, the deep learning model workflows, and how to optimize your models.
+This directory contains a set of curated notebooks to help you master prompt engineering for healthcare and beyond. Using real-world medical examples and interactive exercises, you’ll learn how to communicate effectively with language models like ChatGPT, design safe and precise prompts, and apply them in clinical, educational, and research settings.
 
 By the end of these notebooks, you should feel more comfortable with:
-- with the basics and the terms of Deep Learning
-- to use Keras to train and test models
 
+  - The basics and terminology of prompt engineering
+  
+  - Designing effective prompts to guide AI language models
+  
+  - Applying prompt techniques in healthcare and scientific scenarios
 
 ## 📣 Current announcements
 For this skill track, it doesn't matter what kind of chatbot you prefer to use. However, we have tested everything with ChatGPT (OpenAI). 
@@ -37,7 +39,8 @@ For this skill track, it doesn't matter what kind of chatbot you prefer to use. 
 ## 📒 Syllabus
 - Beginner Prompt Engineering Notebook <a href="https://colab.research.google.com/drive/1aX8K-1K50D7Ex05qRdDm4tbi8qkRB5rC#scrollTo=uYvRRU9WrcuP"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 - Intermediate Prompt Engineering Notebook <a href="https://colab.research.google.com/drive/1kUOV9ofSY_S9WO4Qm76nPoqg8PufGwlq"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-- Advanced_Prompt_Engineering_I_Notebook <a href="https://colab.research.google.com/drive/1MWOsbU2M41jZpQjQ3ThmnXrNPPxWetSE"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Advanced Prompt Engineering Notebook <a href="https://colab.research.google.com/drive/1MWOsbU2M41jZpQjQ3ThmnXrNPPxWetSE"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Expert Prompt Engineering Notebook <a href="https://colab.research.google.com/drive/11mSRX9g8bU-ff8Ssd2BS1Aeo7bkEPvyv#scrollTo=j8GJAugXv1N2"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
 ## 📝 Theoretical basics
