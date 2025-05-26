@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Announcement - Python Bootcamp with a Medical Twist
+title: Announcement - Prompt Engineering Course for Healthcare and Beyond
 subtitle: Announcement - Prompt Engineering Course for Healthcare and Beyond
 gh-repo: University-Clinic-of-Neuroradiology/python-bootcamp
 gh-badge: [star, fork, follow]
