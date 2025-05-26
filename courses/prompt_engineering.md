@@ -35,7 +35,9 @@ For this skill track, it doesn't matter what kind of chatbot you prefer to use. 
 
 
 ## 📒 Syllabus
-- something great is being created here ...
+- Basic Concepts of DeepLearning <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/01_introduction_DL.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Basic Concepts of Keras <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/02_introduction_keras.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- MedNIST Dataset <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/03_introduction_MNIST.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
 ## 📝 Theoretical basics
