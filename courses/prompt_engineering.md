@@ -17,7 +17,7 @@ subtitle: Introduction to Prompt Engineering.
 - [☝️ References](#️-references)
 
 
-## 📄 Description
+## 📄 Description2
 This directory contains a few basic notebooks to expand your deep learning knowledge. Working with Keras and TensorFlow, you’ll learn about neural networks, the deep learning model workflows, and how to optimize your models.
 
 By the end of these notebooks, you should feel more comfortable with:
