@@ -46,12 +46,14 @@ Prompt Engineering is the skill of communicating with AI systems in a way that e
 
 👩‍⚕️ **Expert Level: Real-World Prompt Design for Healthcare AI**
 
-  - Two advanced Colab notebooks to explore domain-specific challenges:
-    1. **Clinical Report Automation Notebook**: Design end-to-end prompts to extract, verify, and structure radiology/imaging reports.
-    2. **Decision Support & Triage Assistant Notebook**: Develop safe, traceable prompts to assist in real-time clinical decision-making and triage simulations.
+  - Self-consistency: generating multiple responses to improve reliability
 
-  - Focus on safety, bias mitigation, and integrating prompts into broader ML pipelines  
-  - Reflect on regulatory, ethical, and deployment considerations in clinical contexts  
+  - Prompt optimization: refining prompts for maximum clarity and precision
+
+  - Handling ambiguous queries: asking clarifying questions before answering
+
+  - Multi-agent prompting: simulating teamwork between medical roles for better decision-making
+
 
 🎓 Who Should Join?
 
