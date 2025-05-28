@@ -42,6 +42,10 @@ For this skill track, it doesn't matter what kind of chatbot you prefer to use. 
 - Advanced Prompt Engineering Notebook <a href="https://colab.research.google.com/drive/1MWOsbU2M41jZpQjQ3ThmnXrNPPxWetSE"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 - Expert Prompt Engineering Notebook <a href="https://colab.research.google.com/drive/11mSRX9g8bU-ff8Ssd2BS1Aeo7bkEPvyv#scrollTo=j8GJAugXv1N2"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
+- Natural-Language Queries on Tabular Data <a href="https://colab.research.google.com/drive/11mSRX9g8bU-ff8Ssd2BS1Aeo7bkEPvyv#scrollTo=j8GJAugXv1N2"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Dataset Ingestion and Cleaning (Chest X-ray Dataset) <a href="https://colab.research.google.com/drive/11mSRX9g8bU-ff8Ssd2BS1Aeo7bkEPvyv#scrollTo=j8GJAugXv1N2"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Data Extraction and Summarization of PDFs (Medical Reports) <a href="https://colab.research.google.com/drive/11mSRX9g8bU-ff8Ssd2BS1Aeo7bkEPvyv#scrollTo=j8GJAugXv1N2"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Working with Research Papers <a href="https://colab.research.google.com/drive/11mSRX9g8bU-ff8Ssd2BS1Aeo7bkEPvyv#scrollTo=j8GJAugXv1N2"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 ## 📝 Theoretical basics
 For some information on the topic, take a look at some [Basics](./theoretical_basics/prompt_engineering.md).
