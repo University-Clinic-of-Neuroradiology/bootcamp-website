@@ -70,52 +70,59 @@
   </header>
 
   <div class="flex">
-    <!-- Sidebar -->
-    <aside id="sidebar" class="w-64 p-4 hidden md:block">
-      <nav>
-        <div class="mt-4">
-          <button onclick="toggleSection('LLM-Config')" class="font-bold w-full text-left">LLM Config</button>
-          <ul id="LLM-Config" class="ml-4 mt-1 space-y-1 hidden">
-            <li><a href="#temperature" class="text-blue-400 hover:underline">Temperature</a></li>
-            <li><a href="#Top" class="text-blue-400 hover:underline">Top T</a></li>
-            <li><a href="#Length" class="text-blue-400 hover:underline">Max Length</a></li>
-            <li><a href="#Sequences" class="text-blue-400 hover:underline">Stop Sequences</a></li>
-            <li><a href="#Freqnuency" class="text-blue-400 hover:underline">Freqnuency Penalty</a></li>
-            <li><a href="#Presence" class="text-blue-400 hover:underline">Presence Penalty</a></li>
-            <li><a href="#Summary" class="text-blue-400 hover:underline">Summary</a></li>
-          </ul>
-        </div>
+   <!-- Sidebar -->
+<aside id="sidebar" class="w-64 p-4 hidden md:block">
+  <nav>
+    <div class="mt-4">
+      <button onclick="toggleSection('LLM-Config')" class="font-bold w-full text-left flex items-center">
+        <span class="mr-2">📚</span> LLM Config
+      </button>
+      <ul id="LLM-Config" class="ml-4 mt-1 space-y-1 hidden">
+        <li><a href="#temperature" class="text-blue-400 hover:underline">Temperature</a></li>
+        <li><a href="#Top" class="text-blue-400 hover:underline">Top T</a></li>
+        <li><a href="#Length" class="text-blue-400 hover:underline">Max Length</a></li>
+        <li><a href="#Sequences" class="text-blue-400 hover:underline">Stop Sequences</a></li>
+        <li><a href="#Freqnuency" class="text-blue-400 hover:underline">Freqnuency Penalty</a></li>
+        <li><a href="#Presence" class="text-blue-400 hover:underline">Presence Penalty</a></li>
+        <li><a href="#Summary" class="text-blue-400 hover:underline">Summary</a></li>
+      </ul>
+    </div>
 
-        <div class="mt-4">
-          <button onclick="toggleSection('python-basics')" class="font-bold w-full text-left">Basic of Prompting</button>
-          <ul id="python-basics" class="ml-4 mt-1 space-y-1 hidden">
-            <li><a href="#datentypen" class="text-blue-400 hover:underline">What is a prompt?</a></li>
-            <li><a href="#operatoren" class="text-blue-400 hover:underline">Format</a></li>
-            <li><a href="#strings" class="text-blue-400 hover:underline">Elements (Instruction, Context, Input data)</a></li>
-            <li><a href="#listen" class="text-blue-400 hover:underline">Summary</a></li>
-          </ul>
-        </div>
-        <div class="mt-4">
-          <button onclick="toggleSection('Prompt-Eng')" class="font-bold w-full text-left">Prompting Engineering</button>
-          <ul id="Prompt-Eng" class="ml-4 mt-1 space-y-1 hidden">
-            <li><a href="#datentypen" class="text-blue-400 hover:underline">Effective Prompts for LLMs</a></li>
-            <li><a href="#operatoren" class="text-blue-400 hover:underline">Specificity</a></li>
-            <li><a href="#strings" class="text-blue-400 hover:underline">Avoid inaccuracy</a></li>
-            <li><a href="#listen" class="text-blue-400 hover:underline">Summary</a></li>
-          </ul>
-        </div>
-        <div class="mt-4">
-          <button onclick="toggleSection('adv-prompt')" class="font-bold w-full text-left">Advanced prompt techniques</button>
-          <ul id="adv-prompt" class="ml-4 mt-1 space-y-1 hidden">
-            <li><a href="#datentypen" class="text-blue-400 hover:underline">Zero-Shot Prompting</a></li>
-            <li><a href="#operatoren" class="text-blue-400 hover:underline">Format</a></li>
-            <li><a href="#strings" class="text-blue-400 hover:underline">Elements (Instruction, Context, Input data)</a></li>
-            <li><a href="#listen" class="text-blue-400 hover:underline">Summary</a></li>
-          </ul>
-        </div>
-      </nav>
-    </aside>
-
+    <div class="mt-4">
+      <button onclick="toggleSection('python-basics')" class="font-bold w-full text-left flex items-center">
+        <span class="mr-2">📚</span> Basic of Prompting
+      </button>
+      <ul id="python-basics" class="ml-4 mt-1 space-y-1 hidden">
+        <li><a href="#datentypen" class="text-blue-400 hover:underline">What is a prompt?</a></li>
+        <li><a href="#operatoren" class="text-blue-400 hover:underline">Format</a></li>
+        <li><a href="#strings" class="text-blue-400 hover:underline">Elements (Instruction, Context, Input data)</a></li>
+        <li><a href="#listen" class="text-blue-400 hover:underline">Summary</a></li>
+      </ul>
+    </div>
+    <div class="mt-4">
+      <button onclick="toggleSection('Prompt-Eng')" class="font-bold w-full text-left flex items-center">
+        <span class="mr-2">📚</span> Prompting Engineering
+      </button>
+      <ul id="Prompt-Eng" class="ml-4 mt-1 space-y-1 hidden">
+        <li><a href="#datentypen" class="text-blue-400 hover:underline">Effective Prompts for LLMs</a></li>
+        <li><a href="#operatoren" class="text-blue-400 hover:underline">Specificity</a></li>
+        <li><a href="#strings" class="text-blue-400 hover:underline">Avoid inaccuracy</a></li>
+        <li><a href="#listen" class="text-blue-400 hover:underline">Summary</a></li>
+      </ul>
+    </div>
+    <div class="mt-4">
+      <button onclick="toggleSection('adv-prompt')" class="font-bold w-full text-left flex items-center">
+        <span class="mr-2">📚</span> Advanced prompt techniques
+      </button>
+      <ul id="adv-prompt" class="ml-4 mt-1 space-y-1 hidden">
+        <li><a href="#datentypen" class="text-blue-400 hover:underline">Zero-Shot Prompting</a></li>
+        <li><a href="#operatoren" class="text-blue-400 hover:underline">Format</a></li>
+        <li><a href="#strings" class="text-blue-400 hover:underline">Elements (Instruction, Context, Input data)</a></li>
+        <li><a href="#listen" class="text-blue-400 hover:underline">Summary</a></li>
+      </ul>
+    </div>
+  </nav>
+</aside>
     <!-- Main Content -->
     <main class="flex-1 p-6 space-y-12">
       <section id="temperature">
