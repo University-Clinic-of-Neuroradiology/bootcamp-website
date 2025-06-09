@@ -55,6 +55,13 @@
     function toggleMenu() {
       const sidebar = document.getElementById("sidebar");
       sidebar.classList.toggle("open");
+      // Ensure main content shifts when sidebar opens on mobile
+      const main = document.querySelector("main");
+      if (sidebar.classList.contains("open")) {
+        main.classList.add("md:ml-64");
+      } else {
+        main.classList.remove("md:ml-64");
+      }
     }
 
     function toggleSection(id) {
@@ -73,7 +80,7 @@
   <!-- Header -->
   <header class="flex items-center justify-between p-4 shadow-md">
     <div class="flex items-center space-x-4">
-      <button onclick="toggleMenu()" class="text-xl text-gray-900 dark:text-white focus:outline-none">
+      <button onclick="toggleMenu()" class="text-xl text-gray-900 dark:text-white focus:outline-none" aria-label="Toggle sidebar">
         <i class="fas fa-bars"></i>
       </button>
       <h1 class="text-xl font-bold">Basics of Prompt Engineering</h1>
@@ -137,9 +144,11 @@
     </aside>
 
     <!-- Main Content -->
-    <main class="flex-1 p-6 space-y-12 md:ml-64">
+    <main class="flex-1 p-6 space-y-6 md:ml-64">
       <section id="temperature">
-        <h2 class="text-2xl font-bold mb-2">Temperature</h2>
+        <h2 class="text-2xl font-bold mb-2">Temperature_ETH
+
+System: Temperature</h2>
         <p class="text-gray-700 dark:text-gray-300">Temperature here...</p>
       </section>
 
