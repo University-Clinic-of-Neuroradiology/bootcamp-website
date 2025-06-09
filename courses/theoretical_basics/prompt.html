@@ -33,12 +33,18 @@
     <!-- Sidebar -->
     <aside id="sidebar" class="w-64 bg-gray-800 p-4 hidden md:block">
       <nav>
-        <div>
-          <h2 class="font-bold mb-2">LLM Config</h2>
-          <ul class="space-y-1">
-            <li><a href="#was-ist-python" class="ml-4 text-blue-400 hover:underline">Temperature</a></li>
-            <li><a href="#installation" class="ml-4 text-blue-400 hover:underline">Top T</a></li>
-            <li><a href="#erstes-programm" class="ml-4 text-blue-400 hover:underline">Max Length</a></li>
+       
+
+            <div class="mt-4">
+          <button onclick="toggleSection('python-basics')" class="font-bold w-full text-left">Basic of Prompting</button>
+          <ul id="python-basics" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#datentypen" class="text-blue-400 hover:underline">What is a prompt?</a></li>
+            <li><a href="#operatoren" class="text-blue-400 hover:underline">Format</a></li>
+            <li><a href="#strings" class="text-blue-400 hover:underline">Elements (Instruction, Context, Input data)</a></li>
+            <li><a href="#listen" class="text-blue-400 hover:underline">Listen</a></li>
+            <li><a href="#tupel" class="text-blue-400 hover:underline">Tupel</a></li>
+            <li><a href="#dictionaries" class="text-blue-400 hover:underline">Dictionaries</a></li>
+            <li><a href="#mengen" class="text-blue-400 hover:underline">Mengen</a></li>
           </ul>
         </div>
 
