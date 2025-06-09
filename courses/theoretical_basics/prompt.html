@@ -1,126 +1,146 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Basics of Prompt Engineering</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/feather-icons"></script> <!-- Feather icons -->
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <script src="https://unpkg.com/feather-icons"></script>
   <style>
     html {
       scroll-behavior: smooth;
     }
   </style>
-</head>
-
-<body class="bg-white text-black font-sans transition-colors duration-300" id="main-body">
-
-  <!-- Header -->
-  <header class="flex items-center justify-between bg-gray-200 p-4 shadow-md dark:bg-gray-800 dark:text-white transition-colors duration-300">
-    <div class="flex items-center gap-4">
-      <button onclick="toggleMenu()" class="text-xl" aria-label="Menu">&#9776;</button>
-      <input type="text" placeholder="Search..." class="px-2 py-1 border rounded-md dark:bg-gray-700 dark:text-white dark:border-gray-600" />
-    </div>
-    <h1 class="text-xl font-bold">Basics of Prompt Engineering</h1>
-    <button onclick="toggleTheme()" class="text-sm border px-3 py-1 rounded dark:border-white border-black">
-      Toggle Mode
-    </button>
-  </header>
-
-  <div class="flex">
-    <!-- Sidebar -->
-    <aside id="sidebar" class="w-64 bg-gray-100 dark:bg-gray-900 text-black dark:text-white p-4 hidden md:block transition-colors duration-300">
-      <nav>
-        <!-- Sample Nav Group -->
-        <div class="mt-4">
-          <button onclick="toggleSection('LLM-Config')" class="font-bold w-full text-left flex items-center gap-2">
-            <i data-feather="sliders"></i> LLM Config
-          </button>
-          <ul id="LLM-Config" class="ml-4 mt-1 space-y-1 hidden">
-            <li><a href="#temperature" class="text-blue-600 dark:text-blue-400 hover:underline">Temperature</a></li>
-            <li><a href="#Top" class="text-blue-600 dark:text-blue-400 hover:underline">Top T</a></li>
-            <li><a href="#Length" class="text-blue-600 dark:text-blue-400 hover:underline">Max Length</a></li>
-            <li><a href="#Sequences" class="text-blue-600 dark:text-blue-400 hover:underline">Stop Sequences</a></li>
-            <li><a href="#Freqnuency" class="text-blue-600 dark:text-blue-400 hover:underline">Frequency Penalty</a></li>
-            <li><a href="#Presence" class="text-blue-600 dark:text-blue-400 hover:underline">Presence Penalty</a></li>
-            <li><a href="#Summary" class="text-blue-600 dark:text-blue-400 hover:underline">Summary</a></li>
-          </ul>
-        </div>
-
-        <div class="mt-4">
-          <button onclick="toggleSection('python-basics')" class="font-bold w-full text-left flex items-center gap-2">
-            <i data-feather="terminal"></i> Basic of Prompting
-          </button>
-          <ul id="python-basics" class="ml-4 mt-1 space-y-1 hidden">
-            <li><a href="#datentypen" class="text-blue-600 dark:text-blue-400 hover:underline">What is a prompt?</a></li>
-            <li><a href="#operatoren" class="text-blue-600 dark:text-blue-400 hover:underline">Format</a></li>
-            <li><a href="#strings" class="text-blue-600 dark:text-blue-400 hover:underline">Elements</a></li>
-            <li><a href="#listen" class="text-blue-600 dark:text-blue-400 hover:underline">Summary</a></li>
-          </ul>
-        </div>
-
-        <div class="mt-4">
-          <button onclick="toggleSection('Prompt-Eng')" class="font-bold w-full text-left flex items-center gap-2">
-            <i data-feather="cpu"></i> Prompting Engineering
-          </button>
-          <ul id="Prompt-Eng" class="ml-4 mt-1 space-y-1 hidden">
-            <li><a href="#datentypen" class="text-blue-600 dark:text-blue-400 hover:underline">Effective Prompts</a></li>
-            <li><a href="#operatoren" class="text-blue-600 dark:text-blue-400 hover:underline">Specificity</a></li>
-            <li><a href="#strings" class="text-blue-600 dark:text-blue-400 hover:underline">Avoid inaccuracy</a></li>
-            <li><a href="#listen" class="text-blue-600 dark:text-blue-400 hover:underline">Summary</a></li>
-          </ul>
-        </div>
-      </nav>
-    </aside>
-
-    <!-- Main Content -->
-    <main class="flex-1 p-6 space-y-12 bg-white dark:bg-gray-800 text-black dark:text-white transition-colors duration-300">
-      <section id="temperature">
-        <h2 class="text-2xl font-bold mb-2">Temperature</h2>
-        <p>Temperature description...</p>
-      </section>
-
-      <section id="Top">
-        <h2 class="text-2xl font-bold mb-2">Top T</h2>
-        <p>Top T description...</p>
-      </section>
-
-      <section id="Length">
-        <h2 class="text-2xl font-bold mb-2">Max Length</h2>
-        <p>Max Length description...</p>
-      </section>
-
-      <section id="Sequences">
-        <h2 class="text-2xl font-bold mb-2">Stop Sequences</h2>
-        <p>Stop Sequences description...</p>
-      </section>
-
-      <section id="Freqnuency">
-        <h2 class="text-2xl font-bold mb-2">Frequency Penalty</h2>
-        <p>Frequency Penalty description...</p>
-      </section>
-
-      <section id="Presence">
-        <h2 class="text-2xl font-bold mb-2">Presence Penalty</h2>
-        <p>Presence Penalty description...</p>
-      </section>
-    </main>
-  </div>
-
   <script>
     function toggleMenu() {
       document.getElementById("sidebar").classList.toggle("hidden");
     }
 
     function toggleSection(id) {
-      document.getElementById(id).classList.toggle("hidden");
+      const section = document.getElementById(id);
+      if (section) {
+        section.classList.toggle("hidden");
+      }
     }
 
     function toggleTheme() {
-      document.documentElement.classList.toggle('dark');
+      document.documentElement.classList.toggle("dark");
     }
 
-    feather.replace(); // Load Feather Icons
+    document.addEventListener("DOMContentLoaded", function () {
+      feather.replace();
+    });
   </script>
+</head>
+
+<body class="bg-white text-black dark:bg-gray-900 dark:text-white font-sans transition-colors duration-300">
+
+  <!-- Header -->
+  <header class="flex items-center justify-between bg-gray-200 dark:bg-gray-800 p-4 shadow-md">
+    <div class="flex items-center gap-4">
+      <button onclick="toggleMenu()" class="text-black dark:text-white text-xl focus:outline-none">
+        <i data-feather="menu"></i>
+      </button>
+      <h1 class="text-xl font-bold">Basics of Prompt Engineering</h1>
+    </div>
+    <div class="flex items-center gap-4">
+      <span class="text-sm text-gray-600 dark:text-gray-400">Python Bootcamp</span>
+      <button onclick="toggleTheme()" class="p-2 rounded bg-gray-300 dark:bg-gray-700 text-black dark:text-white">
+        <i data-feather="sun"></i>
+      </button>
+    </div>
+  </header>
+
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 bg-gray-100 dark:bg-gray-900 text-black dark:text-white p-4 hidden md:block transition-all duration-300 fixed md:relative z-10 h-screen overflow-y-auto">
+      <nav>
+        <div class="mt-4">
+          <button onclick="toggleSection('LLM-Config')" class="font-bold w-full text-left flex items-center gap-2">
+            <i data-feather="settings"></i> LLM Config
+          </button>
+          <ul id="LLM-Config" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#temperature" class="text-blue-500 hover:underline">Temperature</a></li>
+            <li><a href="#Top" class="text-blue-500 hover:underline">Top T</a></li>
+            <li><a href="#Length" class="text-blue-500 hover:underline">Max Length</a></li>
+            <li><a href="#Sequences" class="text-blue-500 hover:underline">Stop Sequences</a></li>
+            <li><a href="#Freqnuency" class="text-blue-500 hover:underline">Frequency Penalty</a></li>
+            <li><a href="#Presence" class="text-blue-500 hover:underline">Presence Penalty</a></li>
+            <li><a href="#Summary" class="text-blue-500 hover:underline">Summary</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('python-basics')" class="font-bold w-full text-left flex items-center gap-2">
+            <i data-feather="edit-3"></i> Basic of Prompting
+          </button>
+          <ul id="python-basics" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#datentypen" class="text-blue-500 hover:underline">What is a prompt?</a></li>
+            <li><a href="#operatoren" class="text-blue-500 hover:underline">Format</a></li>
+            <li><a href="#strings" class="text-blue-500 hover:underline">Elements</a></li>
+            <li><a href="#listen" class="text-blue-500 hover:underline">Summary</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('Prompt-Eng')" class="font-bold w-full text-left flex items-center gap-2">
+            <i data-feather="zap"></i> Prompt Engineering
+          </button>
+          <ul id="Prompt-Eng" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#datentypen" class="text-blue-500 hover:underline">Effective Prompts</a></li>
+            <li><a href="#operatoren" class="text-blue-500 hover:underline">Specificity</a></li>
+            <li><a href="#strings" class="text-blue-500 hover:underline">Avoid Inaccuracy</a></li>
+            <li><a href="#listen" class="text-blue-500 hover:underline">Summary</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('adv-prompt')" class="font-bold w-full text-left flex items-center gap-2">
+            <i data-feather="trending-up"></i> Advanced Techniques
+          </button>
+          <ul id="adv-prompt" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#datentypen" class="text-blue-500 hover:underline">Zero-Shot Prompting</a></li>
+            <li><a href="#operatoren" class="text-blue-500 hover:underline">Format</a></li>
+            <li><a href="#strings" class="text-blue-500 hover:underline">Elements</a></li>
+            <li><a href="#listen" class="text-blue-500 hover:underline">Summary</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 space-y-12 ml-0 md:ml-64">
+      <section id="temperature">
+        <h2 class="text-2xl font-bold mb-2">Temperature</h2>
+        <p class="text-gray-700 dark:text-gray-300">Temperature here...</p>
+      </section>
+
+      <section id="Top">
+        <h2 class="text-2xl font-bold mb-2">Top T</h2>
+        <p class="text-gray-700 dark:text-gray-300">Top T here...</p>
+      </section>
+
+      <section id="Length">
+        <h2 class="text-2xl font-bold mb-2">Max Length</h2>
+        <p class="text-gray-700 dark:text-gray-300">Max Length here...</p>
+      </section>
+
+      <section id="Sequences">
+        <h2 class="text-2xl font-bold mb-2">Stop Sequences</h2>
+        <p class="text-gray-700 dark:text-gray-300">Stop Sequences here...</p>
+      </section>
+
+      <section id="Freqnuency">
+        <h2 class="text-2xl font-bold mb-2">Frequency Penalty</h2>
+        <p class="text-gray-700 dark:text-gray-300">Frequency Penalty...</p>
+      </section>
+
+      <section id="Presence">
+        <h2 class="text-2xl font-bold mb-2">Presence Penalty</h2>
+        <p class="text-gray-700 dark:text-gray-300">Presence Penalty...</p>
+      </section>
+    </main>
+  </div>
+
 </body>
 </html>
