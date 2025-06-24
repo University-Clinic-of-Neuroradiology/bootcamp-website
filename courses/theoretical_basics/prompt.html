@@ -50,6 +50,15 @@
       background-color: var(--header-bg);
       font-weight: bold;
     }
+    pre {
+      background-color: var(--header-bg);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+    }
   </style>
   <script>
     function toggleMenu() {
@@ -138,7 +147,21 @@
             <span class="mr-2">🤖</span> Advanced Techniques
           </button>
           <ul id="advanced-techniques" class="ml-4 mt-1 space-y-1 hidden">
-            <li><a href="#advanced-prompting" class="text-blue-400 hover:underline">Advanced Prompting Techniques</a></li>
+            <li><a href="#zero-shot" class="text-blue-400 hover:underline">Zero-Shot Prompting</a></li>
+            <li><a href="#few-shot" class="text-blue-400 hover:underline">Few-Shot Prompting</a></li>
+            <li><a href="#chain-of-thought" class="text-blue-400 hover:underline">Chain-of-Thought Prompting</a></li>
+            <li><a href="#generated-knowledge" class="text-blue-400 hover:underline">Generated Knowledge Prompting</a></li>
+            <li><a href="#prompt-chaining" class="text-blue-400 hover:underline">Prompt Chaining</a></li>
+            <li><a href="#tree-of-thoughts" class="text-blue-400 hover:underline">Tree of Thoughts (ToT)</a></li>
+            <li><a href="#rag" class="text-blue-400 hover:underline">Retrieval Augmented Generation</a></li>
+            <li><a href="#art" class="text-blue-400 hover:underline">Automatic Reasoning and Tool-use</a></li>
+            <li><a href="#ape" class="text-blue-400 hover:underline">Automatic Prompt Engineer</a></li>
+            <li><a href="#active-prompting" class="text-blue-400 hover:underline">Active-Prompting</a></li>
+            <li><a href="#directional-stimulus" class="text-blue-400 hover:underline">Directional Stimulus Prompting</a></li>
+            <li><a href="#pal" class="text-blue-400 hover:underline">Program-Aided Language Models</a></li>
+            <li><a href="#react" class="text-blue-400 hover:underline">ReAct Prompting</a></li>
+            <li><a href="#reflexion" class="text-blue-400 hover:underline">Reflexion Framework</a></li>
+            <li><a href="#multimodal-cot" class="text-blue-400 hover:underline">Multimodal Chain-of-Thought</a></li>
           </ul>
         </div>
       </nav>
@@ -548,9 +571,519 @@ Summarize the key arguments in the provided text in three bullet points.
         <p class="text-gray-700 dark:text-gray-300">By applying these tips and practicing, you can significantly improve your ability to communicate with LLMs and use them as powerful tools for learning and creation.</p>
       </section>
 
-      <section id="advanced-prompting">
+      <section id="advanced-techniques">
         <h2 class="text-2xl font-bold mb-2">Advanced Prompting Techniques</h2>
-        <p class="text-gray-700 dark:text-gray-300">[Content for advanced prompting techniques would go here, but the provided document ends at the section header. Additional content can be added if provided.]</p>
+        <p class="text-gray-700 dark:text-gray-300">Beyond basic instructions, more advanced techniques can be used to steer Large Language Models toward more specific and accurate outputs. These methods leverage how models learn from context and are essential for tackling more complex or nuanced tasks. This section explores advanced techniques for enhancing LLM performance.</p>
+      </section>
+
+      <section id="zero-shot">
+        <h3 class="text-xl font-bold mb-2">Zero-Shot Prompting</h3>
+        <h4 class="text-lg font-bold mb-2">What is Zero-Shot Prompting?</h4>
+        <p class="text-gray-700 dark:text-gray-300">Zero-Shot Prompting is the most fundamental and common way of interacting with a modern Large Language Model. It involves giving the model an instruction to perform a task that it has not been explicitly shown how to do with examples in the prompt. The model relies entirely on its vast pre-existing knowledge and its ability to generalize to follow the instruction.</p>
+        <p class="text-gray-700 dark:text-gray-300">Think of it like asking a very capable personal assistant to do something they have never done before, such as, "Please organize these meeting notes into a table with columns for topic, decision, and action item." The assistant has never seen <em>these specific notes</em> before, but they understand the concepts of "organize," "table," and the column headers, and can execute the task correctly. In the same way, an LLM can perform a huge variety of tasks "on the fly" with just a clear instruction.</p>
+        <h4 class="text-lg font-bold mb-2">The Role of Instruction Tuning and RLHF</h4>
+        <p class="text-gray-700 dark:text-gray-300">The effectiveness of zero-shot prompting in today's LLMs is not accidental. It is a direct result of advanced training methodologies:</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Instruction Tuning:</strong> This is a training phase where the model is fine-tuned on a massive dataset of instructions and high-quality responses. It learns the general format of following commands, from "summarize this text" to "write a Python function for..." This teaches the model to be a helpful, instruction-following assistant.</li>
+          <li><strong>Reinforcement Learning from Human Feedback (RLHF):</strong> After instruction tuning, RLHF is often used to further refine the model's behavior. In this process, the model generates multiple responses to a prompt, and a human rater ranks them from best to worst. This feedback is used to train a "reward model," which in turn helps to fine-tune the LLM to produce outputs that are more helpful, accurate, and aligned with human preferences.</li>
+        </ul>
+        <p class="text-gray-700 dark:text-gray-300">Together, these techniques give the model a robust, generalized ability to understand and execute unseen tasks, which is the engine that powers zero-shot prompting.</p>
+        <h4 class="text-lg font-bold mb-2">Zero-Shot Prompting in Practice</h4>
+        <p class="text-gray-700 dark:text-gray-300">Most everyday interactions with LLMs are examples of zero-shot prompting.</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Sentiment Analysis:</strong> "Classify the following customer review as positive, negative, or neutral: 'The battery life is amazing, but the screen is a bit dim.'"</li>
+          <li><strong>Translation:</strong> "Translate the phrase 'Hello, how are you?' into Japanese."</li>
+          <li><strong>Creative Writing:</strong> "Write a short poem about the moon in the style of a haiku."</li>
+          <li><strong>Code Generation:</strong> "Write a JavaScript function that takes a number as input and returns true if it is a prime number and false otherwise."</li>
+        </ul>
+        <p class="text-gray-700 dark:text-gray-300">In each case, the model is simply told what to do and is expected to generate the correct output without any prior examples in the prompt.</p>
+        <h4 class="text-lg font-bold mb-2">Zero-Shot vs. Few-Shot Prompting</h4>
+        <p class="text-gray-700 dark:text-gray-300">The key difference lies in the use of examples within the prompt itself:</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Zero-Shot:</strong> Provides only the instruction. It <em>tells</em> the model what to do.</li>
+          <li><strong>Few-Shot:</strong> Provides the instruction <em>plus</em> several examples of the task being completed. It <em>shows</em> the model what to do.</li>
+        </ul>
+        <p class="text-gray-700 dark:text-gray-300">Zero-shot is best for straightforward or general tasks that the model is likely to understand well due to its training. Few-shot is used for more complex, nuanced, or custom tasks where a specific output format is critical.</p>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">Zero-shot prompting is the foundation of interacting with modern LLMs. It leverages the model's extensive training to perform a wide array of tasks based solely on a clear instruction. It is simple, efficient, and surprisingly powerful for a vast number of applications, making it the go-to method for most standard queries.</p>
+      </section>
+
+      <section id="few-shot">
+        <h3 class="text-xl font-bold mb-2">Few-Shot Prompting</h3>
+        <h4 class="text-lg font-bold mb-2">Introduction</h4>
+        <p class="text-gray-700 dark:text-gray-300">Few-Shot Prompting is a technique where a user includes several examples of the desired task within the prompt to guide the LLM's response. By providing these examples—or "shots"—the model learns the specific pattern, format, or style required for the task. This is a powerful method for gaining more control over the output and for tackling tasks that zero-shot prompts might struggle with.</p>
+        <h4 class="text-lg font-bold mb-2">How does Few-Shot Prompting work?</h4>
+        <p class="text-gray-700 dark:text-gray-300">Few-shot prompting works through a process called "in-context learning." The LLM analyzes the examples provided in the prompt to identify the underlying pattern connecting the input to the output. It then applies this learned pattern to the final, unanswered query in the prompt.</p>
+        <p class="text-gray-700 dark:text-gray-300">Imagine teaching a child to solve a specific type of word puzzle. Instead of just explaining the rules, you might show them two or three puzzles that are already solved. The child looks at the examples, understands the logic, and then uses that same logic to solve a new puzzle. Few-shot prompting works in a very similar way; the examples provide a blueprint for the model to follow.</p>
+        <p class="text-gray-700 dark:text-gray-300"><strong>Example:</strong></p>
+        <p class="text-gray-700 dark:text-gray-300">This is a task to categorize company names by industry.</p>
+        <pre>
+Company: Apple
+Industry: Technology
+
+Company: Ford
+Industry: Automotive
+
+Company: ExxonMobil
+Industry: Energy
+
+Company: Netflix
+Industry:
+        </pre>
+        <p class="text-gray-700 dark:text-gray-300">The model sees the pattern and will correctly complete the last entry with "Entertainment" or a similar category.</p>
+        <h4 class="text-lg font-bold mb-2">Tips for Effective Few-Shot Prompting</h4>
+        <p class="text-gray-700 dark:text-gray-300">To get the most out of few-shot prompting, consider the following tips:</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Consistency is Key:</strong> Ensure the format and structure of your examples are consistent. If you use "Input:" and "Output:" labels, use them for every example.</li>
+          <li><strong>Quality Over Quantity:</strong> A few high-quality, clear examples are often more effective than many confusing or inconsistent ones.</li>
+          <li><strong>Match the Task:</strong> The examples should accurately reflect the task you want the model to perform on the final query.</li>
+          <li><strong>Clear Separation:</strong> Use clear separators (like new lines) between examples to make the structure easy for the model to understand.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Limitations of Few-Shot Prompting</h4>
+        <p class="text-gray-700 dark:text-gray-300">While powerful, this technique has some limitations:</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Context Window Limits:</strong> Providing examples uses up tokens in the prompt. On models with smaller context windows, this can limit the complexity of the task or the length of the input data you can provide.</li>
+          <li><strong>Cost:</strong> In services where pricing is based on token usage, longer prompts with many examples will be more expensive.</li>
+          <li><strong>Effort:</strong> Crafting high-quality, effective examples requires time and a clear understanding of the desired output. Poorly chosen examples can confuse the model and lead to worse results than a simple zero-shot prompt.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">When to use Few-Shot Prompting?</h4>
+        <p class="text-gray-700 dark:text-gray-300">This technique is particularly useful in several scenarios:</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Specific Formatting:</strong> When you need the output in a very specific format, like JSON, XML, or a custom-structured text.</li>
+          <li><strong>Nuanced Tasks:</strong> For tasks where the distinction between categories is subtle (e.g., classifying fine-grained emotional sentiment).</li>
+          <li><strong>Style and Tone Control:</strong> To guide the model to respond in a very specific style or tone that is hard to describe with instructions alone.</li>
+          <li><strong>New or Complex Patterns:</strong> When the task involves a pattern or logic that is unlikely to be in the model's general training data.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">Few-shot prompting offers a higher degree of control and precision by providing the LLM with in-context examples to follow. It is an invaluable technique for guiding the model to produce outputs in a specific format or style and for handling complex tasks that require more than just a simple instruction. While it requires more effort and prompt space than zero-shot prompting, the improved accuracy and control it provides are often worth the trade-off for specialized applications.</p>
+      </section>
+
+      <section id="chain-of-thought">
+        <h3 class="text-xl font-bold mb-2">Chain-of-Thought Prompting</h3>
+        <h4 class="text-lg font-bold mb-2">Introduction</h4>
+        <p class="text-gray-700 dark:text-gray-300">Chain-of-Thought (CoT) Prompting is an advanced technique designed to improve the reasoning abilities of Large Language Models. Instead of just asking for a final answer, CoT encourages the model to generate a series of intermediate, logical steps that lead to the solution. This process mimics the way humans often work through complex problems—by breaking them down into smaller, manageable parts.</p>
+        <p class="text-gray-700 dark:text-gray-300">For tasks that require arithmetic, commonsense, or symbolic reasoning, CoT has been shown to be highly effective. By "thinking out loud," the model is less likely to make logical leaps or calculation errors, resulting in more accurate and reliable answers. It’s the difference between a student who just writes down "7" as the answer to a word problem and a student who shows their work, detailing each step of their calculation.</p>
+        <h4 class="text-lg font-bold mb-2">Examples</h4>
+        <p class="text-gray-700 dark:text-gray-300">The power of CoT is best illustrated with an example. Consider a simple multi-step reasoning problem.</p>
+        <p class="text-gray-700 dark:text-gray-300"><strong>Standard Prompting:</strong></p>
+        <p class="text-gray-700 dark:text-gray-300">A standard prompt would simply present the problem and expect an answer, which can sometimes be incorrect.</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Prompt:</strong> Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?</li>
+          <li>A: 10</li>
+        </ul>
+        <p class="text-gray-700 dark:text-gray-300">In this case, the model's direct answer is wrong. It seems to have made an error in calculation.</p>
+        <p class="text-gray-700 dark:text-gray-300"><strong>Chain-of-Thought Prompting:</strong></p>
+        <p class="text-gray-700 dark:text-gray-300">A CoT prompt provides a few-shot example that includes the reasoning steps.</p>
+        <pre>
+Q: The cafeteria had 23 apples. If they used 20 to make lunch and bought 6 more, how many apples do they have?
+
+A: The cafeteria started with 23 apples. They used 20, so they had 23 - 20 = 3. They bought 6 more, so they now have 3 + 6 = 9. The answer is 9.
+
+Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?
+
+A:
+        </pre>
+        <p class="text-gray-700 dark:text-gray-300">By providing an example of the reasoning process, the model is guided to follow a similar path for the new question.</p>
+        <p class="text-gray-700 dark:text-gray-300"><strong>Expected Model Output:</strong></p>
+        <p class="text-gray-700 dark:text-gray-300">Roger started with 5 balls. He bought 2 cans, and each can has 3 balls, so he got 2 * 3 = 6 new balls. He now has 5 + 6 = 11 balls. The answer is 11.</p>
+        <p class="text-gray-700 dark:text-gray-300">The chain of thought leads the model to the correct reasoning and the correct final answer.</p>
+        <h4 class="text-lg font-bold mb-2">Zero-Shot CoT Prompting</h4>
+        <p class="text-gray-700 dark:text-gray-300">While effective, crafting detailed few-shot CoT examples can be time-consuming. Zero-Shot CoT provides a remarkably simple yet powerful alternative. This technique involves appending a simple phrase like, "<strong>Let's think step by step.</strong>" to the end of the question.</p>
+        <p class="text-gray-700 dark:text-gray-300">This small instruction triggers the model's instruction-following capabilities, prompting it to generate its own chain of thought before providing a final answer.</p>
+        <p class="text-gray-700 dark:text-gray-300"><strong>Prompt:</strong></p>
+        <pre>
+Q: Roger has 5 tennis balls. He buys 2 more cans of tennis balls. Each can has 3 tennis balls. How many tennis balls does he have now?
+
+Let's think step by step.
+        </pre>
+        <p class="text-gray-700 dark:text-gray-300"><strong>Expected Model Output:</strong></p>
+        <p class="text-gray-700 dark:text-gray-300">First, I need to calculate how many tennis balls are in the cans. There are 2 cans and each can has 3 balls, so that is 2 * 3 = 6 balls.</p>
+        <p class="text-gray-700 dark:text-gray-300">Next, I need to add these new balls to the ones Roger already had. He started with 5 balls.</p>
+        <p class="text-gray-700 dark:text-gray-300">So, 5 + 6 = 11 balls.</p>
+        <p class="text-gray-700 dark:text-gray-300">The final answer is 11.</p>
+        <p class="text-gray-700 dark:text-gray-300">This approach achieves the same goal of structured reasoning without requiring the user to create detailed examples.</p>
+        <h4 class="text-lg font-bold mb-2">Automatic Chain-of-Thought (Auto-CoT)</h4>
+        <p class="text-gray-700 dark:text-gray-300">To bridge the gap between the simplicity of zero-shot and the effectiveness of few-shot CoT, researchers have developed more automated methods. Auto-CoT is one such technique. The core idea is to automate the creation of the reasoning examples.</p>
+        <p class="text-gray-700 dark:text-gray-300">In simple terms, the process works like this:</p>
+        <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
+          <li>An LLM is used to generate reasoning chains for a list of demonstration questions using the zero-shot CoT method ("Let's think step by step").</li>
+          <li>The generated reasoning chains are then filtered to keep only the ones that are diverse and correct.</li>
+          <li>These automatically generated and selected examples are then used to build a few-shot prompt to solve the main task.</li>
+        </ol>
+        <p class="text-gray-700 dark:text-gray-300">This technique combines the high performance of few-shot CoT with the low manual effort of zero-shot CoT, making it a very practical approach for complex problem-solving.</p>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">Chain-of-Thought prompting is a powerful technique for enhancing the reasoning capabilities of LLMs, especially for multi-step problems. By encouraging the model to generate a sequence of intermediate steps, it significantly improves the accuracy and reliability of the final output. This can be achieved through manually crafted few-shot examples, a simple zero-shot instruction, or advanced automatic methods. For anyone looking to solve complex, logical problems with an LLM, understanding and using CoT is essential.</p>
+      </section>
+
+      <section id="generated-knowledge">
+        <h3 class="text-xl font-bold mb-2">Generated Knowledge Prompting</h3>
+        <h4 class="text-lg font-bold mb-2">Introduction</h4>
+        <p class="text-gray-700 dark:text-gray-300">Generated Knowledge Prompting is a technique where a Large Language Model is first prompted to generate relevant facts and information about a topic before it answers the actual question. This process essentially asks the model to "warm up" by recalling what it knows, creating a foundation of knowledge that can be used to construct a more accurate and well-informed final response.</p>
+        <p class="text-gray-700 dark:text-gray-300">This method is particularly effective for questions that require commonsense reasoning or depend on specific world knowledge that might not be immediately obvious. By breaking the task into two distinct steps—first generating knowledge, then answering the question—the model is guided to leverage its own vast internal database more effectively. It’s similar to a student jotting down key facts and dates before writing an essay on a historical event.</p>
+        <h4 class="text-lg font-bold mb-2">Examples</h4>
+        <p class="text-gray-700 dark:text-gray-300">To understand the process, consider a question that relies on commonsense knowledge.</p>
+        <p class="text-gray-700 dark:text-gray-300"><strong>Question:</strong> "Could a shark survive in a large freshwater lake like Lake Superior?"</p>
+        <p class="text-gray-700 dark:text-gray-300">A standard prompt might yield a simple "No," but the reasoning could be incomplete. The Generated Knowledge Prompting approach is more structured.</p>
+        <p class="text-gray-700 dark:text-gray-300"><strong>Step 1: Generation of Knowledge</strong></p>
+        <p class="text-gray-700 dark:text-gray-300">First, prompt the model to generate relevant facts.</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Knowledge Generation Prompt:</strong> Generate some knowledge about sharks and their ability to survive in freshwater.</li>
+          <li><strong>Potential Generated Knowledge:</strong>
+            <ol class="list-decimal ml-6">
+              <li>Most sharks are saltwater animals and their bodies are adapted to the high salinity of the ocean. Their cells cannot regulate water properly in a freshwater environment, leading to bloating and organ failure.</li>
+              <li>There are a few species of sharks, like the Bull Shark, that are known to be euryhaline, meaning they can tolerate a wide range of salinities and can travel up rivers and live in freshwater for extended periods.</li>
+              <li>Lake Superior is a massive, deep, and cold freshwater lake. Its ecosystem and temperature are very different from the typical warm, saltwater habitats of most shark species.</li>
+            </ol>
+          </li>
+        </ul>
+        <p class="text-gray-700 dark:text-gray-300"><strong>Step 2: Integration of Knowledge and Prediction</strong></p>
+        <p class="text-gray-700 dark:text-gray-300">Next, combine the generated knowledge with the original question to form a new prompt.</p>
+        <pre>
+Generated Knowledge:
+- Most sharks are saltwater animals and cannot survive in freshwater due to osmotic stress.
+- The Bull Shark is a notable exception and can live in both saltwater and freshwater.
+- Lake Superior is a very large and cold freshwater lake.
+
+Original Question: Could a shark survive in a large freshwater lake like Lake Superior?
+
+Answer:
+        </pre>
+        <p class="text-gray-700 dark:text-gray-300"><strong>Expected Model Output:</strong></p>
+        <p class="text-gray-700 dark:text-gray-300">Based on the knowledge provided, while most sharks could not survive in Lake Superior due to its freshwater environment, it is theoretically possible for a species like the Bull Shark, which can tolerate freshwater. However, the extremely cold temperatures of Lake Superior would likely make it an unsuitable habitat even for a Bull Shark, which typically prefers warmer waters. Therefore, it is highly unlikely a shark could survive there.</p>
+        <h4 class="text-lg font-bold mb-2">Generation of Knowledge</h4>
+        <p class="text-gray-700 dark:text-gray-300">The first stage of this technique is focused entirely on generating a set of relevant facts. The prompt for this step is usually a direct command asking the model to recall information about the core subjects of the question. Examples of such prompts include:</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li>"Generate facts about [topic]."</li>
+          <li>"Provide some relevant information for answering the question: [question]."</li>
+        </ul>
+        <p class="text-gray-700 dark:text-gray-300">The goal is to produce a list of accurate, concise statements. These statements do not answer the question directly but instead provide the necessary building blocks of information that the model will use in the next step.</p>
+        <h4 class="text-lg font-bold mb-2">Integration of Knowledge and Prediction</h4>
+        <p class="text-gray-700 dark:text-gray-300">In the second stage, the generated knowledge is integrated with the original question. This is typically done by concatenating the information, placing the list of generated facts directly before the question in a new prompt.</p>
+        <p class="text-gray-700 dark:text-gray-300">This enriched prompt gives the model a much clearer and more informed context. It is explicitly instructed to consider the provided facts when formulating its final response. This forces a more grounded reasoning process, as the model must reconcile its answer with the knowledge it just generated, leading to a more coherent and accurate prediction.</p>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">Generated Knowledge Prompting is a multi-step technique that improves the quality of an LLM's answers by separating the process of recalling information from the process of reasoning. By first prompting the model to generate relevant facts and then using those facts as context for answering the original question, it ensures a more thorough and well-grounded response. This method is especially useful for complex questions that rely on specific world knowledge, effectively turning a single difficult query into two simpler, more manageable tasks for the model.</p>
+      </section>
+
+<section id="prompt-chaining">
+        <h3 class="text-xl font-bold mb-2">Prompt Chaining</h3>
+        <h4 class="text-lg font-bold mb-2">Introduction</h4>
+        <p class="text-gray-700 dark:text-gray-300">Prompt Chaining is an advanced technique where a complex task is broken down into a sequence of smaller, interconnected prompts. The output from one prompt in the sequence is used as the input for the next, creating a "chain" of operations. This modular approach allows for the completion of tasks that would be too large, too complex, or too long for a single prompt to handle effectively.</p>
+        <p class="text-gray-700 dark:text-gray-300">Think of it as an assembly line. Instead of one worker trying to build an entire car from scratch (a single prompt), each worker performs a specific, specialized task on the product before passing it to the next station. In prompt chaining, each prompt is a station that performs one step of the overall workflow, such as summarizing, extracting, transforming, or synthesizing information. This method provides greater control, allows for easier debugging of specific steps, and is essential for working with data that exceeds a model's context window.</p>
+        <h4 class="text-lg font-bold mb-2">Use-Cases: Prompt Chaining for Document Q&A</h4>
+        <p class="text-gray-700 dark:text-gray-300">One of the most common and powerful use-cases for prompt chaining is performing a question-and-answer (Q&A) task on a long document. Since most LLMs have a limited context window, a 100-page document cannot be processed in a single prompt. Chaining provides a robust solution to this problem.</p>
+        <p class="text-gray-700 dark:text-gray-300">The process can be broken down into the following steps:</p>
+        <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Document Chunking:</strong> The first step is to divide the large document into smaller, manageable chunks. Each chunk must be small enough to fit comfortably within the LLM's context window, along with the prompt's instructions. For example, a long research paper might be broken down into chunks of one or two pages each.</li>
+          <li><strong>Information Extraction Chain:</strong> Next, a prompt is applied to each chunk individually to extract relevant information. The nature of this prompt depends on the user's goal. If the user asks, "What were the key ethical considerations mentioned in this report?", the prompt for each chunk would be something like:
+            <pre>
+Context: [Text of the chunk]
+
+Based on the context above, list any and all ethical considerations that are mentioned. If no ethical considerations are mentioned, output "None".
+            </pre>
+            <p>This prompt is run in a loop for every chunk of the document, and the outputs (the extracted ethical considerations from each chunk) are collected.</p>
+          </li>
+          <li><strong>Synthesis and Final Answer:</strong> In the final step, the extracted pieces of information from all the previous steps are combined into a single context. A final prompt is then used to synthesize this aggregated information into a coherent answer.
+            <pre>
+The following are all the mentions of ethical considerations extracted from the document:
+- [Output from Chunk 1]
+- [Output from Chunk 2]
+- [Output from Chunk 3]
+- ...
+
+Based on the points listed above, provide a comprehensive summary of the key ethical considerations discussed in the document.
+            </pre>
+            <p>This final prompt doesn't need the original document anymore; it just needs the relevant information extracted in the previous chain step. The model then synthesizes these points into a final, comprehensive answer for the user.</p>
+          </li>
+        </ol>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">Prompt Chaining is a foundational technique for building complex, multi-step workflows with Large Language Models. By breaking down a large task into a series of smaller, interconnected prompts, it allows users to overcome limitations like context window size and to build more reliable and sophisticated applications. Its application in long-document Q&A is a prime example of its power, turning an impossible task for a single prompt into a manageable, sequential process of chunking, extracting, and synthesizing information. This modular approach is a key building block for advanced AI systems.</p>
+      </section>
+
+      <section id="tree-of-thoughts">
+        <h3 class="text-xl font-bold mb-2">Tree of Thoughts (ToT)</h3>
+        <h4 class="text-lg font-bold mb-2">Introduction</h4>
+        <p class="text-gray-700 dark:text-gray-300">The Tree of Thoughts (ToT) framework is a sophisticated prompting technique that elevates a Large Language Model's problem-solving capabilities beyond simple, linear reasoning. While methods like Chain-of-Thought follow a single sequence of steps, ToT enables an LLM to explore multiple reasoning paths simultaneously. It generates a "tree" of possibilities, allowing the model to consider different approaches, evaluate their viability, and even backtrack from dead ends—a crucial step for tackling complex problems.</p>
+        <h4 class="text-lg font-bold mb-2">Complex Problem Solving</h4>
+        <p class="text-gray-700 dark:text-gray-300">Many real-world problems do not have a straightforward solution. They require exploration, strategic planning, and the ability to self-correct when a particular path proves fruitless. Standard prompting techniques often fail here because they commit to a single line of reasoning from the start. If that path contains a mistake, the entire process is derailed. ToT is specifically designed to overcome this by introducing a more deliberate and exploratory structure to the model's thinking process.</p>
+        <h4 class="text-lg font-bold mb-2">What is ToT?</h4>
+        <p class="text-gray-700 dark:text-gray-300">Tree of Thoughts is a framework that guides an LLM to solve a problem by exploring a tree of reasoning steps. At each point in the problem, the model generates several potential next steps, or "thoughts." These thoughts represent different branches of the reasoning tree. The framework then systematically evaluates these thoughts to determine which paths are the most promising to explore further. This structure allows the model to compare different lines of reasoning and prune the ones that are unlikely to lead to a correct solution.</p>
+        <h4 class="text-lg font-bold mb-2">ToT-Framework Process</h4>
+        <p class="text-gray-700 dark:text-gray-300">The ToT process can be broken down into four key steps:</p>
+        <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Decomposing:</strong> The problem is broken down into a series of smaller steps or stages. This creates the structure for the tree.</li>
+          <li><strong>Thought Generation:</strong> At each step, the LLM is prompted to generate multiple diverse and viable ideas or next moves. For example, if solving a math problem, it might generate several possible equations to try. These form the branches of the tree.</li>
+          <li><strong>State Evaluation:</strong> Each generated thought is evaluated. The LLM itself can be prompted to act as an evaluator, assessing how likely a particular thought is to lead to a solution or if it violates the problem's constraints. This evaluation helps to prune unpromising branches early.</li>
+          <li><strong>Search Algorithm:</strong> The framework uses a search algorithm (such as breadth-first search or depth-first search) to navigate the tree of thoughts. It decides which branches to explore next based on the evaluations from the previous step, allowing it to systematically search for a solution while managing the exploration of different possibilities.</li>
+        </ol>
+        <h4 class="text-lg font-bold mb-2">Examples</h4>
+        <p class="text-gray-700 dark:text-gray-300">Consider a task like planning a complex multi-city trip with a tight budget and specific time constraints.</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Chain-of-Thought:</strong> A CoT model might generate a linear itinerary: Fly to City A, then City B, then City C. If it discovers halfway through that a flight from B to C is too expensive, it cannot easily backtrack.</li>
+          <li><strong>ToT:</strong> A ToT model would explore multiple options at the first step: (1) Start in City A, (2) Start in City B, (3) Take a train instead of flying. It would evaluate the cost and time implications of each branch. If the "Start in City A" branch leads to an expensive flight later on, the model can abandon that branch and continue exploring the more promising "Start in City B" branch.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Advantages</h4>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Enhanced Problem-Solving:</strong> Significantly improves performance on complex tasks that require strategic planning, exploration, and lookahead.</li>
+          <li><strong>Self-Correction:</strong> The ability to evaluate and discard bad reasoning paths allows the model to self-correct and backtrack from errors.</li>
+          <li><strong>Deliberate Reasoning:</strong> ToT encourages a more methodical and robust problem-solving process compared to single-path methods.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Differences to Other Methods</h4>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>vs. Chain-of-Thought (CoT):</strong> CoT generates a single, linear chain of reasoning. ToT explores multiple paths in parallel, forming a tree structure. CoT cannot backtrack from a mistake; ToT is designed for it.</li>
+          <li><strong>vs. Standard Prompting:</strong> A standard prompt generates a direct answer. ToT generates a structured reasoning process, exploring and evaluating many potential answers and paths.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">Tree of Thoughts is a powerful framework that enhances an LLM's ability to tackle complex problems by exploring multiple reasoning paths in a structured tree. By decomposing problems, generating diverse thoughts, evaluating them, and navigating the tree with a search algorithm, ToT enables robust and deliberate problem-solving, making it ideal for tasks requiring strategic planning and self-correction.</p>
+      </section>
+
+      <section id="rag">
+        <h3 class="text-xl font-bold mb-2">Retrieval Augmented Generation (RAG)</h3>
+        <h4 class="text-lg font-bold mb-2">Introduction</h4>
+        <p class="text-gray-700 dark:text-gray-300">Retrieval Augmented Generation (RAG) is a powerful framework that enhances the capabilities of Large Language Models by connecting them to external knowledge sources. A primary limitation of LLMs is that their knowledge is static—it is frozen at the time of their training and they cannot access real-time information. RAG addresses this by allowing a model to retrieve relevant, up-to-date information from an external database and use it to inform its response.</p>
+        <h4 class="text-lg font-bold mb-2">What is RAG?</h4>
+        <p class="text-gray-700 dark:text-gray-300">RAG is a two-stage process that combines a <strong>retrieval</strong> system with a <strong>generative</strong> LLM. Before the model generates an answer, the RAG system first retrieves information relevant to the user's query from a specified knowledge base (such as a company's internal documents, a collection of scientific papers, or a live website). This retrieved data is then provided as context to the LLM, which uses this information to generate a grounded, accurate, and contextually aware answer.</p>
+        <h4 class="text-lg font-bold mb-2">Functionality</h4>
+        <p class="text-gray-700 dark:text-gray-300">The RAG workflow typically consists of two main stages:</p>
+        <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Retrieval:</strong> When a user submits a query, the system first searches a pre-indexed knowledge base for relevant information. This knowledge base is often a collection of documents that have been chunked and converted into numerical representations called embeddings. The user's query is also converted into an embedding, and the system finds the document chunks with the most similar embeddings. These chunks are considered the most relevant information.</li>
+          <li><strong>Augmented Generation:</strong> The retrieved document chunks are then combined with the user's original query into an expanded prompt. This new, enriched prompt is sent to the LLM. The model is instructed to generate an answer based <em>only</em> on the provided context. This grounds the model's response in the retrieved facts.</li>
+        </ol>
+        <h4 class="text-lg font-bold mb-2">Advantages</h4>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Reduces Hallucinations:</strong> By grounding the model in specific, retrieved data, RAG significantly reduces the risk of the model inventing facts or "hallucinating."</li>
+          <li><strong>Access to Current & Proprietary Data:</strong> RAG systems can be connected to live or private databases, allowing LLMs to answer questions using the most up-to-date or proprietary information without needing to be retrained.</li>
+          <li><strong>Increased Trust and Transparency:</strong> Because the system knows exactly which information was used to generate an answer, it can provide citations and links to the source documents, allowing users to verify the information.</li>
+          <li><strong>Cost-Effective:</strong> RAG is a much cheaper way to provide an LLM with new knowledge compared to the expensive process of fine-tuning or retraining the entire model.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">RAG in Praxis</h4>
+        <p class="text-gray-700 dark:text-gray-300">RAG is widely used in practical applications, including:</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Customer Support Chatbots:</strong> A bot can retrieve information from product manuals and help articles to provide accurate answers to customer questions.</li>
+          <li><strong>Enterprise Knowledge Management:</strong> Employees can ask questions about company policies, technical documentation, or project histories, and the RAG system will retrieve answers from internal company documents.</li>
+          <li><strong>Research Assistants:</strong> A legal or medical professional can use a RAG system to quickly query vast databases of case law or medical journals to find relevant precedents or studies.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">Retrieval Augmented Generation is a critical framework for building reliable, factual, and useful AI applications. By augmenting a powerful generative model with an external retrieval system, RAG overcomes some of the most significant limitations of standalone LLMs. It ensures that answers are not only intelligently generated but are also grounded in specific, verifiable, and up-to-date information, making it an essential tool for enterprise and consumer applications alike.</p>
+      </section>
+
+      <section id="art">
+        <h3 class="text-xl font-bold mb-2">Automatic Reasoning and Tool-use (ART)</h3>
+        <h4 class="text-lg font-bold mb-2">Introduction</h4>
+        <p class="text-gray-700 dark:text-gray-300">Automatic Reasoning and Tool-use (ART) is a framework that significantly expands the capabilities of Large Language Models by enabling them to interact with external tools to find information and perform tasks. Instead of relying solely on its static, pre-trained knowledge, a model using ART can learn to decompose a problem, select an appropriate tool from a given library (like a search engine or calculator), use it, and then integrate the tool's output into its reasoning process to arrive at a final answer.</p>
+        <h4 class="text-lg font-bold mb-2">Functionality</h4>
+        <p class="text-gray-700 dark:text-gray-300">The ART framework operates as a loop, allowing the model to decide when and how to use tools until the user's request is fully addressed. The process generally follows these steps:</p>
+        <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Task Decomposition:</strong> The LLM receives a complex task. It analyzes the task and, if it identifies a sub-problem it cannot solve with its internal knowledge (e.g., finding a real-time stock price), it decides to use a tool.</li>
+          <li><strong>Tool Selection and Execution:</strong> The model selects the most appropriate tool from a pre-defined library. For instance, to get a stock price, it would choose a <code>stock_price_api</code>. It then generates the correct code or command to execute that tool (e.g., <code>get_stock_price(ticker="GOOG")</code>). The system runs this command.</li>
+          <li><strong>Incorporate Results:</strong> The external tool returns its output (e.g., "The current price of GOOG is $140.50"). The LLM takes this new information and incorporates it into its working context.</li>
+          <li><strong>Continue or Finalize:</strong> The model re-evaluates the original task with this new information. If the task is complete, it generates a final answer. If other sub-problems remain, it repeats the loop by selecting and using another tool until the task is fully resolved.</li>
+        </ol>
+        <h4 class="text-lg font-bold mb-2">Advantages</h4>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Access to Real-Time Information:</strong> By using tools like a web search API, models can overcome their static knowledge limitations and answer questions about current events.</li>
+          <li><strong>Improved Accuracy:</strong> For tasks requiring precise calculations, the model can offload the work to a calculator or a code interpreter, eliminating the risk of arithmetic errors that LLMs sometimes make.</li>
+          <li><strong>Interacting with External Systems:</strong> ART allows models to perform actions beyond generating text, such as sending emails, querying a database, or managing a calendar through APIs.</li>
+          <li><strong>Extensibility:</strong> A model's capabilities can be easily and continuously expanded by simply adding new tools to its library, without needing to retrain the model itself.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">ART is a powerful framework that transforms LLMs from passive knowledge recall systems into active problem-solvers. By learning to intelligently decompose tasks and leverage external tools, models equipped with ART can tackle a much broader and more complex range of problems. This ability to reason and use tools makes them more versatile, reliable, and capable assistants for both digital and real-world tasks.</p>
+      </section>
+
+      <section id="ape">
+        <h3 class="text-xl font-bold mb-2">Automatic Prompt Engineer (APE)</h3>
+        <h4 class="text-lg font-bold mb-2">What is APE?</h4>
+        <p class="text-gray-700 dark:text-gray-300">Automatic Prompt Engineer (APE) is a framework designed to automate the process of prompt discovery and optimization. Manually engineering the perfect prompt for a task can be a time-consuming and intuition-driven process. APE formalizes this by using an LLM to automatically generate and select the most effective instruction for a given task, often outperforming human-designed prompts.</p>
+        <h4 class="text-lg font-bold mb-2">Explanation</h4>
+        <p class="text-gray-700 dark:text-gray-300">The APE framework typically works by dividing the problem into two parts: a "generation" phase and a "scoring" phase.</p>
+        <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Instruction Generation:</strong> An LLM is used to generate a large and diverse pool of candidate instructions for a target task. For example, for a translation task, it might generate prompts like "Translate the following to Spanish," "Provide the Spanish version," or "How would you say this in Spanish?".</li>
+          <li><strong>Instruction Scoring & Selection:</strong> Each candidate prompt is then used to instruct an inference model on a set of demonstration problems. The quality of the model's output for each prompt is evaluated using a scoring function. The prompt that achieves the highest score—meaning it led to the most accurate or desired outputs—is selected as the optimal instruction for the task.</li>
+        </ol>
+        <h4 class="text-lg font-bold mb-2">APE and Chain-of-Thought (CoT) Reasoning</h4>
+        <p class="text-gray-700 dark:text-gray-300">APE can be powerfully combined with reasoning techniques like Chain-of-Thought. For instance, APE can be used to automatically discover the most effective trigger phrase for zero-shot CoT. While a human might create "Let's think step by step," APE can test hundreds of variations. It might discover that a more complex phrase like, "Let's work through this problem logically to ensure we get the correct answer," elicits a more robust reasoning chain from a particular model, thereby improving its performance on complex reasoning tasks.</p>
+        <h4 class="text-lg font-bold mb-2">Further Techniques (OPRO, AutoPrompt)</h4>
+        <p class="text-gray-700 dark:text-gray-300">The concept of automated prompt optimization is a rapidly evolving field with several related techniques:</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>OPRO (Optimization by PROmpting):</strong> A technique where the LLM itself optimizes prompts. In each step, the model uses a prompt to generate a solution and then evaluates its own solution. Based on this self-evaluation, it then generates an improved prompt for the next iteration, creating a self-improving loop.</li>
+          <li><strong>AutoPrompt:</strong> An earlier method used gradient-based searches to find small, discrete trigger words or phrases that could be added to an input to maximize performance on specific tasks, like sentiment classification. It demonstrated the potential of automating the discovery of influential prompt components.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">Automatic Prompt Engineer (APE) streamlines the process of crafting effective prompts by using an LLM to generate and select optimal instructions. By automating prompt discovery, APE reduces the manual effort required and often produces prompts that outperform human-designed ones. Its integration with techniques like Chain-of-Thought further enhances its utility, making it a valuable tool for optimizing LLM performance across diverse tasks.</p>
+      </section>
+
+      <section id="active-prompting">
+        <h3 class="text-xl font-bold mb-2">Active-Prompting</h3>
+        <h4 class="text-lg font-bold mb-2">Introduction</h4>
+        <p class="text-gray-700 dark:text-gray-300">Active-Prompting is a dynamic technique for few-shot learning that aims to select the most helpful and relevant examples (or "shots") to include in a prompt for a specific query. Unlike standard few-shot prompting, which uses a fixed set of examples for all queries, Active-Prompting customizes the examples for each new question. This ensures that the guidance given to the model is as relevant as possible, improving its accuracy and efficiency.</p>
+        <h4 class="text-lg font-bold mb-2">Functionality</h4>
+        <p class="text-gray-700 dark:text-gray-300">The Active-Prompting process intelligently selects a subset of examples from a larger pool. The general workflow is as follows:</p>
+        <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Start with a Pool of Examples:</strong> The system has access to a large, pre-existing set of question-and-answer pairs that can be used as potential few-shot demonstrations.</li>
+          <li><strong>Receive a New Query:</strong> When a new user question arrives, the system needs to decide which examples from the pool will be most beneficial for <em>this specific question</em>.</li>
+          <li><strong>Identify Most Relevant Examples:</strong> To select the best examples, the system often measures the uncertainty of the LLM's predictions or calculates the semantic similarity between the new query and the questions in the example pool. The goal is to find the examples that are most analogous to the query at hand.</li>
+          <li><strong>Construct the Prompt:</strong> The most relevant examples identified in the previous step are used to construct a custom few-shot prompt. This tailored prompt is then sent to the LLM to generate the final answer.</li>
+        </ol>
+        <h4 class="text-lg font-bold mb-2">Why is Active-Prompting Important?</h4>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Improved Accuracy:</strong> By providing the model with examples that are highly relevant to the specific query, Active-Prompting offers more tailored guidance. This is particularly effective for complex tasks or datasets with a wide variety of question types, leading to more accurate responses.</li>
+          <li><strong>Efficient Use of Context:</strong> LLMs have a limited context window. Active-Prompting ensures that this valuable space is not wasted on generic or unhelpful examples. Every example included in the prompt is chosen for its specific utility to the problem at hand.</li>
+          <li><strong>Adaptability:</strong> This dynamic approach allows a single system to perform well across a diverse range of queries. The system adapts its "teaching" method (the examples it shows) based on the "student's" question (the user's query), making it a more flexible and robust prompting strategy.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">Active-Prompting enhances few-shot learning by dynamically selecting the most relevant examples for each query. By tailoring the prompt to the specific question, it improves accuracy, optimizes context usage, and increases adaptability. This makes Active-Prompting a powerful technique for handling diverse and complex tasks with LLMs.</p>
+      </section>
+
+      <section id="directional-stimulus">
+        <h3 class="text-xl font-bold mb-2">Directional Stimulus Prompting</h3>
+        <h4 class="text-lg font-bold mb-2">Introduction</h4>
+        <p class="text-gray-700 dark:text-gray-300">Directional Stimulus Prompting is a technique that guides a Large Language Model toward a specific type of output by embedding subtle hints, keywords, or constraints within the prompt. Rather than simply stating a task, this method adds a "stimulus" that points the model in the desired direction. This helps to narrow the vast creative space of the LLM, ensuring the generated content is more aligned with the user's specific intent without being overly restrictive.</p>
+        <h4 class="text-lg font-bold mb-2">Comparison with “Standard” Prompting</h4>
+        <p class="text-gray-700 dark:text-gray-300">The difference between standard prompting and directional stimulus prompting lies in the level of guidance provided.</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Standard Prompting:</strong> Gives a direct, open-ended instruction.
+            <ul class="list-circle ml-6">
+              <li><strong>Example:</strong> "Write a short story about a journey."</li>
+              <li>This gives the model maximum creative freedom, but the result might be too generic or not what the user envisioned.</li>
+            </ul>
+          </li>
+          <li><strong>Directional Stimulus Prompting:</strong> Gives the same instruction but includes gentle constraints or hints.
+            <ul class="list-circle ml-6">
+              <li><strong>Example:</strong> "Write a short story about a journey. Hint: The story should be a sci-fi adventure involving a lost star map and a non-human companion."</li>
+              <li>This "stimulus" (the hint) directs the model's creativity toward a specific genre and set of themes, making the output more predictable and relevant to a user's potential needs.</li>
+            </ul>
+          </li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Advantages</h4>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Greater Control:</strong> It offers more fine-grained control over the tone, style, and content of the LLM's output.</li>
+          <li><strong>Improved Relevance:</strong> The hints help ensure the generated text aligns more closely with the user's specific goals, even if those goals aren't explicitly stated in a detailed instruction.</li>
+          <li><strong>Reduces Unwanted Outputs:</strong> By providing a clear direction, the model is less likely to generate off-topic or irrelevant content.</li>
+          <li><strong>Fosters Constrained Creativity:</strong> It can be used to effectively brainstorm or generate creative content within specific thematic or stylistic boundaries.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">Directional Stimulus Prompting is a nuanced technique for steering LLM-generated content. By using carefully chosen keywords, phrases, or hints as a "stimulus," it guides the model toward a desired output while still allowing for creative interpretation. This method strikes a balance between direct instruction and complete creative freedom, making it a valuable tool for achieving more controlled, relevant, and targeted results.</p>
+      </section>
+
+      <section id="pal">
+        <h3 class="text-xl font-bold mb-2">Program-Aided Language Models (PAL)</h3>
+        <h4 class="text-lg font-bold mb-2">Introduction</h4>
+        <p class="text-gray-700 dark:text-gray-300">Program-Aided Language Models (PAL) is a neuro-symbolic technique that combines the natural language understanding of LLMs with the precision of code execution. Instead of asking a model to compute the answer to a problem that requires logic or calculation, PAL prompts the LLM to generate a program—such as Python code—that solves the problem. The final answer is then derived by executing this code with a deterministic interpreter, which eliminates the risk of the LLM making a reasoning or calculation error.</p>
+        <h4 class="text-lg font-bold mb-2">Configuration</h4>
+        <p class="text-gray-700 dark:text-gray-300">The PAL framework operates by offloading the calculation or symbolic reasoning part of a task from the LLM to a code interpreter. The process involves:</p>
+        <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Prompting with Intent:</strong> The LLM is given a prompt that includes a natural language question and a few examples showing how to break down similar questions into programmatic steps.</li>
+          <li><strong>Code Generation:</strong> The LLM interprets the question and generates a block of code that represents the logic required to solve it. It does not solve the problem itself; it only writes the program to do so.</li>
+          <li><strong>Code Execution:</strong> The generated code is then passed to a standard programming language interpreter (e.g., a Python interpreter), which runs the code and outputs the final, precise result.</li>
+        </ol>
+        <h4 class="text-lg font-bold mb-2">Examples</h4>
+        <p class="text-gray-700 dark:text-gray-300">Consider a multi-step mathematical word problem.</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Question:</strong> "A restaurant has 4 tables that seat 4 people each and 2 tables that seat 2 people each. If 3 tables of 4 and 1 table of 2 are occupied, how many empty seats are there?"</li>
+          <li><strong>LLM with PAL Prompt:</strong> The LLM is prompted to write a Python program to solve this.</li>
+          <li><strong>Generated Python Code:</strong>
+            <pre>
+# Total seats
+total_fourseaters = 4 * 4
+total_twoseaters = 2 * 2
+total_seats = total_fourseaters + total_twoseaters
+
+# Occupied seats
+occupied_fourseaters = 3 * 4
+occupied_twoseaters = 1 * 2
+total_occupied_seats = occupied_fourseaters + occupied_twoseaters
+
+# Empty seats
+empty_seats = total_seats - total_occupied_seats
+print(empty_seats)
+            </pre>
+          </li>
+          <li><strong>Final Answer:</strong> The code interpreter runs this program and deterministically outputs <code>6</code>. This answer is guaranteed to be mathematically correct according to the logic generated.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">Program-Aided Language Models (PAL) represent a powerful fusion of large language models and code execution. By having the LLM act as a "reasoner" that translates natural language problems into executable programs, PAL leverages the strengths of both domains. The LLM handles the understanding and decomposition of the problem, while the code interpreter provides a precise and reliable "calculator." This approach is highly effective for tasks requiring accurate mathematical, symbolic, or logical reasoning.</p>
+      </section>
+
+      <section id="react">
+        <h3 class="text-xl font-bold mb-2">ReAct Prompting Framework</h3>
+        <h4 class="text-lg font-bold mb-2">Introduction</h4>
+        <p class="text-gray-700 dark:text-gray-300">ReAct, which stands for "Reason and Act," is an advanced prompting framework that enables Large Language Models to solve complex tasks by synergistically combining verbal reasoning and interaction with external tools. The framework prompts the model to generate not just a chain of thought, but also specific actions it can take to gather external information. This creates a dynamic loop where the model reasons about a problem, acts to find missing information, and then uses that new information to inform its next reasoning step.</p>
+        <h4 class="text-lg font-bold mb-2">What is ReAct?</h4>
+        <p class="text-gray-700 dark:text-gray-300">The core principle of ReAct is to have the model generate responses that follow a specific <code>Thought -> Action -> Observation</code> format.</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Thought:</strong> The LLM analyzes the current state of the problem and formulates a plan or a reasoning step.</li>
+          <li><strong>Action:</strong> Based on its thought, the LLM decides to perform an action to interact with an external environment, such as querying a search engine or a database API.</li>
+          <li><strong>Observation:</strong> The system executes the action and returns the result (the "observation") to the model.</li>
+        </ul>
+        <p class="text-gray-700 dark:text-gray-300">This iterative cycle allows the model to build knowledge, self-correct, and dynamically plan its next steps based on real-world information.</p>
+        <h4 class="text-lg font-bold mb-2">Functionality</h4>
+        <p class="text-gray-700 dark:text-gray-300">The ReAct framework guides an LLM through a multi-step process to solve a problem. For any given task, the model is prompted to repeatedly generate a sequence of thoughts, actions, and observations until it has enough information to confidently produce a final answer. The structured format makes it clear how the model is breaking down the problem and what information it is using to reach its conclusion.</p>
+        <h4 class="text-lg font-bold mb-2">Examples</h4>
+        <p class="text-gray-700 dark:text-gray-300">Imagine asking a question that requires combining different pieces of information.</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Question:</strong> "What is the hometown of the person who directed the movie that won Best Picture at the 95th Academy Awards?"</li>
+          <li>A ReAct model would tackle this as follows:
+            <ul class="list-circle ml-6">
+              <li><strong>Thought 1:</strong> First, I need to identify which movie won Best Picture at the 95th Academy Awards.</li>
+              <li><strong>Action 1:</strong> <code>search("Best Picture winner 95th Academy Awards")</code></li>
+              <li><strong>Observation 1:</strong> "Everything Everywhere All at Once won Best Picture at the 95th Academy Awards."</li>
+              <li><strong>Thought 2:</strong> Now I know the movie is "Everything Everywhere All at Once." I need to find out who the directors are.</li>
+              <li><strong>Action 2:</strong> <code>search("directors of Everything Everywhere All at Once")</code></li>
+              <li><strong>Observation 2:</strong> "The film was directed by Daniel Kwan and Daniel Scheinert."</li>
+              <li><strong>Thought 3:</strong> I need to find the hometown of both directors. I'll start with Daniel Kwan.</li>
+              <li><strong>Action 3:</strong> <code>search("Daniel Kwan hometown")</code></li>
+              <li><strong>Observation 3:</strong> "Daniel Kwan was born in Westborough, Massachusetts."</li>
+              <li><strong>Thought 4:</strong> (The model would continue this process for Daniel Scheinert and then formulate the final answer).</li>
+              <li><strong>Answer:</strong> The directors of "Everything Everywhere All at Once" are Daniel Kwan, from Westborough, Massachusetts, and Daniel Scheinert, from Homewood, Alabama.</li>
+            </ul>
+          </li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Advantages</h4>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Dynamic Reasoning:</strong> Effectively combines the internal reasoning of Chain-of-Thought with the external information-gathering capabilities of tool-use frameworks.</li>
+          <li><strong>High Interpretability:</strong> The explicit <code>Thought:</code> steps provide a clear, human-readable trace of the model's reasoning process.</li>
+          <li><strong>Reduces Hallucination:</strong> By actively seeking and using external information, the model grounds its answers in verifiable facts rather than its internal (and potentially outdated) knowledge.</li>
+          <li><strong>Versatility:</strong> It is highly effective for complex tasks that require both planning and up-to-date information.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Disadvantages</h4>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Increased Complexity & Cost:</strong> The multi-step nature of ReAct can lead to longer interactions and higher token usage compared to simpler methods.</li>
+          <li><strong>Tool Reliability:</strong> The framework's success is dependent on the availability and accuracy of the external tools it interacts with.</li>
+          <li><strong>Prompt Engineering:</strong> Implementing ReAct requires more sophisticated prompt engineering and system orchestration to manage the thought-action-observation loop.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">The ReAct framework enables a powerful synergy between reasoning and acting, allowing LLMs to solve complex problems in a more robust and human-like way. By prompting the model to explicitly verbalize its thoughts, choose actions, and process observations, ReAct creates an interpretable and effective workflow. This makes it a significant step toward developing more autonomous, reliable, and capable AI agents that can intelligently interact with external sources of information.</p>
+      </section>
+
+      <section id="reflexion">
+        <h3 class="text-xl font-bold mb-2">Reflexion Framework</h3>
+        <h4 class="text-lg font-bold mb-2">What is Reflexion?</h4>
+        <p class="text-gray-700 dark:text-gray-300">The Reflexion framework is a technique designed to give Large Language Models the ability to learn from past failures through a process of self-reflection. After an agent powered by an LLM makes a mistake or fails at a task, the framework stops the process and prompts the model to analyze what went wrong. The model generates a verbal "reflection" on its failure, identifying the likely cause of the error.</p>
+        <p class="text-gray-700 dark:text-gray-300">This self-reflection is then stored in the model's working memory as a piece of contextual information. On the next attempt to solve the same or a similar problem, this reflection is included in the prompt, effectively reminding the model of its previous mistake. This helps the agent to avoid repeating the same errors and to dynamically improve its strategy over successive trials, mimicking the human ability to learn from experience.</p>
+        <h4 class="text-lg font-bold mb-2">Advantages</h4>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Dynamic Learning from Experience:</strong> The Reflexion framework allows a model to improve its performance over multiple attempts without needing to be retrained or fine-tuned. It learns directly from its own actions and outcomes.</li>
+          <li><strong>Improved Robustness:</strong> By identifying and correcting its own mistakes, the model becomes more resilient and less likely to fail on similar tasks in the future.</li>
+          <li><strong>Enhanced Complex Problem-Solving:</strong> This technique is particularly effective for difficult, multi-step tasks where a single error can cause the entire process to fail, such as in complex code generation or autonomous interaction with a web environment.</li>
+          <li><strong>High Interpretability:</strong> The generated verbal reflections provide a clear and human-readable insight into the model's "thought process," explaining how and why it is adjusting its strategy.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">Reflexion is a powerful framework that equips LLM-based agents with the capacity for self-improvement. By prompting a model to reflect on its own failures and using those reflections to guide future attempts, it creates a learning loop that enhances problem-solving capabilities. This ability to learn from experience makes Reflexion a significant step toward creating more autonomous, robust, and intelligent AI systems that can adapt to challenges in real-time.</p>
+      </section>
+
+      <section id="multimodal-cot">
+        <h3 class="text-xl font-bold mb-2">Multimodal Chain-of-Thought Prompting</h3>
+        <h4 class="text-lg font-bold mb-2">Introduction</h4>
+        <p class="text-gray-700 dark:text-gray-300">Multimodal Chain-of-Thought (Multimodal-CoT) is an advanced prompting technique that extends the step-by-step reasoning process of Chain-of-Thought to models that can understand more than just text. This method integrates information from multiple modalities—most commonly images and text—into a single, unified reasoning chain. The model is prompted to generate an interleaved sequence of analysis, combining its interpretation of visual elements with textual information to solve a problem that requires a holistic understanding of both.</p>
+        <p class="text-gray-700 dark:text-gray-300">For example, when presented with a physics problem illustrated by a diagram, a model using Multimodal-CoT would generate text explaining its interpretation of the diagram, then use that interpretation to set up the problem, and finally solve it step by step.</p>
+        <h4 class="text-lg font-bold mb-2">Advantages</h4>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Holistic Problem-Solving:</strong> Enables models to solve complex problems that require connecting visual information with textual descriptions, such as interpreting charts, diagrams, and scientific figures.</li>
+          <li><strong>Improved Visual Reasoning:</strong> By forcing the model to articulate a step-by-step rationale for what it "sees," Multimodal-CoT improves the accuracy and reliability of its conclusions about visual data.</li>
+          <li><strong>Enhanced Interpretability:</strong> The generated chain of thought makes the model's reasoning process transparent. It clearly shows how the model is combining visual and textual clues to arrive at an answer, which is crucial for building trust in its outputs.</li>
+          <li><strong>Broader Applications:</strong> This technique opens up new possibilities for using LLMs in fields that rely heavily on multimodal data, including STEM education (solving illustrated math problems), medical diagnostics (analyzing medical images alongside patient notes), and data visualization.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Summary</h4>
+        <p class="text-gray-700 dark:text-gray-300">Multimodal Chain-of-Thought is a powerful extension of CoT that integrates visual and textual information into a coherent, step-by-step reasoning process. By prompting a model to generate an interleaved analysis of what it sees and reads, this technique enables it to solve more complex, real-world problems that cannot be understood from text alone. This enhances the model's reasoning capabilities while making its conclusions more transparent, reliable, and useful across a wide range of practical applications.</p>
       </section>
     </main>
   </div>
