@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Basics of Prompt Engineering</title>
+  <title>Unlocking AI: A Guide to Prompts and LLM Configuration</title>
   <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
   <style>
     html {
@@ -36,6 +36,20 @@
     a.text-blue-400 {
       color: var(--link-color);
     }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--header-bg);
+      font-weight: bold;
+    }
   </style>
   <script>
     function toggleMenu() {
@@ -60,102 +74,485 @@
   <header class="flex items-center justify-between p-4 shadow-md">
     <div class="flex items-center space-x-4">
       <button onclick="toggleMenu()" class="text-xl">☰</button>
-      <h1 class="text-xl font-bold">Basics of Prompt Engineering</h1>
+      <h1 class="text-xl font-bold">Unlocking AI: A Guide to Prompts and LLM Configuration</h1>
     </div>
     <div class="flex items-center space-x-4">
       <input type="text" placeholder="Search..." class="px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
       <button id="theme-toggle" onclick="toggleTheme()" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600">🌙 Dark Mode</button>
-      <span class="text-sm text-gray-400">Python Bootcamp</span>
+      <span class="text-sm text-gray-400">AI Prompting Guide</span>
     </div>
   </header>
 
   <div class="flex">
-   <!-- Sidebar -->
-<aside id="sidebar" class="w-64 p-4 hidden md:block">
-  <nav>
-    <div class="mt-4">
-      <button onclick="toggleSection('LLM-Config')" class="font-bold w-full text-left flex items-center">
-        <span class="mr-2">🧠</span> LLM Config
-      </button>
-      <ul id="LLM-Config" class="ml-4 mt-1 space-y-1 hidden">
-        <li><a href="#temperature" class="text-blue-400 hover:underline">Temperature</a></li>
-        <li><a href="#Top" class="text-blue-400 hover:underline">Top T</a></li>
-        <li><a href="#Length" class="text-blue-400 hover:underline">Max Length</a></li>
-        <li><a href="#Sequences" class="text-blue-400 hover:underline">Stop Sequences</a></li>
-        <li><a href="#Freqnuency" class="text-blue-400 hover:underline">Freqnuency Penalty</a></li>
-        <li><a href="#Presence" class="text-blue-400 hover:underline">Presence Penalty</a></li>
-        <li><a href="#Summary" class="text-blue-400 hover:underline">Summary</a></li>
-      </ul>
-    </div>
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 p-4 hidden md:block">
+      <nav>
+        <div class="mt-4">
+          <button onclick="toggleSection('introduction')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🧠</span> Introduction
+          </button>
+          <ul id="introduction" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#introduction" class="text-blue-400 hover:underline">What's All the Buzz About Prompts?</a></li>
+          </ul>
+        </div>
 
-    <div class="mt-4">
-      <button onclick="toggleSection('python-basics')" class="font-bold w-full text-left flex items-center">
-        <span class="mr-2">💡</span> Basic of Prompting
-      </button>
-      <ul id="python-basics" class="ml-4 mt-1 space-y-1 hidden">
-        <li><a href="#datentypen" class="text-blue-400 hover:underline">What is a prompt?</a></li>
-        <li><a href="#operatoren" class="text-blue-400 hover:underline">Format</a></li>
-        <li><a href="#strings" class="text-blue-400 hover:underline">Elements (Instruction, Context, Input data)</a></li>
-        <li><a href="#listen" class="text-blue-400 hover:underline">Summary</a></li>
-      </ul>
-    </div>
-    <div class="mt-4">
-      <button onclick="toggleSection('Prompt-Eng')" class="font-bold w-full text-left flex items-center">
-        <span class="mr-2">💻</span> Prompting Engineering
-      </button>
-      <ul id="Prompt-Eng" class="ml-4 mt-1 space-y-1 hidden">
-        <li><a href="#datentypen" class="text-blue-400 hover:underline">Effective Prompts for LLMs</a></li>
-        <li><a href="#operatoren" class="text-blue-400 hover:underline">Specificity</a></li>
-        <li><a href="#strings" class="text-blue-400 hover:underline">Avoid inaccuracy</a></li>
-        <li><a href="#listen" class="text-blue-400 hover:underline">Summary</a></li>
-      </ul>
-    </div>
-    <div class="mt-4">
-      <button onclick="toggleSection('adv-prompt')" class="font-bold w-full text-left flex items-center">
-        <span class="mr-2">🤖</span> Advanced prompt techniques
-      </button>
-      <ul id="adv-prompt" class="ml-4 mt-1 space-y-1 hidden">
-        <li><a href="#datentypen" class="text-blue-400 hover:underline">Zero-Shot Prompting</a></li>
-        <li><a href="#operatoren" class="text-blue-400 hover:underline">Format</a></li>
-        <li><a href="#strings" class="text-blue-400 hover:underline">Elements (Instruction, Context, Input data)</a></li>
-        <li><a href="#listen" class="text-blue-400 hover:underline">Summary</a></li>
-      </ul>
-    </div>
-  </nav>
-</aside>
+        <div class="mt-4">
+          <button onclick="toggleSection('llm-config')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">⚙️</span> LLM Configuration
+          </button>
+          <ul id="llm-config" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#control-panel" class="text-blue-400 hover:underline">Control Panel</a></li>
+            <li><a href="#temperature" class="text-blue-400 hover:underline">Temperature</a></li>
+            <li><a href="#top-p" class="text-blue-400 hover:underline">Top P (Nucleus Sampling)</a></li>
+            <li><a href="#max-length" class="text-blue-400 hover:underline">Max Length</a></li>
+            <li><a href="#stop-sequences" class="text-blue-400 hover:underline">Stop Sequences</a></li>
+            <li><a href="#frequency-penalty" class="text-blue-400 hover:underline">Frequency Penalty</a></li>
+            <li><a href="#presence-penalty" class="text-blue-400 hover:underline">Presence Penalty</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('prompt-basics')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">💡</span> Prompt Basics
+          </button>
+          <ul id="prompt-basics" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#prompt-definition" class="text-blue-400 hover:underline">What is a Prompt?</a></li>
+            <li><a href="#prompt-elements" class="text-blue-400 hover:underline">Prompt Elements</a></li>
+            <li><a href="#prompt-formats" class="text-blue-400 hover:underline">Prompt Formats</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('effective-prompts')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">✍️</span> Effective Prompting
+          </button>
+          <ul id="effective-prompts" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#specificity" class="text-blue-400 hover:underline">Importance of Specificity</a></li>
+            <li><a href="#avoid-inaccuracy" class="text-blue-400 hover:underline">Avoiding Inaccuracy</a></li>
+            <li><a href="#prompt-tips" class="text-blue-400 hover:underline">Tips for Effective Prompts</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('advanced-techniques')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🤖</span> Advanced Techniques
+          </button>
+          <ul id="advanced-techniques" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#advanced-prompting" class="text-blue-400 hover:underline">Advanced Prompting Techniques</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
     <!-- Main Content -->
     <main class="flex-1 p-6 space-y-12">
+      <section id="introduction">
+        <h2 class="text-2xl font-bold mb-2">Introduction: What's All the Buzz About Prompts?</h2>
+        <p class="text-gray-700 dark:text-gray-300">Large Language Models, or LLMs, are a fascinating type of artificial intelligence. Trained on vast amounts of text, these models can understand and generate language that feels remarkably human. You can think of them as incredibly advanced autocomplete systems capable of writing essays, answering complex questions, generating computer code, and even creating stories.</p>
+        <p class="text-gray-700 dark:text-gray-300">So, how do you interact with these powerful tools? The answer is through <strong>prompts</strong>. A prompt is simply a set of instructions or a question you give to an LLM using everyday language. It's how you tell the LLM what task you want it to perform or what information you'd like it to provide. For students, learning to write effective prompts is quickly becoming a vital skill. It unlocks the power of LLMs for research, learning, creative projects, and problem-solving. Understanding how to prompt well helps you get more accurate, relevant, and useful responses from these AI systems.</p>
+        <p class="text-gray-700 dark:text-gray-300">This guide will walk you through the essentials of prompting. We'll start by exploring key configuration settings that can fine-tune an LLM's behavior. Then, we'll dive into the fundamental components of a prompt and how to structure your requests effectively. Finally, we'll offer practical tips and strategies for crafting prompts that lead to better AI interactions.</p>
+      </section>
+
+      <section id="control-panel">
+        <h2 class="text-2xl font-bold mb-2">Understanding Your LLM's "Control Panel": Key Configuration Settings</h2>
+        <p class="text-gray-700 dark:text-gray-300">Imagine an LLM as a highly sophisticated machine with various dials and levers that adjust its performance. These are often called "configuration parameters" or "settings." Understanding these allows you to tailor the AI's output to your specific needs, whether that's creative writing, a factual summary, or coding assistance. While not every LLM tool shows these settings directly to the user, knowing what they do is crucial for anyone serious about prompting. These parameters are the internal values learned during training and adjusted during use that collectively determine the model's behavior and capabilities.</p>
+      </section>
+
       <section id="temperature">
-        <h2 class="text-2xl font-bold mb-2">Temperature</h2>
-        <p class="text-gray-700 dark:text-gray-300">Temperature here...</p>
+        <h3 class="text-xl font-bold mb-2">Temperature</h3>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Definition:</strong> Temperature controls the randomness or "creativity" of the LLM's responses. It typically ranges from 0 to 1, though some models might use a slightly different scale, like 0 to 2.</li>
+          <li><strong>Function:</strong> A lower temperature (e.g., 0.2) makes the model more deterministic and focused. It will tend to pick the most likely next words, leading to consistent and straightforward outputs. A higher temperature (e.g., 0.8 or 1.0) increases randomness, allowing the model to select less likely words. This can result in more diverse and creative responses, but it also increases the risk of the output being off-topic or nonsensical, sometimes called "hallucinations."</li>
+          <li><strong>Analogy:</strong> Imagine a chef choosing ingredients.
+            <ul class="list-circle ml-6">
+              <li><strong>Low Temperature:</strong> The chef strictly follows a well-tested recipe, using only the most common and expected ingredients. The dish will be predictable and reliable.</li>
+              <li><strong>High Temperature:</strong> The chef feels adventurous and starts experimenting with unusual ingredient combinations. The dish might be brilliantly innovative or a bit strange.</li>
+            </ul>
+          </li>
+          <li><strong>Example of Effect:</strong>
+            <ul class="list-circle ml-6">
+              <li><strong>Prompt:</strong> "Write a short story about a cat."</li>
+              <li><strong>Low Temperature (e.g., 0.2):</strong> Might produce: "The cat sat on the mat. It was a fluffy, grey cat. It purred softly." (Predictable, common)</li>
+              <li><strong>High Temperature (e.g., 0.9):</strong> Might produce: "The cat, a shimmering enigma of midnight fur and emerald eyes, pondered the quantum mechanics of a dust mote dancing in the sunbeam." (Creative, less predictable)</li>
+            </ul>
+          </li>
+          <li><strong>Recommended Use Cases for Students:</strong>
+            <ul class="list-circle ml-6">
+              <li><strong>Low Temperature (0.0 - 0.3):</strong> Best for tasks requiring precision and factual accuracy. Use it for summarizing texts, answering direct questions, extracting information, fixing grammar, or translating content.</li>
+              <li><strong>Medium Temperature (0.4 - 0.7):</strong> Good for tasks needing a balance of creativity and coherence, like writing essays, generating explanations, or brainstorming ideas where some novelty is desired but factual grounding is still important.</li>
+              <li><strong>High Temperature (0.7 - 1.0+):</strong> Suitable for highly creative tasks like writing fiction, poetry, or marketing copy. Use it with caution and always review the output for relevance and accuracy.</li>
+            </ul>
+          </li>
+        </ul>
       </section>
 
-      <section id="Top">
-        <h2 class="text-2xl font-bold mb-2">Top T</h2>
-        <p class="text-gray-700 dark:text-gray-300">Top T here...</p>
+      <section id="top-p">
+        <h3 class="text-xl font-bold mb-2">Top P (Nucleus Sampling)</h3>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Definition:</strong> Top P, also known as nucleus sampling, is another method to control the randomness of the output. It works by selecting from the smallest possible set of words whose combined probability is greater than the "P" value. This value is set between 0.0 and 1.0.</li>
+          <li><strong>Function:</strong> Instead of picking from a fixed number of top words, Top P considers a dynamic range. If Top P is set to 0.9, the model considers the most probable words whose probabilities add up to 90%. If one word is very likely (say, 85% probability), the model might only consider that word and a couple of others. If many words have similar probabilities, it will consider more of them.</li>
+          <li><strong>Analogy:</strong> Imagine choosing a movie from a streaming service based on user ratings.
+            <ul class="list-circle ml-6">
+              <li><strong>Low Top P (e.g., 0.1):</strong> You only consider movies whose popularity scores, when added up, account for the top 10% of all popularity. This likely means only the absolute blockbusters.</li>
+              <li><strong>High Top P (e.g., 0.9):</strong> You consider a wider range of movies, including popular hits and well-regarded indie films, until their combined popularity scores reach 90%. This allows for more variety.</li>
+            </ul>
+          </li>
+          <li><strong>Example of Effect:</strong> Suppose the LLM is predicting the next word after "The weather is..."
+            <ul class="list-circle ml-6">
+              <li><strong>Word Probabilities:</strong> "sunny" (60%), "cloudy" (25%), "rainy" (10%), "windy" (5%)</li>
+              <li><strong>Top P = 0.7 (70%):</strong> The model considers "sunny" (60%). Since 60% is less than 70%, it adds "cloudy" (25%). The cumulative probability is now 85%. Since 85% is greater than 70%, the model will choose between "sunny" and "cloudy".</li>
+              <li><strong>Top P = 0.95 (95%):</strong> The model would consider "sunny," "cloudy," "rainy," and "windy" because their combined probability (100%) exceeds 95%.</li>
+            </ul>
+          </li>
+          <li><strong>Recommended Use Cases for Students:</strong> Top P is often used as an alternative to Temperature. It's generally advised not to adjust both at the same time, as it can make predicting the outcome difficult.
+            <ul class="list-circle ml-6">
+              <li><strong>Lower Top P (e.g., 0.5 - 0.8):</strong> For more focused and predictable outputs, similar to lower temperatures. Good for factual responses.</li>
+              <li><strong>Higher Top P (e.g., 0.9 - 1.0):</strong> For more diverse and creative outputs. The default for many popular models is 1.0, meaning any word can potentially be selected.</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="text-gray-700 dark:text-gray-300">It's helpful to remember that Temperature and Top P both influence word selection. Temperature changes the probability scores themselves, while Top P filters which words are even considered.</p>
       </section>
 
-      <section id="Length">
-        <h2 class="text-2xl font-bold mb-2">Max Length</h2>
-        <p class="text-gray-700 dark:text-gray-300">Max Length here...</p>
+      <section id="max-length">
+        <h3 class="text-xl font-bold mb-2">Max Length (or Max Tokens)</h3>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Definition:</strong> This parameter sets the maximum number of tokens (which can be words or parts of words) that the LLM can generate in its response. Sometimes this limit includes the length of your original prompt.</li>
+          <li><strong>Function:</strong> It prevents the model from generating overly long responses, which helps manage computing resources and keeps the output concise. Some systems have separate settings for <code>max_length</code> (total tokens) and <code>max_new_tokens</code> (only generated tokens); if both are present, <code>max_new_tokens</code> usually takes priority for the output.</li>
+          <li><strong>Analogy:</strong> Think of it as setting a word limit for an essay. You tell the writer they cannot go over a certain number of words.</li>
+          <li><strong>Example of Effect:</strong>
+            <ul class="list-circle ml-6">
+              <li><strong>Prompt:</strong> "Explain the water cycle."</li>
+              <li><strong>Max Length = 50 tokens:</strong> The LLM will give a very brief explanation, stopping once it hits the 50-token limit.</li>
+              <li><strong>Max Length = 500 tokens:</strong> The LLM can provide a much more detailed explanation.</li>
+            </ul>
+          </li>
+          <li><strong>Recommended Use Cases for Students:</strong> Adjust this setting based on how long you want the output to be. For a short summary, use a lower value. For a detailed explanation or a story, use a higher value. Be mindful of any token limits set by the specific AI service you're using, as defaults can vary a lot.</li>
+        </ul>
       </section>
 
-      <section id="Sequences">
-        <h2 class="text-2xl font-bold mb-2">Stop Sequences</h2>
-        <p class="text-gray-700 dark:text-gray-300">Stop Sequences here...</p>
+      <section id="stop-sequences">
+        <h3 class="text-xl font-bold mb-2">Stop Sequences</h3>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Definition:</strong> A stop sequence is a specific string of text (like a word, phrase, or punctuation) that will cause the LLM to immediately stop generating more output if it produces it.</li>
+          <li><strong>Function:</strong> This gives you a more precise way to end the generation than just setting a maximum length. It's useful for making sure the output follows a certain structure or doesn't continue past a logical endpoint.</li>
+          <li><strong>Analogy:</strong> It's like telling a storyteller to stop as soon as they say, "And they all lived happily ever after."</li>
+          <li><strong>Example of Effect:</strong>
+            <ul class="list-circle ml-6">
+              <li><strong>Prompt:</strong> "List the planets in our solar system, each on a new line. Stop when you list Earth."</li>
+              <li><strong>Stop Sequence:</strong> "\nEarth" (a new line followed by "Earth")</li>
+              <li><strong>Output:</strong>
+                <pre>
+Mercury
+Venus
+Earth
+                </pre>
+                (Generation stops here)
+              </li>
+              <li>Another example is if you want a list of no more than 5 items, you could use "6." as a stop sequence.</li>
+            </ul>
+          </li>
+          <li><strong>Recommended Use Cases for Students:</strong> This is useful for generating lists with a specific number of items, ending responses at a natural point, or preventing the model from adding unwanted text after your desired content is complete.</li>
+        </ul>
       </section>
 
-      <section id="Freqnuency">
-        <h2 class="text-2xl font-bold mb-2">Freqnuency Penalty</h2>
-        <p class="text-gray-700 dark:text-gray-300">Freqnuency Penalty...</p>
+      <section id="frequency-penalty">
+        <h3 class="text-xl font-bold mb-2">Frequency Penalty</h3>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Definition:</strong> This setting adjusts how much the LLM penalizes words that have already appeared in its response, based on how often they've shown up. Values usually range from -2.0 to 2.0.</li>
+          <li><strong>Function:</strong>
+            <ul class="list-circle ml-6">
+              <li><strong>Positive values:</strong> Discourage the model from repeating the same words or phrases, which promotes more diverse language. The higher the value, the stronger the penalty.</li>
+              <li><strong>Negative values:</strong> Encourage the model to repeat words. This can be useful for reinforcing certain terms but often leads to monotonous text. A value of 0 means no penalty is applied.</li>
+            </ul>
+          </li>
+          <li><strong>Analogy:</strong> Imagine a student writing an essay.
+            <ul class="list-circle ml-6">
+              <li><strong>High Frequency Penalty:</strong> The teacher tells the student to avoid using the same fancy word too many times and to find synonyms instead.</li>
+              <li><strong>Low/Negative Frequency Penalty:</strong> The teacher doesn't mind if the student repeats key terms for emphasis.</li>
+            </ul>
+          </li>
+          <li><strong>Example of Effect:</strong>
+            <ul class="list-circle ml-6">
+              <li><strong>Prompt:</strong> "Describe a beautiful sunset."</li>
+              <li><strong>Frequency Penalty = 0.0:</strong> Might result in: "The beautiful sky had beautiful colors. The clouds were beautiful."</li>
+              <li><strong>Frequency Penalty = 1.0:</strong> Might result in: "The vibrant sky displayed a stunning array of hues. The clouds, tinged with gold and crimson, drifted lazily." (More varied vocabulary)</li>
+            </ul>
+          </li>
+          <li><strong>Recommended Use Cases for Students:</strong>
+            <ul class="list-circle ml-6">
+              <li><strong>Higher positive values (e.g., 0.5 to 1.5):</strong> Useful for creative writing or any task where you want linguistic diversity.</li>
+              <li><strong>Lower values (around 0):</strong> Can be used if some repetition is acceptable or even desired, like in technical explanations where using consistent terminology is important.</li>
+            </ul>
+          </li>
+        </ul>
       </section>
 
-      <section id="Presence">
-        <h2 class="text-2xl font-bold mb-2">Presence Penalty</h2>
-        <p class="text-gray-700 dark:text-gray-300">Presence Penalty...</p>
+      <section id="presence-penalty">
+        <h3 class="text-xl font-bold mb-2">Presence Penalty</h3>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Definition:</strong> Similar to frequency penalty, this parameter penalizes words that have already appeared in the generated text. However, the penalty is applied only once per unique word, no matter how many times it has appeared. Values typically range from -2.0 to 2.0.</li>
+          <li><strong>Function:</strong>
+            <ul class="list-circle ml-6">
+              <li><strong>Positive values:</strong> Discourage the model from reusing any word that has already been generated. This encourages the model to talk about new topics or use new words.</li>
+              <li><strong>Negative values:</strong> Make the model more likely to repeat tokens it has already used.</li>
+            </ul>
+          </li>
+          <li><strong>Analogy:</strong> Think of a brainstorming session.
+            <ul class="list-circle ml-6">
+              <li><strong>High Presence Penalty:</strong> Participants are encouraged to bring up completely new ideas. Once an idea is mentioned, the group tries to move on to something different.</li>
+              <li><strong>Low/Negative Presence Penalty:</strong> Participants are free to revisit and elaborate on ideas that have already been discussed.</li>
+            </ul>
+          </li>
+          <li><strong>Example of Effect:</strong>
+            <ul class="list-circle ml-6">
+              <li><strong>Prompt:</strong> "Brainstorm ideas for a new mobile app."</li>
+              <li><strong>Presence Penalty = 0.0:</strong> Might list several features for one app idea before moving to a new one.</li>
+              <li><strong>Presence Penalty = 1.0:</strong> More likely to list distinct app ideas, as it's penalized for discussing topics related to an idea it already mentioned.</li>
+            </ul>
+          </li>
+          <li><strong>Recommended Use Cases for Students:</strong>
+            <ul class="list-circle ml-6">
+              <li><strong>Higher positive values:</strong> Useful when generating lists of distinct items, brainstorming diverse concepts, or trying to ensure the LLM introduces new elements in its response.</li>
+              <li><strong>Lower values:</strong> Best for when it's okay for the model to elaborate on topics or terms it has already introduced.</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="text-gray-700 dark:text-gray-300">It's generally a good idea to adjust either frequency penalty or presence penalty, but usually not both at the same time, to avoid overly complex and unpredictable results. When understood and used well, these settings give you powerful control over the text an LLM generates.</p>
+      </section>
+
+      <section id="prompt-definition">
+        <h2 class="text-2xl font-bold mb-2">The Building Blocks of a Good Prompt: Getting Started</h2>
+        <h3 class="text-xl font-bold mb-2">What is a Prompt? A Simple Definition for Beginners</h3>
+        <p class="text-gray-700 dark:text-gray-300">At its core, a <strong>prompt</strong> is a request made in natural language that asks a Large Language Model to do something specific. It's the input you provide to the model. This input gives the LLM context and instructions, guiding it to generate a relevant and coherent response.</p>
+        <p class="text-gray-700 dark:text-gray-300">For example, asking an LLM, "Write a Python function to sort a list of numbers" is a prompt. The model uses its training to understand this request and generate the right code. It's important to remember that LLMs are not always deterministic, which means the same prompt can sometimes produce slightly different results, especially if you're using higher temperature settings.</p>
+      </section>
+
+      <section id="prompt-elements">
+        <h3 class="text-xl font-bold mb-2">Essential Prompt Elements: Instruction, Context, and Input Data</h3>
+        <p class="text-gray-700 dark:text-gray-300">While prompts can be simple or complex, the most effective ones usually contain a combination of a few key elements: Instruction, Context, and Input Data.</p>
+        <p class="text-gray-700 dark:text-gray-300">The <strong>Instruction</strong> is often the most critical part of the prompt. It defines the core task the LLM needs to perform. If the instruction is missing or unclear, providing tons of context or data might not help, because the model won't know what it's supposed to do. A clear and precise instruction is the foundation of good prompt design. Context and Input Data then act to support and refine that instruction.</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Instruction:</strong> This is the specific task or command you give the model. It tells the LLM <em>what to do</em>. Instructions often start with an action verb (like "Summarize," "Translate," "Explain," or "Write") and should be as clear as possible.
+            <ul class="list-circle ml-6">
+              <li><strong>Example:</strong> "Classify the following movie review as positive, negative, or neutral."</li>
+              <li><strong>Another Example:</strong> "Write a three-paragraph essay about the causes of the French Revolution."</li>
+            </ul>
+          </li>
+          <li><strong>Context:</strong> This includes any background information or situational details that can help the LLM generate a more relevant and accurate response. It helps the model understand the bigger picture or specific constraints.
+            <ul class="list-circle ml-6">
+              <li><strong>Example:</strong> For the instruction "Suggest a roadmap to learn Python," adding the context "I'm completely new to programming" helps the LLM tailor the roadmap for a beginner.</li>
+              <li><strong>Another Example:</strong> If the instruction is "Write a poem," the context could be "Write a poem in the style of Edgar Allan Poe about a lonely lighthouse."</li>
+            </ul>
+          </li>
+          <li><strong>Input Data:</strong> This is the specific text, question, or material that the LLM needs to process or work with to follow your instruction.
+            <ul class="list-circle ml-6">
+              <li><strong>Example:</strong> For the instruction "Translate the given text from English to Spanish," the input data is the English text itself: "Text: Hello, how are you?".</li>
+              <li><strong>Another Example:</strong> If the instruction is "Summarize this article," the input data is the full text of the article.</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="text-gray-700 dark:text-gray-300">Not every prompt needs all three elements. A simple question might just be input data. But for more complex tasks, combining these elements thoughtfully leads to much better results.</p>
+        <h4 class="text-lg font-bold mb-2">Table: Anatomy of a Basic Prompt</h4>
+        <table>
+          <tr>
+            <th>Element</th>
+            <th>Purpose for the LLM</th>
+            <th>Simple Student Example</th>
+          </tr>
+          <tr>
+            <td>Instruction</td>
+            <td>Tells the AI <em>what specific task to perform</em>.</td>
+            <td>"Write a short story"</td>
+          </tr>
+          <tr>
+            <td>Context</td>
+            <td>Gives the AI <em>background information</em> for the task.</td>
+            <td>"...about a friendly dragon who is afraid of heights." (Adds to "Write a short story")</td>
+          </tr>
+          <tr>
+            <td>Input Data</td>
+            <td>The <em>specific material</em> the AI needs to work with.</td>
+            <td>"Summarize this article: [article text]"</td>
+          </tr>
+        </table>
+      </section>
+
+      <section id="prompt-formats">
+        <h3 class="text-xl font-bold mb-2">Basic Prompt Formats: Structuring Your Request</h3>
+        <p class="text-gray-700 dark:text-gray-300">While there's no single "correct" format, certain structures can help the LLM understand your request more easily. The way a prompt is formatted isn't just for you; it's often crucial for how the model separates different parts of the input, especially for models that have been "instruction-tuned" to expect certain patterns. Using clear separators or following a model's preferred structure can significantly improve its understanding and the quality of its output.</p>
+        <p class="text-gray-700 dark:text-gray-300">Here are a few basic formats:</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Simple Instruction/Question Format:</strong> This is the most straightforward format, perfect for simple queries or commands.
+            <ul class="list-circle ml-6">
+              <li><strong>Example (Instruction):</strong> "Generate five ideas for a science fair project."</li>
+              <li><strong>Example (Question):</strong> "What is the capital of France?"</li>
+            </ul>
+          </li>
+          <li><strong>Instruction + Context/Data Format:</strong> For more complex tasks, it's helpful to clearly separate the instruction from the context or input data. Using delimiters (like <code>## Instruction ##</code> or <code>---</code>) can be very effective.
+            <ul class="list-circle ml-6">
+              <li><strong>Example with Delimiters:</strong>
+                <pre>
+## Instruction ##
+Summarize the key arguments in the provided text in three bullet points.
+
+## Text ##
+[Paste the article text here]
+                </pre>
+              </li>
+              <li>This structure helps the LLM clearly see what it needs to do and what material it needs to work on. Many instruction-tuned models are trained using specific formats, and using them can lead to better performance.</li>
+            </ul>
+          </li>
+          <li><strong>Chat Format (for Chat Models):</strong> Many modern LLMs are designed for back-and-forth conversations. These models often use a format that distinguishes between different roles in the chat:
+            <ul class="list-circle ml-6">
+              <li><strong>User:</strong> Your input or question.</li>
+              <li><strong>Assistant:</strong> The LLM's generated response.</li>
+              <li><strong>System (optional):</strong> Provides overall instructions for the assistant's behavior or personality throughout the conversation (e.g., "You are a helpful assistant that always responds in rhyming couplets.").</li>
+              <li>This role-based structure helps the model keep track of the conversation over multiple turns.</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="text-gray-700 dark:text-gray-300">Understanding these basic elements and formats provides a solid foundation for writing prompts that effectively communicate your intentions to an LLM.</p>
+      </section>
+
+      <section id="specificity">
+        <h2 class="text-2xl font-bold mb-2">Crafting Effective Prompts: A Guide to Better AI Interactions</h2>
+        <h3 class="text-xl font-bold mb-2">The Importance of Being Specific: Getting the Results You Want</h3>
+        <p class="text-gray-700 dark:text-gray-300">Large Language Models are powerful, but they aren't mind-readers. Vague or overly broad prompts often lead to generic, unhelpful, or strange outputs. Specificity is key because it guides the model, narrows down the huge range of possible responses, and dramatically increases the relevance and accuracy of the generated text.</p>
+        <p class="text-gray-700 dark:text-gray-300">Consider these examples:</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Vague Prompt:</strong> "Tell me about dogs."
+            <ul class="list-circle ml-6">
+              <li><em>Potential Output:</em> A very general overview of dogs, their history, common breeds, etc.—which might not be what you needed.</li>
+            </ul>
+          </li>
+          <li><strong>Specific Prompt:</strong> "List three common behavioral problems in Golden Retrievers and suggest one positive reinforcement training tip for addressing each problem."
+            <ul class="list-circle ml-6">
+              <li><em>Potential Output:</em> A focused response addressing specific issues in a particular breed and offering actionable training advice.</li>
+            </ul>
+          </li>
+        </ul>
+        <p class="text-gray-700 dark:text-gray-300">Being specific means clearly defining the "Instruction" and providing rich "Context." The more precise your request and the more relevant the background info, the better the LLM can tailor its response to you.</p>
+      </section>
+
+      <section id="avoid-inaccuracy">
+        <h3 class="text-xl font-bold mb-2">How to Avoid Inaccuracy: Writing Clear and Unambiguous Prompts</h3>
+        <p class="text-gray-700 dark:text-gray-300">Inaccurate LLM outputs often happen because the model misunderstands the prompt due to ambiguity. When a prompt can be interpreted in multiple ways, the LLM might pick an interpretation you didn't intend. You can significantly improve accuracy by being a clear communicator.</p>
+        <p class="text-gray-700 dark:text-gray-300">Here are strategies to write more clearly and avoid ambiguity:</p>
+        <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Use Clear Instructions:</strong> Always start with a direct and explicit command.
+            <ul class="list-circle ml-6">
+              <li><strong>Bad Example:</strong> "AI importance." (This is a topic, not a clear instruction.)</li>
+              <li><strong>Good Example:</strong> "Provide a concise summary of the societal importance of Artificial Intelligence in the 21st century." (This clearly tells the model to summarize and specifies the focus.)</li>
+            </ul>
+          </li>
+          <li><strong>Provide Relevant Context and Constraints:</strong> Give the necessary background to situate the request and set clear boundaries (e.g., desired length, specific focus, tone).
+            <ul class="list-circle ml-6">
+              <li><strong>Bad Example:</strong> "Explain prompt engineering." (This lacks context and requirements.)</li>
+              <li><strong>Good Example:</strong> "Explain the basic principles of prompt engineering for Large Language Models, specifically focusing on how it helps improve AI interaction for beginners. Keep the explanation under 150 words." (This provides context—for beginners—and adds a constraint—under 150 words.)</li>
+            </ul>
+          </li>
+          <li><strong>Use Clear Formatting:</strong> If your request has multiple parts or you want a structured output, use bullet points, numbered lists, or distinct sections. This helps the model process each part of your request effectively.
+            <ul class="list-circle ml-6">
+              <li><strong>Bad Example:</strong> "Write an article about LLM prompts, their benefits, and some examples." (A single, jumbled instruction.)</li>
+              <li><strong>Good Example:</strong>
+                <p>Write an article covering the following points:</p>
+                <ul class="list-disc ml-6">
+                  <li>An introduction to what LLM prompts are.</li>
+                  <li>Three key benefits of using well-crafted LLM prompts.</li>
+                  <li>Two examples of effective LLM prompts for summarization tasks.</li>
+                </ul>
+                <p>(This clearly separates the required components.)</p>
+              </li>
+            </ul>
+          </li>
+          <li><strong>Avoid Ambiguous Language:</strong> Use words and phrases that have one clear meaning. If a request is complex, try breaking it down into simpler steps.
+            <ul class="list-circle ml-6">
+              <li><strong>Bad Example:</strong> "How to create a better prompt?" (This is too open-ended.)</li>
+              <li><strong>Good Example:</strong> "What are three distinct strategies for creating more effective and specific prompts when working with Large Language Models for academic research?" (This specifies the number of strategies, the context, and the purpose, making it much clearer.)</li>
+            </ul>
+          </li>
+        </ol>
+        <p class="text-gray-700 dark:text-gray-300">Crafting effective prompts, especially for complex tasks, is a lot like breaking down a problem. You break the task into smaller parts by giving clear steps, setting limits, and structuring the information logically. This analytical approach not only gets better results from AIs but can also strengthen your own problem-solving skills.</p>
+      </section>
+
+      <section id="prompt-tips">
+        <h3 class="text-xl font-bold mb-2">Tips for Writing Effective Prompts</h3>
+        <p class="text-gray-700 dark:text-gray-300">Beyond specificity and clarity, several other techniques can make your prompts even better.</p>
+        <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+          <li><strong>Be Clear and Concise:</strong> While detail is important, don't overload the model with unnecessary information or complicated sentences. Get to the point, but make sure all critical details are there. Avoid jargon unless you're sure the LLM will understand it in context.</li>
+          <li><strong>Start with Action Verbs:</strong> Begin your instructions with clear verbs that define the task (e.g., "Summarize," "Analyze," "Compare," "Generate," "List," "Explain"). This immediately tells the LLM its main goal.</li>
+          <li><strong>Provide Examples (Few-Shot Prompting):</strong> If you want a specific style or format, showing the LLM an example or two can be very effective. This is a technique known as "few-shot prompting."
+            <ul class="list-circle ml-6">
+              <li><strong>Example:</strong> "Translate the following English phrases to French, following the pattern:
+                <br>English: Hello
+                <br>French: Bonjour
+                <br>English: How are you?
+                <br>French: Comment ça va?
+                <br>English: Good morning
+                <br>French:?"</li>
+            </ul>
+          </li>
+          <li><strong>Specify the Output Format:</strong> If you need the response in a particular format (like a list, a table, JSON code, a single paragraph, or a poem with a specific rhyme scheme), state this explicitly in the prompt.
+            <ul class="list-circle ml-6">
+              <li><strong>Example:</strong> "Analyze the collected student feedback based on the responsible team (e.g., 'Academics', 'Administration', 'Student Life'). Output the analysis in a table with the column headers: 'Feedback Summary', 'Assigned Team', and 'Suggested Priority (High/Medium/Low)'."</li>
+            </ul>
+          </li>
+          <li><strong>Define the Persona/Role (Optional, but helpful):</strong> Telling the LLM to act as a specific character or expert can influence its tone, style, and the information it provides.
+            <ul class="list-circle ml-6">
+              <li><strong>Example:</strong> "Act as an expert astrophysicist and explain the concept of a black hole to a high school student in an engaging way."</li>
+              <li><strong>Example:</strong> "You are a friendly and encouraging tutor. Help me understand why my Python code for calculating factorials is not working."</li>
+            </ul>
+          </li>
+          <li><strong>Iterate and Refine:</strong> It's rare to get the perfect response on the first try. Prompting is often a process of trial and error. Test your prompt, review the output, see where it could be better, and then adjust the prompt. This cycle of testing and refining is a key part of learning to prompt effectively.</li>
+        </ul>
+        <h4 class="text-lg font-bold mb-2">Table: Good vs. Bad Prompts – Improving Clarity and Specificity</h4>
+        <table>
+          <tr>
+            <th>Scenario / Goal</th>
+            <th>Bad Prompt Example (Vague/Ambiguous)</th>
+            <th>Good Prompt Example (Clear/Specific)</th>
+            <th>Why it's Better (for Student Understanding)</th>
+          </tr>
+          <tr>
+            <td>Get ideas for a school project</td>
+            <td>"Give me project ideas."</td>
+            <td>"Suggest three distinct science project ideas suitable for a 9th-grade student focusing on renewable energy sources. Each idea should include a basic hypothesis and a list of potential materials."</td>
+            <td>Specifies subject (science), grade level, topic (renewable energy), number of ideas, and required output elements (hypothesis, materials).</td>
+          </tr>
+          <tr>
+            <td>Understand a complex concept</td>
+            <td>"Explain photosynthesis."</td>
+            <td>"Explain the process of photosynthesis in simple, step-by-step terms for a middle school student. Use an analogy of a tiny food factory within a plant leaf to make it more understandable."</td>
+            <td>Defines target audience (middle school), requests simple terms and a step-by-step approach, and asks for a specific learning aid (analogy of a factory).</td>
+          </tr>
+          <tr>
+            <td>Write a formal email</td>
+            <td>"Write an email to my teacher."</td>
+            <td>"Draft a polite and formal email to my history teacher, Mr. Harrison, requesting a one-week extension for the essay on World War II, which is currently due this Friday. Briefly mention that I have been unwell."</td>
+            <td>Specifies recipient and their role, tone (polite, formal), purpose (extension request), specific assignment, original due date, and key context (being unwell).</td>
+          </tr>
+          <tr>
+            <td>Get help with a coding problem</td>
+            <td>"My code doesn't work."</td>
+            <td>"I'm encountering a 'TypeError' in my Python script on line 15. The script is supposed to add a user's numerical input to a predefined integer, but it seems to be treating the input as a string. How can I convert the input to an integer before the addition?"</td>
+            <td>Specifies programming language, error type, location of error, the intended operation, the observed problem, and asks for a specific type of solution (conversion).</td>
+          </tr>
+          <tr>
+            <td>Brainstorm creative story ideas</td>
+            <td>"Write a story."</td>
+            <td>"Generate a short, humorous story (approximately 300-400 words) about a clumsy robot who dreams of becoming a ballet dancer. The story should be set in a futuristic city and have a surprise ending."</td>
+            <td>Specifies length, tone (humorous), main character and key trait, core conflict/dream, setting, and a desired narrative element (surprise ending).</td>
+          </tr>
+        </table>
+        <p class="text-gray-700 dark:text-gray-300">By applying these tips and practicing, you can significantly improve your ability to communicate with LLMs and use them as powerful tools for learning and creation.</p>
+      </section>
+
+      <section id="advanced-prompting">
+        <h2 class="text-2xl font-bold mb-2">Advanced Prompting Techniques</h2>
+        <p class="text-gray-700 dark:text-gray-300">[Content for advanced prompting techniques would go here, but the provided document ends at the section header. Additional content can be added if provided.]</p>
       </section>
     </main>
   </div>
-
 </body>
 </html>
