@@ -1,4 +1,197 @@
-    <!-- Main Content -->
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unlocking AI: A Guide to Prompts and LLM Configuration</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .light {
+      --bg-color: #ffffff;
+      --text-color: #1f2937;
+      --header-bg: #f3f4f6;
+      --sidebar-bg: #e5e7eb;
+      --link-color: #1d4ed8;
+    }
+    .dark {
+      --bg-color: #1f2937;
+      --text-color: #ffffff;
+      --header-bg: #374151;
+      --sidebar-bg: #374151;
+      --link-color: #60a5fa;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    header {
+      background-color: var(--header-bg);
+    }
+    aside {
+      background-color: var(--sidebar-bg);
+    }
+    a.text-blue-400 {
+      color: var(--link-color);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--header-bg);
+      font-weight: bold;
+    }
+    pre {
+      background-color: var(--header-bg);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+    }
+    .subsection-content {
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+      max-height: 1000px; /* Adjust as needed */
+      opacity: 1;
+      overflow: hidden;
+    }
+    .subsection-content.hidden {
+      max-height: 0;
+      opacity: 0;
+    }
+    .toggle-arrow::after {
+      content: '▼';
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .toggle-arrow.collapsed::after {
+      transform: rotate(-90deg);
+    }
+  </style>
+  <script>
+    function toggleMenu() {
+      document.getElementById("sidebar").classList.toggle("block");
+      document.getElementById("sidebar").classList.toggle("hidden");
+    }
+
+    function toggleSection(id) {
+      document.getElementById(id).classList.toggle("hidden");
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle("light");
+      document.documentElement.classList.toggle("dark");
+      const button = document.getElementById("theme-toggle");
+      button.textContent = document.documentElement.classList.contains("light") ? "🌙 Dark Mode" : "☀️ Light Mode";
+    }
+
+    function toggleSubsection(id) {
+      const element = document.getElementById(id);
+      const header = element.previousElementSibling;
+      element.classList.toggle("hidden");
+      header.classList.toggle("collapsed");
+    }
+  </script>
+</head>
+<body class="font-sans">
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 shadow-md">
+    <div class="flex items-center space-x-4">
+      <button onclick="toggleMenu()" class="text-xl">☰</button>
+      <h1 class="text-xl font-bold">Unlocking AI: A Guide to Prompts and LLM Configuration</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+      <input type="text" placeholder="Search..." class="px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <button id="theme-toggle" onclick="toggleTheme()" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600">🌙 Dark Mode</button>
+      <span class="text-sm text-gray-400">AI Prompting Guide</span>
+    </div>
+  </header>
+
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 p-4 hidden md:block">
+      <nav>
+        <div class="mt-4">
+          <button onclick="toggleSection('introduction')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🧠</span> Introduction
+          </button>
+          <ul id="introduction" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#introduction" class="text-blue-400 hover:underline">What's All the Buzz About Prompts?</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('llm-config')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">⚙️</span> LLM Configuration
+          </button>
+          <ul id="llm-config" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#control-panel" class="text-blue-400 hover:underline">Control Panel</a></li>
+            <li><a href="#temperature" class="text-blue-400 hover:underline">Temperature</a></li>
+            <li><a href="#top-p" class="text-blue-400 hover:underline">Top P (Nucleus Sampling)</a></li>
+            <li><a href="#max-length" class="text-blue-400 hover:underline">Max Length</a></li>
+            <li><a href="#stop-sequences" class="text-blue-400 hover:underline">Stop Sequences</a></li>
+            <li><a href="#frequency-penalty" class="text-blue-400 hover:underline">Frequency Penalty</a></li>
+            <li><a href="#presence-penalty" class="text-blue-400 hover:underline">Presence Penalty</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('prompt-basics')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">💡</span> Prompt Basics
+          </button>
+          <ul id="prompt-basics" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#prompt-definition" class="text-blue-400 hover:underline">What is a Prompt?</a></li>
+            <li><a href="#prompt-elements" class="text-blue-400 hover:underline">Prompt Elements</a></li>
+            <li><a href="#prompt-formats" class="text-blue-400 hover:underline">Prompt Formats</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('effective-prompts')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">✍️</span> Effective Prompting
+          </button>
+          <ul id="effective-prompts" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#specificity" class="text-blue-400 hover:underline">Importance of Specificity</a></li>
+            <li><a href="#avoid-inaccuracy" class="text-blue-400 hover:underline">Avoiding Inaccuracy</a></li>
+            <li><a href="#prompt-tips" class="text-blue-400 hover:underline">Tips for Effective Prompts</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('advanced-techniques')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🤖</span> Advanced Techniques
+          </button>
+          <ul id="advanced-techniques" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#zero-shot" class="text-blue-400 hover:underline">Zero-Shot Prompting</a></li>
+            <li><a href="#few-shot" class="text-blue-400 hover:underline">Few-Shot Prompting</a></li>
+            <li><a href="#chain-of-thought" class="text-blue-400 hover:underline">Chain-of-Thought Prompting</a></li>
+            <li><a href="#generated-knowledge" class="text-blue-400 hover:underline">Generated Knowledge Prompting</a></li>
+            <li><a href="#prompt-chaining" class="text-blue-400 hover:underline">Prompt Chaining</a></li>
+            <li><a href="#tree-of-thoughts" class="text-blue-400 hover:underline">Tree of Thoughts (ToT)</a></li>
+            <li><a href="#rag" class="text-blue-400 hover:underline">Retrieval Augmented Generation</a></li>
+            <li><a href="#art" class="text-blue-400 hover:underline">Automatic Reasoning and Tool-use</a></li>
+            <li><a href="#ape" class="text-blue-400 hover:underline">Automatic Prompt Engineer</a></li>
+            <li><a href="#active-prompting" class="text-blue-400 hover:underline">Active-Prompting</a></li>
+            <li><a href="#directional-stimulus" class="text-blue-400 hover:underline">Directional Stimulus Prompting</a></li>
+            <li><a href="#pal" class="text-blue-400 hover:underline">Program-Aided Language Models</a></li>
+            <li><a href="#react" class="text-blue-400 hover:underline">ReAct Prompting</a></li>
+            <li><a href="#reflexion" class="text-blue-400 hover:underline">Reflexion Framework</a></li>
+            <li><a href="#multimodal-cot" class="text-blue-400 hover:underline">Multimodal Chain-of-Thought</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+<!-- Main Content -->
     <main class="flex-1 p-6 space-y-12">
       <section id="introduction">
         <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('introduction-content')">Introduction: What's All the Buzz About Prompts?</h2>
