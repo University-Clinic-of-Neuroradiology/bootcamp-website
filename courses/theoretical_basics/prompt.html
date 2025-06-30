@@ -77,15 +77,29 @@
     .toggle-arrow.collapsed::after {
       transform: rotate(-90deg);
     }
+    @media (max-width: 768px) {
+      aside {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      aside.visible {
+        transform: translateX(0);
+      }
+    }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.32.8/src-min-noconflict/ace.js"></script>
   <script>
     function toggleMenu() {
-      document.getElementById("sidebar").classList.toggle("block");
-      document.getElementById("sidebar").classList.toggle("hidden");
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("visible");
+      sidebar.classList.toggle("hidden");
     }
 
     function toggleSection(id) {
-      document.getElementById(id).classList.toggle("hidden");
+      const section = document.getElementById(id);
+      section.classList.toggle("hidden");
+      const button = section.previousElementSibling;
+      button.classList.toggle("font-bold");
     }
 
     function toggleTheme() {
@@ -101,6 +115,46 @@
       element.classList.toggle("hidden");
       header.classList.toggle("collapsed");
     }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initialize Ace Editor for code blocks
+      document.querySelectorAll("pre").forEach((pre, index) => {
+        const editorDiv = document.createElement("div");
+        editorDiv.id = `editor-${index}`;
+        editorDiv.style.height = "200px";
+        editorDiv.style.width = "100%";
+        pre.parentNode.insertBefore(editorDiv, pre);
+        const code = pre.textContent;
+        pre.style.display = "none";
+
+        const editor = ace.edit(editorDiv);
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/python");
+        editor.setValue(code.trim());
+        editor.setReadOnly(false);
+        editor.setOptions({
+          fontSize: "14px",
+          showPrintMargin: false,
+          showGutter: true,
+        });
+
+        // Sync editor content back to pre for form submission or other uses
+        editor.session.on("change", () => {
+          pre.textContent = editor.getValue();
+        });
+      });
+
+      // Make sidebar visible when clicking titles
+      document.querySelectorAll("nav button").forEach(button => {
+        button.addEventListener("click", () => {
+          const sidebar = document.getElementById("sidebar");
+          if (window.innerWidth <= 768) {
+            sidebar.classList.add("visible");
+            sidebar.classList.remove("hidden");
+          }
+        });
+      });
+    });
   </script>
 </head>
 <body class="font-sans">
