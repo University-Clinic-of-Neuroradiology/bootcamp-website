@@ -86,6 +86,26 @@
         transform: translateX(0);
       }
     }
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      background-color: #1d4ed8;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+    }
+    #back-to-top:hover {
+      background-color: #2563eb;
+    }
+    #back-to-top.visible {
+      display: block;
+      opacity: 1;
+    }
   </style>
   <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.32.8/src-min-noconflict/ace.js"></script>
   <script>
@@ -114,6 +134,10 @@
       const header = element.previousElementSibling;
       element.classList.toggle("hidden");
       header.classList.toggle("collapsed");
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     document.addEventListener("DOMContentLoaded", () => {
@@ -153,6 +177,16 @@
             sidebar.classList.remove("hidden");
           }
         });
+      });
+
+      // Back to Top button visibility
+      const backToTopButton = document.getElementById("back-to-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.add("visible");
+        } else {
+          backToTopButton.classList.remove("visible");
+        }
       });
     });
   </script>
