@@ -11,7 +11,6 @@ subtitle: Overview of the Bootcamp courses
 - [❗ Course requirements](#-course-requirements)
 - [📋 Syllabus](#-syllabus)
 - [🚩 Project](#-project)
-- [❓ Feedback](#-feedback)
 - [🙏 Credits](#-credits)
 
 
@@ -53,18 +52,6 @@ So we offer also an optional skill track, what else you can do:
 Once you have completed all the skill tracks, a final project is prepared. In this project, you will work on a problem set by us. To do this, you should have understood all the content you have already completed, otherwise you will repeat the corresponding notebooks.
 
 Click here for the project: [Project](./project.md).
-
-
-## ❓ Feedback
-Ready to make your voice heard? Dive into our surveys:
-
-- Pre-survey: Set the stage. What are your expectations? Lay it all out for us.
-  - English: [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/yb4ALTYZNqP9iMYMA)
-  - German: [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/6BqMkjzTYnbCj2Jo6)
-
-- Final survey: Reflect and rejoice. Did we hit the mark? What pearls of wisdom did you gather?
-  - English: [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/1CAPNZQUXqmMaQYr6)
-  - German: [![Feedback](https://img.shields.io/badge/Feedback-red.svg)](https://forms.gle/JLGC237pbgSWyrv3A)
 
 
 ## 🙏 Credits
