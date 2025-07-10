@@ -46,7 +46,7 @@ Please note:
 
 
 ## 📝 Theoretical basics
-For some information on the topic, take a look at some [Basics](./theoretical_basics/data_management.md).
+For some information on the topic, take a look at some [Basics](./theoretical_basics/data_management.html).
 
 
 ## ☝️ References
