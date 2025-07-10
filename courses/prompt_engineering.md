@@ -47,7 +47,7 @@ For this skill track, it doesn't matter what kind of chatbot you prefer to use. 
 - Working with Research Papers <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/PrmptEng/4.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 ## 📝 Theoretical basics
-For some information on the topic, take a look at some [Basics](./prompt.html).
+For some information on the topic, take a look at some [Basics](./theoretical_basics/prompt.html).
 
 
 ## ☝️ References
