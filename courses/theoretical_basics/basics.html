@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theoretical Basics: Python</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .light {
+      --bg-color: #ffffff;
+      --text-color: #1f2937;
+      --header-bg: #f3f4f6;
+      --sidebar-bg: #e5e7eb;
+      --link-color: #1d4ed8;
+    }
+    .dark {
+      --bg-color: #1f2937;
+      --text-color: #ffffff;
+      --header-bg: #374151;
+      --sidebar-bg: #374151;
+      --link-color: #60a5fa;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    header {
+      background-color: var(--header-bg);
+    }
+    aside {
+      background-color: var(--sidebar-bg);
+    }
+    a.text-blue-400 {
+      color: var(--link-color);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--header-bg);
+      font-weight: bold;
+    }
+    pre {
+      background-color: var(--header-bg);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+    }
+    .subsection-content {
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+      max-height: 1000px; /* Adjust as needed */
+      opacity: 1;
+      overflow: hidden;
+    }
+    .subsection-content.hidden {
+      max-height: 0;
+      opacity: 0;
+    }
+    .toggle-arrow::after {
+      content: '▼';
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .toggle-arrow.collapsed::after {
+      transform: rotate(-90deg);
+    }
+    @media (max-width: 768px) {
+      aside {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      aside.visible {
+        transform: translateX(0);
+      }
+    }
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      background-color: #000000;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+    }
+    #back-to-top:hover {
+      background-color: #333333;
+    }
+    #back-to-top.visible {
+      display: block;
+      opacity: 1;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.32.8/src-min-noconflict/ace.js"></script>
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("visible");
+      sidebar.classList.toggle("hidden");
+    }
+
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.classList.toggle("hidden");
+      const button = section.previousElementSibling;
+      button.classList.toggle("font-bold");
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle("light");
+      document.documentElement.classList.toggle("dark");
+      const button = document.getElementById("theme-toggle");
+      button.textContent = document.documentElement.classList.contains("light") ? "🌙 Dark Mode" : "☀️ Light Mode";
+    }
+
+    function toggleSubsection(id) {
+      const element = document.getElementById(id);
+      const header = element.previousElementSibling;
+      element.classList.toggle("hidden");
+      header.classList.toggle("collapsed");
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initialize Ace Editor for code blocks
+      document.querySelectorAll("pre").forEach((pre, index) => {
+        const editorDiv = document.createElement("div");
+        editorDiv.id = `editor-${index}`;
+        editorDiv.style.height = "200px";
+        editorDiv.style.width = "100%";
+        pre.parentNode.insertBefore(editorDiv, pre);
+        const code = pre.textContent;
+        pre.style.display = "none";
+
+        const editor = ace.edit(editorDiv);
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/python");
+        editor.setValue(code.trim());
+        editor.setReadOnly(false);
+        editor.setOptions({
+          fontSize: "14px",
+          showPrintMargin: false,
+          showGutter: true,
+        });
+
+        // Sync editor content back to pre for form submission or other uses
+        editor.session.on("change", () => {
+          pre.textContent = editor.getValue();
+        });
+      });
+
+      // Make sidebar visible when clicking titles
+      document.querySelectorAll("nav button").forEach(button => {
+        button.addEventListener("click", () => {
+          const sidebar = document.getElementById("sidebar");
+          if (window.innerWidth <= 768) {
+            sidebar.classList.add("visible");
+            sidebar.classList.remove("hidden");
+          }
+        });
+      });
+
+      // Back to Top button visibility
+      const backToTopButton = document.getElementById("back-to-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.add("visible");
+        } else {
+          backToTopButton.classList.remove("visible");
+        }
+      });
+    });
+  </script>
+</head>
+<body class="font-sans">
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 shadow-md">
+    <div class="flex items-center space-x-4">
+      <button onclick="toggleMenu()" class="text-xl">☰</button>
+      <h1 class="text-xl font-bold">Theoretical Basics: Python</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+      <input type="text" placeholder="Search..." class="px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <button id="theme-toggle" onclick="toggleTheme()" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600">🌙 Dark Mode</button>
+      <span class="text-sm text-gray-400">Python Programming Guide</span>
+    </div>
+  </header>
+
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 p-4 hidden md:block">
+      <nav>
+        <div class="mt-4">
+          <button onclick="toggleSection('why-learn')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📚</span> Why Learn Scientific Programming?
+          </button>
+          <ul id="why-learn" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#why-scientific" class="text-blue-400 hover:underline">Why should we learn a scientific programming language?</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('why-python')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🐍</span> Why Python?
+          </button>
+          <ul id="why-python" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#why-python" class="text-blue-400 hover:underline">Why Python?</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('print-function')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🖨️</span> Print Function
+          </button>
+          <ul id="print-function" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#print-function" class="text-blue-400 hover:underline">The print()-Function</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('variables')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📦</span> Variables
+          </button>
+          <ul id="variables" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#variables" class="text-blue-400 hover:underline">Variables</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('data-types')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🔢</span> Data Types
+          </button>
+          <ul id="data-types" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#data-types" class="text-blue-400 hover:underline">Data types</a></li>
+            <li><a href="#converting-data-types" class="text-blue-400 hover:underline">Converting data types</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('operators')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">➕</span> Operators
+          </button>
+          <ul id="operators" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#operators" class="text-blue-400 hover:underline">Operators</a></li>
+            <li><a href="#arithmetic-operators" class="text-blue-400 hover:underline">Arithmetic operators</a></li>
+            <li><a href="#assignment-operators" class="text-blue-400 hover:underline">Assignment operators</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('pyplot')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📊</span> Getting Started with Pyplot
+          </button>
+          <ul id="pyplot" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#pyplot" class="text-blue-400 hover:underline">Getting started with pyplot</a></li>
+            <li><a href="#creating-simple-plots" class="text-blue-400 hover:underline">Creating simple plots</a></li>
+            <li><a href="#adding-details" class="text-blue-400 hover:underline">Adding Details</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('plot-anatomy')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🖼️</span> Anatomy of a Plot
+          </button>
+          <ul id="plot-anatomy" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#plot-anatomy" class="text-blue-400 hover:underline">Anatomy of a Plot</a></li>
+            <li><a href="#artists-figures" class="text-blue-400 hover:underline">Artists and Figures</a></li>
+            <li><a href="#where-help" class="text-blue-400 hover:underline">Where to find help?</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 space-y-12">
+      <section id="why-scientific">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('why-scientific-content')">Why should we learn a scientific programming language?</h2>
+        <div id="why-scientific-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">Statistical tools like <strong>Excel</strong> already do a very good job regarding statistical analysis and visualization. And: They are easy- and ready-to-use. Scientific programming languages perform the same job, the mathematical background behind them is the same (with some exceptions in the numerical implementation). But: There is no Graphical User Interface (GUI), we have to write each analysis step by our own.</p>
+          <p class="text-gray-700 dark:text-gray-300">So, why should we learn Python …? The answer is:</p>
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li><strong>Automatization</strong>
+              <ul class="list-circle ml-6">
+                <li>At the beginning it takes a little longer to get where you want to go.</li>
+                <li>But when you’re done, you have a powerful tool to process all of your current (and future) data, without manually repeating your analysis steps!</li>
+              </ul>
+            </li>
+            <li><strong>Standardization and Reproducibility</strong>
+              <ul class="list-circle ml-6">
+                <li>By pipelining your data through an automatized analysis, you ensure, that each of your data sets is processed and analyzed the same way (if it makes sense!).</li>
+                <li>This standardization ensures reproducibility of your results for you and for others and enables inter- dataset/-group comparisons.</li>
+              </ul>
+            </li>
+            <li><strong>Perform more complex tasks</strong>
+              <ul class="list-circle ml-6">
+                <li>You can go beyond the scope of any black-boxed suite-solution.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="why-python">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('why-python-content')">Why Python?</h2>
+        <div id="why-python-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">Python is one of the most popular programming languages in the world. It is used for a wide variety of tasks, including data analysis. It has also become the language of choice for machine learning. Here are some more points:</p>
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li><strong>Open-source:</strong> Free and continuously improved by a worldwide community.</li>
+            <li><strong>Portable:</strong> You can install Python wherever you want to (PC, Mac, ...), your code will work everywhere.</li>
+            <li><strong>“Interpreted“:</strong> Your code is directly executed without previously being compiled into the actual machine-language instructions (i.e. machine-code, the language, your computer is operating with).</li>
+            <li><strong>“High-level“ programming language:</strong> Use natural language elements to “tell“ the computer what you want.</li>
+            <li><strong>Extensive support of libraries:</strong> Install as much additional modules as and when you need to, e.g. fancy plotting toolboxes, statistics toolboxes … they are all free (in other programming solutions you have to pay for such add-ons).</li>
+            <li><strong>Collaboration:</strong> collaborate and exchange with your local or worldwide colleagues, who also use Python.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="print-function">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('print-function-content')">The print()-Function</h2>
+        <div id="print-function-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">One of the first things you will probably do is output (print). To write information, you can use the <code>print()</code> function and implement it as a core function. As it is a core function, you will automatically have access to it if Python is installed. To use <code>print()</code> in your program, use an argument:</p>
+          <pre>
+print('Hello World!')
+          </pre>
+        </div>
+      </section>
+
+      <section id="variables">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('variables-content')">Variables</h2>
+        <div id="variables-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">As one of the basics of programming, you need to know that you are processing data. Since your program works with data, you may need to remember a certain value while running the program. You use variables to do this.</p>
+          <p class="text-gray-700 dark:text-gray-300">In the following example, a variable is declared (saved) and then output. Try:</p>
+          <pre>
+x = 5
+
+print(x)
+          </pre>
+        </div>
+      </section>
+
+      <section id="data-types">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('data-types-content')">Data types</h2>
+        <div id="data-types-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">A variable requires a data type. In the previous program, <code>x</code> assumes the type <code>int</code>. However, there are many other data types. Here are some basic examples that you are likely to come across:</p>
+          <table>
+            <tr>
+              <th>Data type</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td>Numerical type</td>
+              <td>Number, with or without decimals</td>
+              <td><code>int, float, complex, no = 3</code></td>
+            </tr>
+            <tr>
+              <td>Text type</td>
+              <td>String</td>
+              <td><code>str = "a literal string"</code></td>
+            </tr>
+            <tr>
+              <td>Boolean type</td>
+              <td>Boolean</td>
+              <td><code>True, False, continue = True</code></td>
+            </tr>
+          </table>
+          <p class="text-gray-700 dark:text-gray-300">You can use the <code>type()</code> function to determine the data type, try:</p>
+          <pre>
+a = 'Yeah, my name is ...'
+
+print(type(a))
+          </pre>
+        </div>
+      </section>
+
+      <section id="converting-data-types">
+        <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('converting-data-types-content')">Converting data types</h3>
+        <div id="converting-data-types-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">Sometimes it makes sense to change the data type of a variable. This can be done as follows, try:</p>
+          <pre>
+a = '5'
+b = int(a)
+
+print(type(b))
+          </pre>
+        </div>
+      </section>
+
+      <section id="operators">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('operators-content')">Operators</h2>
+        <div id="operators-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">Operators allow you to perform various operations on variables and their values. In general, you have a left-hand side and a right-hand side and an operator in the middle:</p>
+          <pre>
+x = 10
+y = 5
+
+print(x + y)
+          </pre>
+          <p class="text-gray-700 dark:text-gray-300">Python uses two types of operators: arithmetic operators and assignments.</p>
+        </div>
+      </section>
+
+      <section id="arithmetic-operators">
+        <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('arithmetic-operators-content')">Arithmetic operators</h3>
+        <div id="arithmetic-operators-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">Arithmetic operators are used to perform calculations such as addition, subtraction, division and multiplication. Here are some of the arithmetic operators you can use:</p>
+          <table>
+            <tr>
+              <th>Type</th>
+              <th>Description</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td>+</td>
+              <td>Addition operator</td>
+              <td><code>1 + 1</code></td>
+            </tr>
+            <tr>
+              <td>-</td>
+              <td>Subtraction operator</td>
+              <td><code>2 - 1</code></td>
+            </tr>
+            <tr>
+              <td>/</td>
+              <td>Division operator</td>
+              <td><code>9 / 3</code></td>
+            </tr>
+            <tr>
+              <td>*</td>
+              <td>Multiplication operator</td>
+              <td><code>3 * 4</code></td>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+      <section id="assignment-operators">
+        <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('assignment-operators-content')">Assignment operators</h3>
+        <div id="assignment-operators-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">You can use assignment operators to assign values to a variable throughout its life cycle. Below you will find some assignment operators that you are likely to use when creating programs:</p>
+          <table>
+            <tr>
+              <th>Type</th>
+              <th>Example</th>
+            </tr>
+            <tr>
+              <td>=</td>
+              <td><code>x = 2</code></td>
+            </tr>
+            <tr>
+              <td>+=</td>
+              <td><code>x += 2</code> - x is increased by 2. If x previously contained "2", it now has the value "4".</td>
+            </tr>
+            <tr>
+              <td>-=</td>
+              <td><code>x -= 2</code> - x is decreased by 2. If x previously contained "2", it now has the value "0".</td>
+            </tr>
+            <tr>
+              <td>/=</td>
+              <td><code>x /= 2</code> - x is divided by 2. If x previously contained "2", it now has the value "1".</td>
+            </tr>
+            <tr>
+              <td>*=</td>
+              <td><code>x *= 2</code> - x is multiplicated by 2. If x previously contained "2", it now has the value "4".</td>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+      <section id="pyplot">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('pyplot-content')">Getting started with pyplot</h2>
+        <div id="pyplot-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">The <code>matplotlib</code> framework offers the module <code>pyplot</code> as a set of convenient shortcuts for common plotting tasks. <code>Pyplot</code> also is the way through which users will mostly interact with the features of <code>matplotlib</code>.</p>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('creating-simple-plots-content')">Creating simple plots</h3>
+          <div id="creating-simple-plots-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">Imagine we are keeping track of the amount of medication a patient takes over a year:</p>
+            <pre>
+import matplotlib.pyplot as plt
+
+pills = [10, 12, 13, 15, 12, 11,
+         9, 8, 8, 10, 11, 12
+        ]
+
+plt.plot(pills)  # This prepares a plot
+plt.show()  # Show the plot that was created
+            </pre>
+            <p class="text-gray-700 dark:text-gray-300">Since we have not given any explicit x-axis values, <code>pyplot</code> has used the index of our list for that purpose.</p>
+            <p class="text-gray-700 dark:text-gray-300"><strong>Note:</strong> <code>Pyplot</code> internally keeps track of state of the plot. You as the user only get to see it once you call the <code>show()</code> function. This way of programming is called imperative. There is also a different approach to things, which is called object oriented which is used in the underlying workings of <code>matplotlib</code>. For clarity reasons we will show pyplot first and then expand upon that a bit later. To help with understanding, imagine you want to have a cake. Imperative style is like calling a baker and describing how you want your cake to look like. Object oriented style is like ordering the ingredients and then modifying the soon-to-be-cake yourself until it looks like you want it.</p>
+            <p class="text-gray-700 dark:text-gray-300">A simple way to plot something with specific x-values is to have separate lists of x and y values. The x-values do not need to be numbers, category names work equally as well. Try:</p>
+            <pre>
+import matplotlib.pyplot as plt
+
+months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+]
+
+pills = [10, 12, 13, 15, 12, 11,
+         9, 8, 8, 10, 11, 12
+        ]
+
+plt.plot(months, pills)
+plt.show()
+            </pre>
+          </div>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('adding-details-content')">Adding Details</h3>
+          <div id="adding-details-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">We now have a very simple plot, but it is lacking a few things that we expect. Let us add some basic things like labels, a title and maybe a better scale for the y-axis.</p>
+            <pre>
+import matplotlib.pyplot as plt
+import numpy as np
+
+months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+]
+
+pills = [10, 12, 13, 15, 12, 11,
+         9, 8, 8, 10, 11, 12
+        ]
+
+plt.plot(months, pills)
+
+# First let's put in the overall decorations
+plt.xlabel("Month")
+plt.ylabel("#")
+plt.title("Amount of pills per month")
+
+# We want our y-axis to start at 7 and go up to 16 with a resolution of 1
+amt_pills_marks = np.arange(7,17,1)
+plt.yticks(amt_pills_marks)
+
+plt.show()
+            </pre>
+            <p class="text-gray-700 dark:text-gray-300">For the viewers convenience we also want to add horizontal lines to indicate the minimum and maximum values of the pills amount.</p>
+            <pre>
+import matplotlib.pyplot as plt
+import numpy as np
+
+months = [
+    "Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+]
+
+pills = [10, 12, 13, 15, 12, 11,
+         9, 8, 8, 10, 11, 12
+        ]
+
+plt.plot(months, pills)
+
+# First let's put in the overall decorations
+plt.xlabel("Month")
+plt.ylabel("#")
+plt.title("Amount of pills per month")
+
+# We want our y-axis to start at 7 and go up to 16 with a resolution of 1
+amt_pills_marks = np.arange(7,17,1)
+plt.yticks(amt_pills_marks)
+
+# Add the lines for the lowest and highest pills amount
+marker_lines = [min(pills), max(pills)]
+plt.hlines(
+    y=marker_lines,
+    xmin=months[0],
+    xmax=months[-1],
+    linestyles="dotted",
+    colors="lightgray"
+)
+
+plt.show()
+            </pre>
+          </div>
+        </div>
+      </section>
+
+      <section id="plot-anatomy">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('plot-anatomy-content')">Anatomy of a Plot</h2>
+        <div id="plot-anatomy-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">Knowing the right terms for the subject can help to better search for help, understand documentation and communicate issues and solutions. [Note: The original content included an image of Matplotlib Plot Anatomy here, which is not included in this document.]</p>
+          <p class="text-gray-700 dark:text-gray-300">There are further terms that you may want to keep in mind when working with the framework.</p>
+          <p class="text-gray-700 dark:text-gray-300"><strong>Warning:</strong> In the nomenclature of the framework there is a difference between:</p>
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li><strong>Axis:</strong> the number line that gets printed on the side of the plot</li>
+            <li><strong>Axes:</strong> the collection of all plotted elements that represent data (roughly: the plotting area)</li>
+          </ul>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('artists-figures-content')">Artists and Figures</h3>
+          <div id="artists-figures-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">An artist determines the rendering style of plot elements. The <code>figure</code> is the collection of all plot elements. Figures can be nested into other figures. The nested element is called a <code>subfigure</code>. Implementation-wise, the figure is an artist (i.e. it controls its own plotting style). The rectangle for the figure’s background is contained in the attribute <code>patch</code>.</p>
+          </div>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('where-help-content')">Where to find help?</h3>
+          <div id="where-help-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">The official developers’ documentation websites act as a glossary paired with very good examples and often tutorials:</p>
+            <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+              <li><a href="https://www.python.org/doc/" class="text-blue-400 hover:underline">https://www.python.org/doc/</a>, <a href="https://docs.python.org/3/" class="text-blue-400 hover:underline">https://docs.python.org/3/</a></li>
+              <li><a href="https://matplotlib.org" class="text-blue-400 hover:underline">https://matplotlib.org</a></li>
+              <li><a href="https://numpy.org/doc/" class="text-blue-400 hover:underline">https://numpy.org/doc/</a></li>
+              <li><a href="https://pandas.pydata.org/docs/" class="text-blue-400 hover:underline">https://pandas.pydata.org/docs/</a></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <button id="back-to-top" onclick="scrollToTop()" title="Back to Top">↑</button>
+</body>
+</html>
