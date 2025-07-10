@@ -39,4 +39,4 @@ This directory contains a few basic notebooks to get you going. It is recommende
 
 
 ## 📝 Theoretical basics
-For some information on the topic, take a look at some [Basics](./theoretical_basics/basics.md).
+For some information on the topic, take a look at some [Basics](./theoretical_basics/basics.html).
