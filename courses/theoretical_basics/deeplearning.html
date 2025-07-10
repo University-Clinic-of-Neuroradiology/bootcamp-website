@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theoretical Basics: Deep Learning</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .light {
+      --bg-color: #ffffff;
+      --text-color: #1f2937;
+      --header-bg: #f3f4f6;
+      --sidebar-bg: #e5e7eb;
+      --link-color: #1d4ed8;
+    }
+    .dark {
+      --bg-color: #1f2937;
+      --text-color: #ffffff;
+      --header-bg: #374151;
+      --sidebar-bg: #374151;
+      --link-color: #60a5fa;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    header {
+      background-color: var(--header-bg);
+    }
+    aside {
+      background-color: var(--sidebar-bg);
+    }
+    a.text-blue-400 {
+      color: var(--link-color);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--header-bg);
+      font-weight: bold;
+    }
+    pre {
+      background-color: var(--header-bg);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+    }
+    .subsection-content {
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+      max-height: 1000px; /* Adjust as needed */
+      opacity: 1;
+      overflow: hidden;
+    }
+    .subsection-content.hidden {
+      max-height: 0;
+      opacity: 0;
+    }
+    .toggle-arrow::after {
+      content: '▼';
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .toggle-arrow.collapsed::after {
+      transform: rotate(-90deg);
+    }
+    @media (max-width: 768px) {
+      aside {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      aside.visible {
+        transform: translateX(0);
+      }
+    }
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      background-color: #000000;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+    }
+    #back-to-top:hover {
+      background-color: #333333;
+    }
+    #back-to-top.visible {
+      display: block;
+      opacity: 1;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.32.8/src-min-noconflict/ace.js"></script>
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("visible");
+      sidebar.classList.toggle("hidden");
+    }
+
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.classList.toggle("hidden");
+      const button = section.previousElementSibling;
+      button.classList.toggle("font-bold");
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle("light");
+      document.documentElement.classList.toggle("dark");
+      const button = document.getElementById("theme-toggle");
+      button.textContent = document.documentElement.classList.contains("light") ? "🌙 Dark Mode" : "☀️ Light Mode";
+    }
+
+    function toggleSubsection(id) {
+      const element = document.getElementById(id);
+      const header = element.previousElementSibling;
+      element.classList.toggle("hidden");
+      header.classList.toggle("collapsed");
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initialize Ace Editor for code blocks
+      document.querySelectorAll("pre").forEach((pre, index) => {
+        const editorDiv = document.createElement("div");
+        editorDiv.id = `editor-${index}`;
+        editorDiv.style.height = "200px";
+        editorDiv.style.width = "100%";
+        pre.parentNode.insertBefore(editorDiv, pre);
+        const code = pre.textContent;
+        pre.style.display = "none";
+
+        const editor = ace.edit(editorDiv);
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/python");
+        editor.setValue(code.trim());
+        editor.setReadOnly(false);
+        editor.setOptions({
+          fontSize: "14px",
+          showPrintMargin: false,
+          showGutter: true,
+        });
+
+        // Sync editor content back to pre for form submission or other uses
+        editor.session.on("change", () => {
+          pre.textContent = editor.getValue();
+        });
+      });
+
+      // Make sidebar visible when clicking titles
+      document.querySelectorAll("nav button").forEach(button => {
+        button.addEventListener("click", () => {
+          const sidebar = document.getElementById("sidebar");
+          if (window.innerWidth <= 768) {
+            sidebar.classList.add("visible");
+            sidebar.classList.remove("hidden");
+          }
+        });
+      });
+
+      // Back to Top button visibility
+      const backToTopButton = document.getElementById("back-to-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.add("visible");
+        } else {
+          backToTopButton.classList.remove("visible");
+        }
+      });
+    });
+  </script>
+</head>
+<body class="font-sans">
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 shadow-md">
+    <div class="flex items-center space-x-4">
+      <button onclick="toggleMenu()" class="text-xl">☰</button>
+      <h1 class="text-xl font-bold">Theoretical Basics: Deep Learning</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+      <input type="text" placeholder="Search..." class="px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <button id="theme-toggle" onclick="toggleTheme()" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600">🌙 Dark Mode</button>
+      <span class="text-sm text-gray-400">Deep Learning Guide</span>
+    </div>
+  </header>
+
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 p-4 hidden md:block">
+      <nav>
+        <div class="mt-4">
+          <button onclick="toggleSection('introduction-ml')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🤖</span> Introduction to ML
+          </button>
+          <ul id="introduction-ml" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#introduction-ml" class="text-blue-400 hover:underline">Introduction to ML</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('deep-learning')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🧠</span> WTF is DeepLearning (DL)?
+          </button>
+          <ul id="deep-learning" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#deep-learning" class="text-blue-400 hover:underline">WTF is DeepLearning (DL)?</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('neural-network-learn')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📚</span> How does a neural network learn?
+          </button>
+          <ul id="neural-network-learn" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#neural-network-learn" class="text-blue-400 hover:underline">How does a neural network learn?</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('further-reading')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🔍</span> Further Reading
+          </button>
+          <ul id="further-reading" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#further-reading" class="text-blue-400 hover:underline">Further Reading</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('keras')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🐍</span> Keras: The Python DL library
+          </button>
+          <ul id="keras" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#keras" class="text-blue-400 hover:underline">Keras: The Python DL library</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('workflow')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🔄</span> Typical Workflow
+          </button>
+          <ul id="workflow" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#workflow" class="text-blue-400 hover:underline">Typical Workflow</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('steps')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📋</span> Steps
+          </button>
+          <ul id="steps" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#loading-dataset" class="text-blue-400 hover:underline">Loading dataset in Keras</a></li>
+            <li><a href="#preprocessing" class="text-blue-400 hover:underline">Preprocessing</a></li>
+            <li><a href="#image-data" class="text-blue-400 hover:underline">Preparing the image data</a></li>
+            <li><a href="#encoding-labels" class="text-blue-400 hover:underline">Encoding the labels</a></li>
+            <li><a href="#network-architecture" class="text-blue-400 hover:underline">Building Network architecture</a></li>
+            <li><a href="#layers" class="text-blue-400 hover:underline">Layers</a></li>
+            <li><a href="#model" class="text-blue-400 hover:underline">Model</a></li>
+            <li><a href="#model-building" class="text-blue-400 hover:underline">Model Building</a></li>
+            <li><a href="#network-compilation" class="text-blue-400 hover:underline">Network Compilation</a></li>
+            <li><a href="#training-network" class="text-blue-400 hover:underline">Training the network</a></li>
+            <li><a href="#testing-data" class="text-blue-400 hover:underline">Testing on Test Data</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 space-y-12">
+      <section id="introduction-ml">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('introduction-ml-content')">Introduction to ML</h2>
+        <div id="introduction-ml-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">An outlook on machine learning (ML): <a href="https://university-clinic-of-neuroradiology.github.io/bootcamp-website/courses/theoretical_basics/machinelearning/" class="text-blue-400 hover:underline">WTF is MachineLearning</a>.</p>
+        </div>
+      </section>
+
+      <section id="deep-learning">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('deep-learning-content')">WTF is DeepLearning (DL)?</h2>
+        <div id="deep-learning-content" class="subsection-content">
+          <img src="https://university-clinic-of-neuroradiology.github.io/bootcamp-website/assets/img/theoretical_basics/ai_ml_dl.png" alt="AI, ML and DL" height="512">
+          <p class="text-gray-700 dark:text-gray-300">DL, a distinct subset of ML, focuses on acquiring successive layers of progressively meaningful representations. The term "deep" signifies the utilization of these successive layers in learning. Neural networks, organized in literal stacked layers, are the models through which these layered representations are acquired in DL.</p>
+          <p class="text-gray-700 dark:text-gray-300">Artificial neural networks consist of multiple layers of neurons that essentially define a deeply nested function. This architecture is why the technique is called DL, and the models it creates are often referred to as deep neural networks (DNNs). You can use deep neural networks for many types of ML problems, including regression and classification, as well as more specialised models for linguistic data processing and machine vision.</p>
+          <p class="text-gray-700 dark:text-gray-300">Just like other ML techniques discussed in this module, DL involves fitting training data to a function that can predict a label (<code>y</code>) based on the value of one or more features (<code>x</code>). The function (<code>f(x)</code>) is the outer layer of a nested function in which each layer of the neural network encapsulates features related to <code>x</code> and the associated values for the weights (<code>w</code>). The algorithm used to train the model involves iteratively passing the feature values (<code>x</code>) in the training data through the layers to calculate output values for <code>ŷ</code>. This involves checking the model to determine how far the calculated <code>ŷ</code> values deviate from the known <code>y</code> values (thus quantifying the amount of error or loss in the model). The weights (<code>w</code>) are then changed to reduce the loss. The trained model contains the final weighting values that lead to the most accurate predictions.</p>
+        </div>
+      </section>
+
+      <section id="neural-network-learn">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('neural-network-learn-content')">How does a neural network learn?</h2>
+        <div id="neural-network-learn-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">The weights in a neural network significantly influence how the predicted values for labels are calculated. During the training process, the model learns the weights that lead to the most accurate predictions. We will explore the training process in more detail to understand how this learning takes place.</p>
+          <img src="https://university-clinic-of-neuroradiology.github.io/bootcamp-website/assets/img/theoretical_basics/dl_intro_flowchart.png" alt="DL Intro Flowchart">
+          <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
+            <li>The datasets for training and validation are defined and the training features are fed into the input layer.</li>
+            <li>The neurons in each layer of the network apply their weights (which are initially assigned randomly) and transmit the data over the network.</li>
+            <li>The output layer generates a vector containing the calculated values for <code>ŷ</code>.</li>
+            <li>A loss function is used to compare the predicted <code>ŷ</code>-values with the known <code>y</code>-values and aggregate the difference (which is called loss).</li>
+            <li>Since the entire network is essentially a large nested function, an optimisation function can use a differential calculation to determine what influence the individual weights in the network have on the loss. It can then determine how the weights can be adjusted up or down to reduce the overall loss. The specific optimisation method can vary, but typically involves a gradient descent where each weight is increased or decreased to minimise the loss.</li>
+            <li>The changes to the weights are reapplied to the layers in the mesh, replacing the previously used values.</li>
+            <li>The process is repeated over several iterations (referred to as epochs) until the loss is minimised and the model provides a prediction with acceptable accuracy.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="further-reading">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('further-reading-content')">Further Reading</h2>
+        <div id="further-reading-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">A very good open-source overview article on DL is: <a href="https://journalofbigdata.springeropen.com/articles/10.1186/s40537-021-00444-8" class="text-blue-400 hover:underline">Alzubaidi et al. J Big Data (2021) 8:53</a>.</p>
+        </div>
+      </section>
+
+      <section id="keras">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('keras-content')">Keras: The Python DL library</h2>
+        <div id="keras-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">Keras is a framework for building deep neural networks with Python. Keras enables us to build state-of-the-art, DL systems just like those used at Google and Facebook, with little complexity and also with a few lines of code. Some of its key features are:</p>
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li>User-friendly API</li>
+            <li>Built-In support for convolutional networks (for computer vision), recurrent networks (for sequence processing), and any combination of both.</li>
+            <li>Supports arbitrary network architectures: multi-input or multi-output models, layer sharing, model sharing, and so on.</li>
+          </ul>
+          <p class="text-gray-700 dark:text-gray-300">Keras is a front-end layer written in Python that runs on top of other popular Dl toolkits like TensorFlow, Theano and Microsoft Cognitive Toolkit (CNTK). Any piece of code that you write with Keras can be run with any of these backends without having to change anything in the code. Via TensorFlow/Theano /CNTK, Keras can run seamlessly on both CPUs and GPUs.</p>
+        </div>
+      </section>
+
+      <section id="workflow">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('workflow-content')">Typical Workflow</h2>
+        <div id="workflow-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">A typical ML workflow is as follows:</p>
+          <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
+            <li>Feed the network with pre-processed training data.</li>
+            <li>The network then learns to associate the inputs of training data and their corresponding labels.</li>
+            <li>The network will then produce predictions for unseen test data. Its accuracy will depend on how accurately its output matches the labels of the test data.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section id="steps">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('steps-content')">Steps</h2>
+        <div id="steps-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">MNIST is a great dataset for getting started with DL and computer vision.</p>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('loading-dataset-content')">Loading dataset in Keras</h3>
+          <div id="loading-dataset-content" class="subsection-content">
+            <pre>
+import keras
+
+# import dataset
+(train_images, train_labels), (test_images, test_labels) = mnist.load_data()
+            </pre>
+            <p class="text-gray-700 dark:text-gray-300">The multidimensional Numpy arrays, in which data is stored are called Tensors. You can think of tensors as a container for data. To be more specific tensors are a generalization of matrices to an arbitrary number of dimensions. Tensors can be defined by three key features:</p>
+            <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+              <li><strong>Number of axes:</strong> e.g. 2D Tensor has 2 axis.</li>
+              <li><strong>Shape:</strong> Dimensions of tensor along each axis, e.g. 3D tensor of shape (182,256,256)</li>
+              <li><strong>Data Type:</strong> Type of data contained in the Tensor, e.g. tensor's type could be <code>float32</code>, <code>int8</code> etc.</li>
+            </ul>
+            <pre>
+#Training Data
+# shape of training dataset
+print(train_images.shape)
+
+# Total no. of training images
+print(len(train_labels)) 
+
+# labels
+print(train_labels)
+            </pre>
+            <p class="text-gray-700 dark:text-gray-300">So it appears that we have 60,000 samples in our training set, and the images are 28 x 28 pixels each.</p>
+          </div>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('preprocessing-content')">Preprocessing</h3>
+          <div id="preprocessing-content" class="subsection-content">
+            <h4 class="text-lg font-bold mb-2">Preparing the image data</h4>
+            <div id="image-data-content" class="subsection-content">
+              <p class="text-gray-700 dark:text-gray-300">When using the TensorFlow backend, you must explicitly declare a dimension for the number of channels in the input images. For example, a full-color image with all 3 RGB channels will have a channel value of 3.</p>
+              <p class="text-gray-700 dark:text-gray-300">Our MNIST images only have 1 channel (gray-scale), but we must explicitly declare that.</p>
+              <p class="text-gray-700 dark:text-gray-300">In other words, we want to transform our dataset from having shape (n, width, height) to (n, width, height, channels).</p>
+              <pre>
+train_images = train_images.reshape(train_images.shape[0], 28, 28, 1)
+test_images = test_images.reshape(test_images.shape[0], 28, 28, 1)
+              </pre>
+              <p class="text-gray-700 dark:text-gray-300">The final preprocessing step for the input data is to convert our data type to <code>float32</code> and normalize our data values to the range [0, 1].</p>
+              <pre>
+train_images = train_images.astype('float32')
+test_images = test_images.astype('float32')
+train_images /= 255
+test_images /= 255
+              </pre>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Encoding the labels</h4>
+            <div id="encoding-labels-content" class="subsection-content">
+              <p class="text-gray-700 dark:text-gray-300">The labels will also need to be categorically encoded since we cannot feed the lists of integers into a neural network.</p>
+              <pre>
+from keras.utils import to_categorical
+
+train_labels = to_categorical(train_labels)
+test_labels = to_categorical(test_labels)
+              </pre>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('network-architecture-content')">Building Network architecture</h3>
+          <div id="network-architecture-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">A DL network essentially consists of models and layers.</p>
+            <h4 class="text-lg font-bold mb-2">Layers</h4>
+            <div id="layers-content" class="subsection-content">
+              <p class="text-gray-700 dark:text-gray-300">A layer is a core building block of a neural network. It acts as a kind of a data processing module. Layers extract representations out of the input data, that is fed into them. Inherently, DL consists of stacking up these layers to form a model.</p>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Model</h4>
+            <div id="model-content" class="subsection-content">
+              <p class="text-gray-700 dark:text-gray-300">A model is a linear stack of layers. It is like a sieve for data processing made of a succession of increasing refined data filters called layers. The simplest model in Keras is sequential, which is built by stacking layers sequentially.</p>
+            </div>
+            <h4 class="text-lg font-bold mb-2">Model Building</h4>
+            <div id="model-building-content" class="subsection-content">
+              <p class="text-gray-700 dark:text-gray-300">We will be building our very first model in Keras with only two layers. Here, we’re passing the expected shape of the input data to the first layer.</p>
+              <pre>
+from keras import models
+from keras import layers
+
+network = models.Sequential()
+network.add(layers.Dense(512, activation='relu', input_shape=(28 * 28,)))
+network.add(layers.Dense(10, activation='softmax'))
+              </pre>
+              <p class="text-gray-700 dark:text-gray-300">Our network consists of a sequence of two layers, which are densely connected (also called fully connected) neural layers.</p>
+              <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+                <li>The first layer comprising of 512 units taking an input of a 784-dimensional array converted from the 28×28 image. The activation function used is ReLU (rectified linear unit). A rectified linear unit has output 0 if the input is less than 0, and raw output otherwise. That is, if the input is greater than 0, the output is equal to the input.</li>
+                <li>The second (which is also the last here) layer is a 10-way softmax layer, which means it will return an array of 10 probability scores (summing to 1). Each score will be a probability that the current digit image belongs to one of our 10 digit classes. You can read more about the softmax function below.</li>
+              </ul>
+            </div>
+          </div>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('network-compilation-content')">Network Compilation</h3>
+          <div id="network-compilation-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">We now know that our network consists of two dense layers each of which is applying some tensor operations on the input data. The operations involve weight tensors, and it is at these weights that the knowledge of the network is present.</p>
+            <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+              <li><strong>Loss Function (Objective Function):</strong> loss (Predicted — Actual value) is the quantity that we try to minimize during training of a neural network. Thus, measuring the Loss function is a measure of success for the task we are trying to solve. It is imperative to choose the right objective function for a problem. See the diagram below for commonly used loss functions.</li>
+              <li><strong>Optimizer:</strong> It specifies the exact way in which the gradient of the loss will be used to update parameters. In other words, it determines how the network will be updated based on the loss function. Optimizers could be the RMSProp optimizer, SGD with momentum, and so on.</li>
+              <li><strong>Metrics:</strong> to measure the accuracy of the model. In this case, we will use accuracy.</li>
+            </ul>
+            <pre>
+network.compile(optimizer='rmsprop', loss='categorical_crossentropy', metrics=['accuracy'])
+            </pre>
+          </div>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('training-network-content')">Training the network</h3>
+          <div id="training-network-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">We’re now ready to train the network, which in Keras is done via a call to the network’s fit method — we fit the model to its training data:</p>
+            <pre>
+network.fit(train_images, train_labels, epochs=5, batch_size=128)
+            </pre>
+            <p class="text-gray-700 dark:text-gray-300">The network will start to iterate on the training data in mini-batches of 128 samples, 5 times over (each iteration over all the training data is called an epoch). At each iteration, the network will compute the gradients of the weights about the loss on the batch, and update the weights</p>
+            <p class="text-gray-700 dark:text-gray-300">Two quantities are displayed during training:</p>
+            <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+              <li>Loss of the network over the training data, and</li>
+              <li>Accuracy of the network over the training data.</li>
+            </ul>
+          </div>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('testing-data-content')">Testing on Test Data</h3>
+          <div id="testing-data-content" class="subsection-content">
+            <pre>
+test_loss, test_acc = network.evaluate(test_images, test_labels)
+            </pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <button id="back-to-top" onclick="scrollToTop()" title="Back to Top">↑</button>
+</body>
+</html>
