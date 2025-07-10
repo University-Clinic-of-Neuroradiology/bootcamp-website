@@ -38,4 +38,4 @@ The notebook "Basic concepts of DICOM" is particularly important for understandi
 
 
 ## 📝 Theoretical basics
-For some information on the topic, take a look at some [Basics](./theoretical_basics/dicom.md).
+For some information on the topic, take a look at some [Basics](./theoretical_basics/dicom.html).
