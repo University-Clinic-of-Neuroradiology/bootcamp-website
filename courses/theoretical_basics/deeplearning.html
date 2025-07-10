@@ -296,7 +296,7 @@
       <section id="deep-learning">
         <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('deep-learning-content')">WTF is DeepLearning (DL)?</h2>
         <div id="deep-learning-content" class="subsection-content">
-          <img src="https://university-clinic-of-neuroradiology.github.io/bootcamp-website/assets/img/theoretical_basics/ai_ml_dl.png" alt="AI, ML and DL" height="512">
+          <img src="https://university-clinic-of-neuroradiology.github.io/bootcamp-website/assets/img/theoretical_basics/ai_ml_dl.png" alt="AI, ML and DL">
           <p class="text-gray-700 dark:text-gray-300">DL, a distinct subset of ML, focuses on acquiring successive layers of progressively meaningful representations. The term "deep" signifies the utilization of these successive layers in learning. Neural networks, organized in literal stacked layers, are the models through which these layered representations are acquired in DL.</p>
           <p class="text-gray-700 dark:text-gray-300">Artificial neural networks consist of multiple layers of neurons that essentially define a deeply nested function. This architecture is why the technique is called DL, and the models it creates are often referred to as deep neural networks (DNNs). You can use deep neural networks for many types of ML problems, including regression and classification, as well as more specialised models for linguistic data processing and machine vision.</p>
           <p class="text-gray-700 dark:text-gray-300">Just like other ML techniques discussed in this module, DL involves fitting training data to a function that can predict a label (<code>y</code>) based on the value of one or more features (<code>x</code>). The function (<code>f(x)</code>) is the outer layer of a nested function in which each layer of the neural network encapsulates features related to <code>x</code> and the associated values for the weights (<code>w</code>). The algorithm used to train the model involves iteratively passing the feature values (<code>x</code>) in the training data through the layers to calculate output values for <code>ŷ</code>. This involves checking the model to determine how far the calculated <code>ŷ</code> values deviate from the known <code>y</code> values (thus quantifying the amount of error or loss in the model). The weights (<code>w</code>) are then changed to reduce the loss. The trained model contains the final weighting values that lead to the most accurate predictions.</p>
@@ -347,7 +347,7 @@
           <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
             <li>Feed the network with pre-processed training data.</li>
             <li>The network then learns to associate the inputs of training data and their corresponding labels.</li>
-            <li>The network will then produce predictions for unseen test data. Its accuracy will depend on how accurately its output matches the labels of the test data.</li>
+            <li>The network will then produce predicitions for unseen test data. Its accuracy will depend on how accurately its output matches the labels of the test data.</li>
           </ol>
         </div>
       </section>
@@ -391,7 +391,7 @@ print(train_labels)
               <p class="text-gray-700 dark:text-gray-300">Our MNIST images only have 1 channel (gray-scale), but we must explicitly declare that.</p>
               <p class="text-gray-700 dark:text-gray-300">In other words, we want to transform our dataset from having shape (n, width, height) to (n, width, height, channels).</p>
               <pre>
-train_images = train_images.reshape(train_images.shape[0], 28, 28, 1)
+train_images = train_imagesn.reshape(train_images.shape[0], 28, 28, 1)
 test_images = test_images.reshape(test_images.shape[0], 28, 28, 1)
               </pre>
               <p class="text-gray-700 dark:text-gray-300">The final preprocessing step for the input data is to convert our data type to <code>float32</code> and normalize our data values to the range [0, 1].</p>
