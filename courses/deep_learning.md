@@ -39,7 +39,7 @@ In this skill track, the notebooks build on each other. Therefore, complete them
 
 
 ## 📝 Theoretical basics
-For some information on the topic, take a look at some [Basics](./theoretical_basics/deeplearning.md).
+For some information on the topic, take a look at some [Basics](./theoretical_basics/deeplearning.html).
 
 
 ## ☝️ References
