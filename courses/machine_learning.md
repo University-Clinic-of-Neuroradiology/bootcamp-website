@@ -10,7 +10,6 @@ subtitle: Introduction to MachineLearning.
 - [📣 Current announcements](#-current-announcements)
 - [❗ Course requirements](#-course-requirements)
 - [📒 Syllabus](#-syllabus)
-- [📝 Theoretical basics](#-theoretical-basics)
 - [☝️ References](#️-references)
 
 
@@ -44,8 +43,6 @@ In this skill track, the notebooks build on each other. Therefore, complete them
 - Unsupervised Learning <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/03_introduction_MNIST.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
-## 📝 Theoretical basics
-For some information on the topic, take a look at some [Basics](./theoretical_basics/deeplearning.html).
 
 
 ## ☝️ References
