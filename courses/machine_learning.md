@@ -1,7 +1,7 @@
 ---
 layout: page
-title: DeepLearning
-subtitle: Introduction to DeepLearning.
+title: MachineLearning
+subtitle: Introduction to MachineLearning.
 ---
 
 ## 📋 Content
@@ -33,9 +33,15 @@ In this skill track, the notebooks build on each other. Therefore, complete them
 
 
 ## 📒 Syllabus
-- Basic Concepts of DeepLearning <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/01_introduction_DL.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-- Basic Concepts of Keras <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/02_introduction_keras.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
-- MedNIST Dataset <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/03_introduction_MNIST.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Introduction to Machine Learning <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/01_introduction_DL.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- End-to-End Machine Learning <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/02_introduction_keras.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Classification <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/03_introduction_MNIST.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Training Models <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/03_introduction_MNIST.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- SVMs <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/03_introduction_MNIST.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Decision Tree <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/03_introduction_MNIST.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Ensemble Learning & Random Forests <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/03_introduction_MNIST.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Dimensionality Reduction <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/03_introduction_MNIST.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
+- Unsupervised Learning <a href="https://colab.research.google.com/github/University-Clinic-of-Neuroradiology/python-bootcamp/blob/main/notebooks/DeepLearning/03_introduction_MNIST.ipynb"><img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/></a>
 
 
 ## 📝 Theoretical basics
@@ -48,11 +54,7 @@ In this skill track, you'll work with different Open-Source datasets:
 - [MedMNIST](https://medmnist.com/) [1,2]
 
 <a id="1">[1]</a>
-Jiancheng Yang et al. (2023)
-MedMNIST v2-A large-scale lightweight benchmark for 2D and 3D biomedical image classification.
-Scientific Data
+
 
 <a id="2">[2]</a> 
-Jiancheng Yang et al. (2021),
-MedMNIST Classification Decathlon: A Lightweight AutoML Benchmark for Medical Image Analysis,
-IEEE 18th International Symposium on Biomedical Imaging (ISBI)
+
