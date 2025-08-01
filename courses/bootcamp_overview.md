@@ -36,7 +36,8 @@ We recommend the following sequence of skill tracks:
 2. [DICOM](./dicom.md)
 3. [Image Analysis](./image_analysis.md)
 4. [Data Management](./data_management.md)
-5. [DeepLearning](./deep_learning.md)
+5. 4. [Machine Learning](./Machine_Learning.md)
+6. [DeepLearning](./deep_learning.md)
 
 So we offer also an optional skill track, what else you can do:
 - [Time Analysis](./time_analysis.md)
