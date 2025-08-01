@@ -21,6 +21,7 @@ Reduce dimensionality for efficient data analysis
 Combine models for robust clinical decision-making
 
 📚 Course Overview
+
 🔰 Beginner Level: Foundations of Machine Learning
 
 Introduction to ML concepts and their applications in healthcare
@@ -57,5 +58,6 @@ Scalable Techniques: Learn methods applicable to diverse datasets and ML platfor
 Ethical Considerations: Address bias, overfitting, and patient safety in ML applications
 
 🗂️ Course MaterialsDelivered as interactive Jupyter notebooks you can run online or locally. Includes code examples, medical exercises, visualizations, and detailed explanations.
-📍 Visit the Course Overview to access the content and get started:👉 https://university-clinic-of-neuroradiology.github.io/ml-course-website/courses/machine_learning/
+📍 Visit the Course Overview to access the content and get started
+👉 **[[https://university-clinic-of-neuroradiology.github.io/bootcamp-website/courses/prompt_engineering/](https://university-clinic-of-neuroradiology.github.io/bootcamp-website/courses/machine_learning/)]([https://university-clinic-of-neuroradiology.github.io/bootcamp-website/courses/prompt_engineering/](https://university-clinic-of-neuroradiology.github.io/bootcamp-website/courses/machine_learning/))**
 Let’s revolutionize healthcare with data-driven insights, one model at a time! 🩺✨
