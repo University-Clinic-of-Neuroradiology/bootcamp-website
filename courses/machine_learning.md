@@ -14,11 +14,15 @@ subtitle: Introduction to MachineLearning.
 
 
 ## 📄 Description
-This directory contains a few basic notebooks to expand your deep learning knowledge. Working with Keras and TensorFlow, you’ll learn about neural networks, the deep learning model workflows, and how to optimize your models.
+This directory contains a series of notebooks designed to build your machine learning knowledge, focusing on fundamental algorithms and techniques. Using Python with libraries like scikit-learn, NumPy, and Matplotlib, you’ll explore a range of machine learning methods, from supervised learning (classification and regression) to unsupervised learning (clustering and dimensionality reduction), as well as ensemble methods for improved performance.
 
 By the end of these notebooks, you should feel more comfortable with:
-- with the basics and the terms of DeepLearning
-- to use Keras to train and test models
+
+- Understanding key machine learning concepts, including linear models, decision trees, support vector machines, ensemble methods, and unsupervised learning techniques.
+
+- Implementing and optimizing machine learning models using scikit-learn, including data preprocessing, model training, hyperparameter tuning, and performance evaluation.
+
+- Applying machine learning to real-world problems, with a focus on medical applications such as disease prediction, patient segmentation, and anomaly detection in health data.
 
 
 ## 📣 Current announcements
