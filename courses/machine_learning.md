@@ -54,8 +54,4 @@ In this skill track, the notebooks build on each other. Therefore, complete them
 In this skill track, you'll work with different Open-Source datasets:
 - [MedMNIST](https://medmnist.com/) [1,2]
 
-<a id="1">[1]</a>
-
-
-<a id="2">[2]</a> 
 
