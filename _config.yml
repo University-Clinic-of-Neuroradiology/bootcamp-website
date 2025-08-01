@@ -30,6 +30,7 @@ navbar-links:
     - Image Analysis: "/courses/image_analysis"
     - Data Management: "/courses/data_management"
     - Object Oriented Programming: "/courses/object_oriented_programming"
+    - Machine Learning: "/courses/machine_learning"
     - Deep Learning: "/courses/deep_learning"
     - Prompt Engineering: "/courses/prompt_engineering"
     # - Time Analysis: "/courses/time_analysis"
