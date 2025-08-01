@@ -1,3 +1,13 @@
+---
+layout: post
+title: Announcement - Machine Learning Course
+subtitle: Machine Learning for Healthcare Innovation
+gh-repo: University-Clinic-of-Neuroradiology/python-bootcamp
+gh-badge: [star, fork, follow]
+author: Mohammad Rezapourian
+---
+
+
 Machine Learning Course Announcement
 🎉 Exciting Announcement: Machine Learning Course for Healthcare and Beyond! 🐍🩺
 Calling all healthcare professionals, researchers, and data enthusiasts! We’re thrilled to launch our new Machine Learning Course, designed to empower medical and scientific professionals with the skills to apply machine learning techniques to real-world healthcare challenges. Using Python with libraries like scikit-learn, NumPy, and Matplotlib, this course guides you through building and optimizing models for medical applications.
@@ -31,13 +41,6 @@ Master ensemble methods (bagging, boosting, stacking) for improved prediction ac
 Apply PCA and t-SNE for visualizing high-dimensional medical data
 Use clustering and anomaly detection to identify patient subtypes or outliers
 Solve complex medical tasks like predicting recovery times or detecting rare conditions
-
-👩‍⚕️ Expert Level: Real-World ML for Healthcare
-
-Build robust ML pipelines for clinical decision support
-Evaluate feature importance to identify key health indicators
-Handle class imbalance and noisy medical data
-Design reproducible ML workflows for research and clinical applications
 
 🎓 Who Should Join?
 
