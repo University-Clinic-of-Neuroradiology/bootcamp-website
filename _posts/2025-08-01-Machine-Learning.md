@@ -11,6 +11,7 @@ author: Mohammad Rezapourian
 Machine Learning Course Announcement
 🎉 Exciting Announcement: Machine Learning Course for Healthcare and Beyond! 🐍🩺
 Calling all healthcare professionals, researchers, and data enthusiasts! We’re thrilled to launch our new Machine Learning Course, designed to empower medical and scientific professionals with the skills to apply machine learning techniques to real-world healthcare challenges. Using Python with libraries like scikit-learn, NumPy, and Matplotlib, this course guides you through building and optimizing models for medical applications.
+
 🧠 What is Machine Learning?
 Machine Learning (ML) involves training algorithms to identify patterns and make predictions from data. Whether you’re a doctor, researcher, or student, this course will teach you how to:
 
@@ -58,6 +59,8 @@ Scalable Techniques: Learn methods applicable to diverse datasets and ML platfor
 Ethical Considerations: Address bias, overfitting, and patient safety in ML applications
 
 🗂️ Course MaterialsDelivered as interactive Jupyter notebooks you can run online or locally. Includes code examples, medical exercises, visualizations, and detailed explanations.
+
 📍 Visit the Course Overview to access the content and get started
+
 👉 **[[Machine Learning Course](https://university-clinic-of-neuroradiology.github.io/bootcamp-website/courses/machine_learning/)]**
 Let’s revolutionize healthcare with data-driven insights, one model at a time! 🩺✨
