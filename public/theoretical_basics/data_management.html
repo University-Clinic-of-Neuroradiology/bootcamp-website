@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theoretical Basics: Data Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .light {
+      --bg-color: #ffffff;
+      --text-color: #1f2937;
+      --header-bg: #f3f4f6;
+      --sidebar-bg: #e5e7eb;
+      --link-color: #1d4ed8;
+    }
+    .dark {
+      --bg-color: #1f2937;
+      --text-color: #ffffff;
+      --header-bg: #374151;
+      --sidebar-bg: #374151;
+      --link-color: #60a5fa;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    header {
+      background-color: var(--header-bg);
+    }
+    aside {
+      background-color: var(--sidebar-bg);
+    }
+    a.text-blue-400 {
+      color: var(--link-color);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--header-bg);
+      font-weight: bold;
+    }
+    pre {
+      background-color: var(--header-bg);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+    }
+    .subsection-content {
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+      max-height: 1000px; /* Adjust as needed */
+      opacity: 1;
+      overflow: hidden;
+    }
+    .subsection-content.hidden {
+      max-height: 0;
+      opacity: 0;
+    }
+    .toggle-arrow::after {
+      content: '▼';
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .toggle-arrow.collapsed::after {
+      transform: rotate(-90deg);
+    }
+    @media (max-width: 768px) {
+      aside {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      aside.visible {
+        transform: translateX(0);
+      }
+    }
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      background-color: #000000;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+    }
+    #back-to-top:hover {
+      background-color: #333333;
+    }
+    #back-to-top.visible {
+      display: block;
+      opacity: 1;
+    }
+    .field-set {
+      border: 1px solid #ddd;
+      padding: 1rem;
+      margin: 1rem 0;
+      border-radius: 0.5rem;
+    }
+    .leg-title {
+      font-weight: bold;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.32.8/src-min-noconflict/ace.js"></script>
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("visible");
+      sidebar.classList.toggle("hidden");
+    }
+
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.classList.toggle("hidden");
+      const button = section.previousElementSibling;
+      button.classList.toggle("font-bold");
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle("light");
+      document.documentElement.classList.toggle("dark");
+      const button = document.getElementById("theme-toggle");
+      button.textContent = document.documentElement.classList.contains("light") ? "🌙 Dark Mode" : "☀️ Light Mode";
+    }
+
+    function toggleSubsection(id) {
+      const element = document.getElementById(id);
+      const header = element.previousElementSibling;
+      element.classList.toggle("hidden");
+      header.classList.toggle("collapsed");
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initialize Ace Editor for code blocks
+      document.querySelectorAll("pre").forEach((pre, index) => {
+        const editorDiv = document.createElement("div");
+        editorDiv.id = `editor-${index}`;
+        editorDiv.style.height = "200px";
+        editorDiv.style.width = "100%";
+        pre.parentNode.insertBefore(editorDiv, pre);
+        const code = pre.textContent;
+        pre.style.display = "none";
+
+        const editor = ace.edit(editorDiv);
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/python");
+        editor.setValue(code.trim());
+        editor.setReadOnly(false);
+        editor.setOptions({
+          fontSize: "14px",
+          showPrintMargin: false,
+          showGutter: true,
+        });
+
+        // Sync editor content back to pre for form submission or other uses
+        editor.session.on("change", () => {
+          pre.textContent = editor.getValue();
+        });
+      });
+
+      // Make sidebar visible when clicking titles
+      document.querySelectorAll("nav button").forEach(button => {
+        button.addEventListener("click", () => {
+          const sidebar = document.getElementById("sidebar");
+          if (window.innerWidth <= 768) {
+            sidebar.classList.add("visible");
+            sidebar.classList.remove("hidden");
+          }
+        });
+      });
+
+      // Back to Top button visibility
+      const backToTopButton = document.getElementById("back-to-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.add("visible");
+        } else {
+          backToTopButton.classList.remove("visible");
+        }
+      });
+    });
+  </script>
+</head>
+<body class="font-sans">
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 shadow-md">
+    <div class="flex items-center space-x-4">
+      <button onclick="toggleMenu()" class="text-xl">☰</button>
+      <h1 class="text-xl font-bold">Theoretical Basics: Data Management</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+      <input type="text" placeholder="Search..." class="px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <button id="theme-toggle" onclick="toggleTheme()" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600">🌙 Dark Mode</button>
+      <span class="text-sm text-gray-400">Data Management Guide</span>
+    </div>
+  </header>
+
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 p-4 hidden md:block">
+      <nav>
+        <div class="mt-4">
+          <button onclick="toggleSection('pandas')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📊</span> Pandas
+          </button>
+          <ul id="pandas" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#pandas" class="text-blue-400 hover:underline">Pandas</a></li>
+            <li><a href="#pandas-use" class="text-blue-400 hover:underline">What is pandas used for?</a></li>
+            <li><a href="#pandas-help" class="text-blue-400 hover:underline">Where to find help?</a></li>
+            <li><a href="#pandas-install" class="text-blue-400 hover:underline">How to get pandas?</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('data-types')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🔢</span> Working with Data Types
+          </button>
+          <ul id="data-types" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#data-types" class="text-blue-400 hover:underline">Working with data types</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('series-dataframes')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📋</span> Series and DataFrames
+          </button>
+          <ul id="series-dataframes" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#series-dataframes" class="text-blue-400 hover:underline">Series and DataFrames</a></li>
+            <li><a href="#creating-series" class="text-blue-400 hover:underline">Creating a Series</a></li>
+            <li><a href="#extra-info" class="text-blue-400 hover:underline">Extra Information</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('dataframes')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📑</span> Creating DataFrames
+          </button>
+          <ul id="dataframes" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#creating-dataframes" class="text-blue-400 hover:underline">Creating Dataframes</a></li>
+            <li><a href="#turn-around" class="text-blue-400 hover:underline">Turn around</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('accessing-data')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🔍</span> Accessing Data
+          </button>
+          <ul id="accessing-data" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#accessing-data" class="text-blue-400 hover:underline">Accessing Data</a></li>
+            <li><a href="#selecting-columns" class="text-blue-400 hover:underline">Selecting Columns</a></li>
+            <li><a href="#selecting-rows" class="text-blue-400 hover:underline">Selecting Rows</a></li>
+            <li><a href="#access-loc" class="text-blue-400 hover:underline">Access via loc</a></li>
+            <li><a href="#access-iloc" class="text-blue-400 hover:underline">Access via iloc</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('file-formats')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📂</span> Medical Data File Formats
+          </button>
+          <ul id="file-formats" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#file-formats" class="text-blue-400 hover:underline">Medical data file formats</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('read-data')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📖</span> Reading Data
+          </button>
+          <ul id="read-data" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#read-csv" class="text-blue-400 hover:underline">Read CSV</a></li>
+            <li><a href="#read-json" class="text-blue-400 hover:underline">Read JSON</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('preprocessing')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🛠️</span> Data Preprocessing
+          </button>
+          <ul id="preprocessing" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#data-preprocessing" class="text-blue-400 hover:underline">What is data preprocessing?</a></li>
+            <li><a href="#exploring-data-types" class="text-blue-400 hover:underline">Exploring data types</a></li>
+            <li><a href="#converting-column" class="text-blue-400 hover:underline">Converting a column type</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 space-y-12">
+      <section id="pandas">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('pandas-content')">Pandas</h2>
+        <div id="pandas-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300"><code>pandas</code> is a spreadsheet application for Python and offers user-friendly functions for data tables. Importing the <code>pandas</code> library gives IPython notebooks fast, flexible, and expressive data structures designed to make working with “relational” or “labeled” data both easy and intuitive.</p>
+          <p class="text-gray-700 dark:text-gray-300">[Note: The original content included an image of Data Types here, which is not included in this document.]</p>
+          <p class="text-gray-700 dark:text-gray-300"><code>pandas</code> is a framework - i.e. a collection of functionality, not a program on its own. It is based on the numerical mathematics framework <code>numpy</code>.</p>
+          <p class="text-gray-700 dark:text-gray-300">While <code>numpy</code> is more directed to highly optimized numeric calculations, <code>pandas</code> offers additional convenience and utility for dealing with tabular data. In turn, it sacrifices some processing speed.</p>
+        </div>
+      </section>
+
+      <section id="pandas-use">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('pandas-use-content')">What is pandas used for?</h2>
+        <div id="pandas-use-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">Its main application cases is data processing. This includes: Reading, exploring, cleaning, transforming and visualizing data.</p>
+          <p class="text-gray-700 dark:text-gray-300">Common areas that make use of it are:</p>
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li>Data Science</li>
+            <li>Machine Learning</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="pandas-help">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('pandas-help-content')">Where to find help?</h2>
+        <div id="pandas-help-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">Here you will find all the necessary information about <code>pandas</code> and their functionalities: <a href="https://pandas.pydata.org/docs/" class="text-blue-400 hover:underline">Official Documentation</a>.</p>
+          <div class="field-set">
+            <div class="leg-title">Key Points</div>
+            <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+              <li>pandas is a data processing framework based on numpy</li>
+              <li>It offers additional utility functions but sacrifices speed</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section id="pandas-install">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('pandas-install-content')">How to get pandas?</h2>
+        <div id="pandas-install-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">It can be installed via <code>pip</code> (c.f. pandas on pypi.org). Make sure that the dependencies are installed as well.</p>
+        </div>
+      </section>
+
+      <section id="data-types">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('data-types-content')">Working with data types</h2>
+        <div id="data-types-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">There are different dtypes in pandas:</p>
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li><code>object</code>: string/mixed types</li>
+            <li><code>int64</code>: integer</li>
+            <li><code>float64</code>: float</li>
+            <li><code>datetime64</code>: datetime</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="series-dataframes">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('series-dataframes-content')">Series and DataFrames</h2>
+        <div id="series-dataframes-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">The primary two components of pandas are the <code>Series</code> and <code>DataFrame</code>.</p>
+          <p class="text-gray-700 dark:text-gray-300">A <code>Series</code> is essentially a column, and a <code>DataFrame</code> is a multi-dimensional table made up of a collection of <code>Series</code>.</p>
+          <p class="text-gray-700 dark:text-gray-300">A Pandas <code>DataFrame</code> is a two-dimensional, labeled data structure within the Pandas library for Python. Resembling a table or spreadsheet, it consists of rows and columns, where each column can hold different data types (numeric, string, boolean, etc.). The <code>DataFrame</code> provides powerful tools for data manipulation, cleaning, analysis, and exploration. It allows for easy indexing, slicing, merging, reshaping, and aggregating data, making it a versatile and fundamental tool in data science and analysis workflows.</p>
+          <p class="text-gray-700 dark:text-gray-300">A Pandas <code>Series</code> is a one-dimensional labeled array capable of holding various data types (integers, strings, floats, etc.) in a tabular form. It resembles a column in a spreadsheet or a simple array/list with associated index labels for each element.</p>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('creating-series-content')">Creating a Series</h3>
+          <div id="creating-series-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">There are different ways we can add data to a Series. We start out with a simple list:</p>
+            <pre>
+from pandas import Series  # Note the initial upper-case letter
+
+sneeze_counts = Series(data=[32, 41, 56, 62, 30, 22, 17])
+print(sneeze_counts)
+            </pre>
+            <pre>
+0    32
+1    41
+2    56
+3    62
+4    30
+5    22
+6    17
+dtype: int64
+            </pre>
+            <p class="text-gray-700 dark:text-gray-300"><strong>Note:</strong> Note that the Series automatically adds an index on the left side. It also automatically infers the best fitting data type for the elements (here <code>int64</code> = 64-bit integer). <code>pandas</code> introduces the series as a new data type (like <code>int</code>, <code>str</code> and all the others) and as such the value of <code>sneeze_counts</code> is actually the whole series at once.</p>
+          </div>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('extra-info-content')">Extra Information</h3>
+          <div id="extra-info-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">To make the data a bit more meaningful, let’s set a custom index:</p>
+            <pre>
+days_of_week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+sneeze_counts.index = days_of_week
+print(sneeze_counts)
+            </pre>
+            <pre>
+Monday       32
+Tuesday      41
+Wednesday    56
+Thursday     62
+Friday       30
+Saturday     22
+Sunday       17
+dtype: int64
+            </pre>
+            <p class="text-gray-700 dark:text-gray-300">Also, we add a name to the series, so we can distinguish it later:</p>
+            <pre>
+sneeze_counts.name = "Sneezes"
+            </pre>
+            <p class="text-gray-700 dark:text-gray-300">Alternatively you can provide the index while creating the series by passing a dictionary:</p>
+            <pre>
+sneeze_counts = Series(
+    data= {
+        "Monday": 32,
+        "Tuesday": 41,
+        "Wednesday": 56,
+        "Thursday": 62,
+        "Friday": 30,
+        "Saturday": 22,
+        "Sunday": 17
+    },
+    name="Sneezes"
+)
+            </pre>
+            <div class="field-set">
+              <div class="leg-title">Key Points</div>
+              <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+                <li>Series are a 1-dimensional data structure</li>
+                <li>You can use indices to label the data and a name to label the whole Series</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="creating-dataframes">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('creating-dataframes-content')">Creating Dataframes</h2>
+        <div id="creating-dataframes-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">A <code>dataframe</code> can be created from a list of <code>series</code>, where each <code>series</code> forms a row in the resulting table.</p>
+          <pre>
+from pandas import DataFrame  # Note the camel-case spelling
+
+measurements = DataFrame(data=[sneeze_counts, temperatures, humidities])
+print(measurements)
+          </pre>
+          <pre>
+             Monday  Tuesday  Wednesday  Thursday  Friday  Saturday  Sunday
+Sneezes        32.0     41.0       56.0      62.0    30.0      22.0    17.0
+Temperature    10.9      8.2        7.6       7.8     9.4      11.1    12.4
+Humidity       62.5     76.3       82.4      98.2    77.4      58.9    41.2
+          </pre>
+          <p class="text-gray-700 dark:text-gray-300">A dataframe can also be created from a dictionary of series where each series forms a column in the resulting table.</p>
+          <pre>
+measurements = DataFrame(
+  data={
+    sneeze_counts.name: sneeze_counts,
+    temperatures.name: temperatures,
+    humidities.name: humidities
+  }
+)
+print(measurements)
+          </pre>
+          <pre>
+           Sneezes  Temperature  Humidity
+Monday          32         10.9      62.5
+Tuesday         41          8.2      76.3
+Wednesday       56          7.6      82.4
+Thursday        62          7.8      98.2
+Friday          30          9.4      77.4
+Saturday        22         11.1      58.9
+Sunday          17         12.4      41.2
+          </pre>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('turn-around-content')">Turn around</h3>
+          <div id="turn-around-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">To flip rows and columns, <code>dataframes</code> can be transposed using the <code>T</code>-property:</p>
+            <pre>
+column_wise = DataFrame(data=temperatures)
+row_wise = column_wise.T
+
+print(column_wise)
+print()  # Add a blank line as separator
+print(row_wise)
+            </pre>
+            <pre>
+           Temperature
+Monday            10.9
+Tuesday            8.2
+Wednesday          7.6
+Thursday           7.8
+Friday             9.4
+Saturday          11.1
+Sunday            12.4
+
+             Monday  Tuesday  Wednesday  Thursday  Friday  Saturday  Sunday
+Temperature    10.9      8.2        7.6       7.8     9.4      11.1    12.4
+            </pre>
+            <p class="text-gray-700 dark:text-gray-300">Don’t forget to store the transposed dataframe in a new variable (or overwrite the old one), as the original will not be changed by the transposition.</p>
+            <div class="field-set">
+              <div class="leg-title">Key Points</div>
+              <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+                <li>Dataframes represent 2-dimensional (tabular) data</li>
+                <li>Each column in a dataframe is a series</li>
+                <li>Dataframes have row and column indices</li>
+                <li>Dataframes may be transposed to switch rows and column</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="accessing-data">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('accessing-data-content')">Accessing Data</h2>
+        <div id="accessing-data-content" class="subsection-content">
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('selecting-columns-content')">Selecting Columns</h3>
+          <div id="selecting-columns-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">To get all available column names, run</p>
+            <pre>
+print(measurements.columns.values)
+            </pre>
+            <p class="text-gray-700 dark:text-gray-300">We can extract a singular column by using the <code>[]</code>-operator:</p>
+            <pre>
+print(measurements["Sneezes"])
+            </pre>
+            <p class="text-gray-700 dark:text-gray-300">Note that the output is a series again</p>
+            <p class="text-gray-700 dark:text-gray-300">To access a selection of columns, we pass in a list of column names in the desired order:</p>
+            <pre>
+print(measurements[ ["Humidity", "Sneezes"] ])
+            </pre>
+          </div>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('selecting-rows-content')">Selecting Rows</h3>
+          <div id="selecting-rows-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">To access given rows you can use the slicing operation as known from lists:</p>
+            <pre>
+print(measurements[0:3])
+            </pre>
+            <p class="text-gray-700 dark:text-gray-300"><strong>Warning:</strong> If you pass in a singular number instead of [start:stop] pandas will look for a row with that number as a label. This will fail in our example since the rows are not numbered.</p>
+          </div>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('access-loc-content')">Access via loc</h3>
+          <div id="access-loc-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">The property <code>loc</code> gives label-based access to the elements of a dataframe. It follows the pattern <code>dataframe.loc[row_slice, column_slice]</code>. For example:</p>
+            <pre>
+print(measurements.loc["Monday": "Friday", "Temperature":"Humidity"])
+            </pre>
+          </div>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('access-iloc-content')">Access via iloc</h3>
+          <div id="access-iloc-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">The <code>iloc</code>-property works similar to <code>loc</code>, except that it takes integer-based indexes instead of row/column labels:</p>
+            <pre>
+print(measurements.iloc[0:5, 1:])
+            </pre>
+            <div class="field-set">
+              <div class="leg-title">Key Points</div>
+              <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+                <li>Rows and columns can be selected by their label, with the loc- or iloc-methods</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="file-formats">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('file-formats-content')">Medical data file formats</h2>
+        <div id="file-formats-content" class="subsection-content">
+          <table>
+            <tr>
+              <th>Format Name</th>
+              <th>File Extension</th>
+              <th>Origin</th>
+            </tr>
+            <tr>
+              <td>XML</td>
+              <td>.xml</td>
+              <td>Extensible Markup Language</td>
+            </tr>
+            <tr>
+              <td>RD</td>
+              <td>.rd</td>
+              <td>R Documentation</td>
+            </tr>
+            <tr>
+              <td>EDF</td>
+              <td>.edf</td>
+              <td>European Data Format</td>
+            </tr>
+            <tr>
+              <td>BDF</td>
+              <td>.bdf</td>
+              <td>BioSemi Data Format</td>
+            </tr>
+            <tr>
+              <td>CSV</td>
+              <td>.csv</td>
+              <td>Comma Separated Values</td>
+            </tr>
+            <tr>
+              <td>XLSX</td>
+              <td>.xlsx</td>
+              <td>Microsoft Excel Spreadsheet</td>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+      <section id="read-csv">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('read-csv-content')">Read CSV</h2>
+        <div id="read-csv-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">The <code>pandas.read_csv()</code> function is a versatile tool in the Pandas library used to read and load data from a CSV (Comma-Separated Values) file into a Pandas <code>DataFrame</code>. It offers a simple and efficient way to import data by specifying the file path or URL. This function supports a wide range of parameters to handle various CSV file formats, handle missing or malformed data, specify delimiters, and customize data types.</p>
+          <pre>
+import pandas as pd
+
+csv2df = pd.read_csv('/Data/data.csv')
+          </pre>
+        </div>
+      </section>
+
+      <section id="read-json">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('read-json-content')">Read JSON</h2>
+        <div id="read-json-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">The <code>pandas.read_json()</code> function within the Pandas library is designed to efficiently read and load JSON (JavaScript Object Notation) data into a Pandas <code>DataFrame</code>. It provides a straightforward method to ingest JSON data from a file, string, or URL and convert it into a structured <code>DataFrame</code> format. This function supports various options for handling JSON data with different structures, including nested objects and arrays.</p>
+          <pre>
+import pandas as pd
+
+json2df = pd.read_json('/Data/data.json') 
+          </pre>
+        </div>
+      </section>
+
+      <section id="data-preprocessing">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('data-preprocessing-content')">What is data preprocessing?</h2>
+        <div id="data-preprocessing-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">Data processing refers to several steps:</p>
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li>Beyond cleaning and exploratory data analysis</li>
+            <li>Prepping data for modeling</li>
+            <li>Modeling in python requires numerical input</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="exploring-data-types">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('exploring-data-types-content')">Exploring data types</h2>
+        <div id="exploring-data-types-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">We want to know what types we'll be working with as we start to do more preprocessing:</p>
+          <pre>
+df = pd.read_csv('/dataset/brain_volumes.csv')
+
+print(df.dtypes)
+          </pre>
+          <pre>
+patient_id          object
+brain_vol           object
+          </pre>
+        </div>
+      </section>
+
+      <section id="converting-column">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('converting-column-content')">Converting a column type</h2>
+        <div id="converting-column-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">If you take a look at the dataset types, you'll see that the column <code>brain_vol</code> is type <code>object</code>. But, if you actually look at the column, you'll see that it consists of integers. Let's convert that column to type <code>int</code>.</p>
+          <pre>
+# Convert the brain_vol column to type int
+df['brain_vol'] = df['brain_vol'].astype(int)
+
+# Look at the dtypes of the dataset
+print(df.dtypes)
+          </pre>
+        </div>
+      </section>
+    </main>
+  </div>
+  <button id="back-to-top" onclick="scrollToTop()" title="Back to Top">↑</button>
+</body>
+</html>

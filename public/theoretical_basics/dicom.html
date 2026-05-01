@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theoretical Basics: DICOM</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .light {
+      --bg-color: #ffffff;
+      --text-color: #1f2937;
+      --header-bg: #f3f4f6;
+      --sidebar-bg: #e5e7eb;
+      --link-color: #1d4ed8;
+    }
+    .dark {
+      --bg-color: #1f2937;
+      --text-color: #ffffff;
+      --header-bg: #374151;
+      --sidebar-bg: #374151;
+      --link-color: #60a5fa;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    header {
+      background-color: var(--header-bg);
+    }
+    aside {
+      background-color: var(--sidebar-bg);
+    }
+    a.text-blue-400 {
+      color: var(--link-color);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--header-bg);
+      font-weight: bold;
+    }
+    pre {
+      background-color: var(--header-bg);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+    }
+    .subsection-content {
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+      max-height: none; /* Allow full content height */
+      opacity: 1;
+      overflow: hidden;
+    }
+    .subsection-content.hidden {
+      max-height: 0;
+      opacity: 0;
+    }
+    .toggle-arrow::after {
+      content: '▼';
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .toggle-arrow.collapsed::after {
+      transform: rotate(-90deg);
+    }
+    @media (max-width: 768px) {
+      aside {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      aside.visible {
+        transform: translateX(0);
+      }
+    }
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      background-color: #000000;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+    }
+    #back-to-top:hover {
+      background-color: #333333;
+    }
+    #back-to-top.visible {
+      display: block;
+      opacity: 1;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.32.8/src-min-noconflict/ace.js"></script>
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("visible");
+      sidebar.classList.toggle("hidden");
+    }
+
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.classList.toggle("hidden");
+      const button = section.previousElementSibling;
+      button.classList.toggle("font-bold");
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle("light");
+      document.documentElement.classList.toggle("dark");
+      const button = document.getElementById("theme-toggle");
+      button.textContent = document.documentElement.classList.contains("light") ? "🌙 Dark Mode" : "☀️ Light Mode";
+    }
+
+    function toggleSubsection(id) {
+      const element = document.getElementById(id);
+      const header = element.previousElementSibling;
+      element.classList.toggle("hidden");
+      header.classList.toggle("collapsed");
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initialize Ace Editor for code blocks
+      document.querySelectorAll("pre").forEach((pre, index) => {
+        const editorDiv = document.createElement("div");
+        editorDiv.id = `editor-${index}`;
+        editorDiv.style.height = "200px";
+        editorDiv.style.width = "100%";
+        pre.parentNode.insertBefore(editorDiv, pre);
+        const code = pre.textContent;
+        pre.style.display = "none";
+
+        const editor = ace.edit(editorDiv);
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/python");
+        editor.setValue(code.trim());
+        editor.setReadOnly(false);
+        editor.setOptions({
+          fontSize: "14px",
+          showPrintMargin: false,
+          showGutter: true,
+        });
+
+        // Sync editor content back to pre for form submission or other uses
+        editor.session.on("change", () => {
+          pre.textContent = editor.getValue();
+        });
+      });
+
+      // Make sidebar visible when clicking titles
+      document.querySelectorAll("nav button").forEach(button => {
+        button.addEventListener("click", () => {
+          const sidebar = document.getElementById("sidebar");
+          if (window.innerWidth <= 768) {
+            sidebar.classList.add("visible");
+            sidebar.classList.remove("hidden");
+          }
+        });
+      });
+
+      // Back to Top button visibility
+      const backToTopButton = document.getElementById("back-to-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.add("visible");
+        } else {
+          backToTopButton.classList.remove("visible");
+        }
+      });
+    });
+  </script>
+</head>
+<body class="font-sans">
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 shadow-md">
+    <div class="flex items-center space-x-4">
+      <button onclick="toggleMenu()" class="text-xl">☰</button>
+      <h1 class="text-xl font-bold">Theoretical Basics: DICOM</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+      <input type="text" placeholder="Search..." class="px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <button id="theme-toggle" onclick="toggleTheme()" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600">🌙 Dark Mode</button>
+      <span class="text-sm text-gray-400">DICOM Guide</span>
+    </div>
+  </header>
+
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 p-4 hidden md:block">
+      <nav>
+        <div class="mt-4">
+          <button onclick="toggleSection('what-is-dicom')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📷</span> What is DICOM?
+          </button>
+          <ul id="what-is-dicom" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#what-is-dicom" class="text-blue-400 hover:underline">What is DICOM?</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('key-concepts')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🔑</span> Key Concepts
+          </button>
+          <ul id="key-concepts" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#key-concepts" class="text-blue-400 hover:underline">Key Concepts</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('dicom-header')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📋</span> DICOM Header
+          </button>
+          <ul id="dicom-header" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#dicom-header" class="text-blue-400 hover:underline">DICOM Header</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('dicom-tags')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🏷️</span> DICOM Tags
+          </button>
+          <ul id="dicom-tags" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#dicom-tags" class="text-blue-400 hover:underline">DICOM Tags</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('transfer-syntax')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🔄</span> Transfer Syntax
+          </button>
+          <ul id="transfer-syntax" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#transfer-syntax" class="text-blue-400 hover:underline">Transfer Syntax</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('common-dicom-elements')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📋</span> Common DICOM Elements
+          </button>
+          <ul id="common-dicom-elements" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#common-dicom-elements" class="text-blue-400 hover:underline">Common DICOM Elements</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('pydicom')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🐍</span> pydicom
+          </button>
+          <ul id="pydicom" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#pydicom" class="text-blue-400 hover:underline">pydicom</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('core-elements')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🛠️</span> Core elements
+          </button>
+          <ul id="core-elements" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#core-elements" class="text-blue-400 hover:underline">Core elements</a></li>
+            <li><a href="#pydicom-dataset" class="text-blue-400 hover:underline">PyDicom DataSet</a></li>
+            <li><a href="#example" class="text-blue-400 hover:underline">Example</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 space-y-12">
+      <section id="introduction">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('introduction-content')">Introduction</h2>
+        <div id="introduction-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">From imaging scanners, like MRI or CT, images are initially collected in the DICOM format and can be converted to these other formats to make working with the data easier.</p>
+          <table>
+            <tr>
+              <th>Format Name</th>
+              <th>File Extension</th>
+              <th>Origin</th>
+            </tr>
+            <tr>
+              <td>DICOM</td>
+              <td>.dcm</td>
+              <td>ACR/NEMA Consortium</td>
+            </tr>
+            <tr>
+              <td>Analyze</td>
+              <td>.img/.hdr</td>
+              <td>Analyze Software, Mayo Clinic</td>
+            </tr>
+            <tr>
+              <td>NIfTI</td>
+              <td>.nii</td>
+              <td>Neuroimaging Informatics Technology Initiative</td>
+            </tr>
+            <tr>
+              <td>MINC</td>
+              <td>.mnc</td>
+              <td>Montreal Neurological Institute</td>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+      <section id="what-is-dicom">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('what-is-dicom-content')">What is DICOM?</h2>
+        <div id="what-is-dicom-content" class="subsection-content">
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li>DICOM is a standard for handling medical images and related information.</li>
+            <li>It enables interoperability between different medical imaging devices and systems.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="key-concepts">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('key-concepts-content')">Key Concepts</h2>
+        <div id="key-concepts-content" class="subsection-content">
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li><strong>SOP Class (Service-Object Pair Class):</strong> Defines a specific type of medical image or related data (e.g., X-ray, MRI, CT scan).</li>
+            <li><strong>DICOM File:</strong> A file containing image data and metadata, often with the extension <code>.dcm</code>.</li>
+            <li><strong>Attributes:</strong> Information associated with an image (e.g., patient name, study date, pixel data).</li>
+            <li><strong>Pixel Data:</strong> The actual image pixels (intensity values).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="dicom-header">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('dicom-header-content')">DICOM Header</h2>
+        <div id="dicom-header-content" class="subsection-content">
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li>Contains metadata in a structured format.</li>
+            <li>Includes patient information, acquisition parameters, and more.</li>
+            <li>Encoded using DICOM tags (e.g., <code>(0010,0010)</code> for patient name).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="dicom-tags">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('dicom-tags-content')">DICOM Tags</h2>
+        <div id="dicom-tags-content" class="subsection-content">
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li>Each attribute has a unique tag (group and element number).</li>
+            <li>Tags are represented in hexadecimal (e.g., <code>(0010,0010)</code>).</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="transfer-syntax">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('transfer-syntax-content')">Transfer Syntax</h2>
+        <div id="transfer-syntax-content" class="subsection-content">
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li>Defines how data is encoded for transmission (e.g., Little Endian, JPEG).</li>
+            <li>Ensures compatibility across different systems.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="common-dicom-elements">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('common-dicom-elements-content')">Common DICOM Elements</h2>
+        <div id="common-dicom-elements-content" class="subsection-content">
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li><code>PatientName</code>, <code>PatientID</code>, <code>StudyDate</code>, <code>Modality</code>, <code>PixelSpacing</code>, etc.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="pydicom">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('pydicom-content')">pydicom</h2>
+        <div id="pydicom-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300"><code>pydicom</code> is a pure python package for working with DICOM files such as medical images, reports, and radiotherapy objects.</p>
+          <p class="text-gray-700 dark:text-gray-300"><code>pydicom</code> makes it easy to read these complex files into natural pythonic structures for easy manipulation. Modified datasets can be written again to DICOM format files.</p>
+        </div>
+      </section>
+
+      <section id="core-elements">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('core-elements-content')">Core elements</h2>
+        <div id="core-elements-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">Applying <code>.dcmread()</code> wraps a DataSet, a dictionary data structure {}. This DataSet contains keys and values represented like the following:</p>
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li><strong>Keys:</strong> contains the DICOM Tags of the attributes specified in the DICOM file you are reading. Examples of the keys like:
+              <ul class="list-circle ml-6">
+                <li>(0x0010, 0x0010) PatientName attribute.</li>
+                <li>(0x0028, 0x0010) Rows attribute.</li>
+                <li>(0x7fe0, 0x0010) PixelData attribute.</li>
+                <li>The tags’ numbers consist of two hexadecimal, the first refers to the group, and the second refers to a specific element. So, you might find many attributes that have the same first number of tags.</li>
+              </ul>
+            </li>
+            <li><strong>Values:</strong> the values of this dictionary generally contain the following:
+              <ul class="list-circle ml-6">
+                <li><strong>Tag:</strong> the element’s tag like (0028, 0030), for example.</li>
+                <li><strong>Keyword:</strong> describes what the attribute refers to. The keyword of the tag (0028, 0030) is “Pixel Spacing”.</li>
+                <li><strong>VR:</strong> it’s only two characters that refer to the Value Representation of the element, which describes the data type and format of the attribute value. The VR of the tag (0028, 0030) is “DS”, Decimal String. You can see the VR of any tag and how it is represented using Python structures following the <a href="https://pydicom.github.io/pydicom/stable/guides/element_value_types.html" class="text-blue-400 hover:underline">link</a>.</li>
+                <li><strong>Value:</strong> the actual value of the element. It could be an integer, a string, a list, or even a Sequence, which is a dataset of attributes. The value of the tag (0028, 0030) is a list of two floats that represent the physical distance along the rows and columns, respectively, in mm.</li>
+              </ul>
+            </li>
+          </ul>
+          <img src="https://university-clinic-of-neuroradiology.github.io/bootcamp-website/assets/img/theoretical_basics/pydicom_overview.png" alt="pydicom Overview">
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('pydicom-dataset-content')">PyDicom DataSet</h3>
+          <div id="pydicom-dataset-content" class="subsection-content">
+            <p class="text-gray-700 dark:text-gray-300">A DICOM DataSet is a mutable mapping of DICOM DataElements. Each DataElement, a value of the dictionary, in the DICOM DataSet has a unique tag, a key of the dictionary, that identifies it. For example, the “PatientName” attribute corresponds to the tag (0x0010, 0x0010) in the DICOM standard, which identifies the patient’s name data element.</p>
+            <img src="https://university-clinic-of-neuroradiology.github.io/bootcamp-website/assets/img/theoretical_basics/pydicom_dataset.png" alt="pydicom DataSet">
+          </div>
+          <h3 class="text-xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('example-content')">Example</h3>
+          <div id="example-content" class="subsection-content">
+            <pre>
+# Import pydicom
+import pydicom
+
+# read a DICOM file
+dcm = pydicom.dcmread('test.dcm')
+
+# print the entire DICOM header
+print(dcm)
+
+# Extract the patient's name.
+patient_name = dcm.PatientName
+print(patient_name)
+
+# Extract the patient's name using its unique DICOM tag (0010, 0010)
+patient_value = dcm[0x0010, 0x0010]
+print(patient_value)
+            </pre>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+  <button id="back-to-top" onclick="scrollToTop()" title="Back to Top">↑</button>
+</body>
+</html>

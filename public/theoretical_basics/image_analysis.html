@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Theoretical Basics: Image Analysis</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+    .light {
+      --bg-color: #ffffff;
+      --text-color: #1f2937;
+      --header-bg: #f3f4f6;
+      --sidebar-bg: #e5e7eb;
+      --link-color: #1d4ed8;
+    }
+    .dark {
+      --bg-color: #1f2937;
+      --text-color: #ffffff;
+      --header-bg: #374151;
+      --sidebar-bg: #374151;
+      --link-color: #60a5fa;
+    }
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-color);
+    }
+    header {
+      background-color: var(--header-bg);
+    }
+    aside {
+      background-color: var(--sidebar-bg);
+    }
+    a.text-blue-400 {
+      color: var(--link-color);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+    th {
+      background-color: var(--header-bg);
+      font-weight: bold;
+    }
+    pre {
+      background-color: var(--header-bg);
+      padding: 1rem;
+      border-radius: 0.5rem;
+      overflow-x: auto;
+    }
+    code {
+      font-family: monospace;
+    }
+    .subsection-content {
+      transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+      max-height: 1000px; /* Adjust as needed */
+      opacity: 1;
+      overflow: hidden;
+    }
+    .subsection-content.hidden {
+      max-height: 0;
+      opacity: 0;
+    }
+    .toggle-arrow::after {
+      content: '▼';
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+    .toggle-arrow.collapsed::after {
+      transform: rotate(-90deg);
+    }
+    @media (max-width: 768px) {
+      aside {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+      }
+      aside.visible {
+        transform: translateX(0);
+      }
+    }
+    #back-to-top {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: none;
+      background-color: #000000;
+      color: white;
+      padding: 10px 15px;
+      border-radius: 50%;
+      cursor: pointer;
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+    }
+    #back-to-top:hover {
+      background-color: #333333;
+    }
+    #back-to-top.visible {
+      display: block;
+      opacity: 1;
+    }
+  </style>
+  <script src="https://cdn.jsdelivr.net/npm/ace-builds@1.32.8/src-min-noconflict/ace.js"></script>
+  <script>
+    function toggleMenu() {
+      const sidebar = document.getElementById("sidebar");
+      sidebar.classList.toggle("visible");
+      sidebar.classList.toggle("hidden");
+    }
+
+    function toggleSection(id) {
+      const section = document.getElementById(id);
+      section.classList.toggle("hidden");
+      const button = section.previousElementSibling;
+      button.classList.toggle("font-bold");
+    }
+
+    function toggleTheme() {
+      document.documentElement.classList.toggle("light");
+      document.documentElement.classList.toggle("dark");
+      const button = document.getElementById("theme-toggle");
+      button.textContent = document.documentElement.classList.contains("light") ? "🌙 Dark Mode" : "☀️ Light Mode";
+    }
+
+    function toggleSubsection(id) {
+      const element = document.getElementById(id);
+      const header = element.previousElementSibling;
+      element.classList.toggle("hidden");
+      header.classList.toggle("collapsed");
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      // Initialize Ace Editor for code blocks
+      document.querySelectorAll("pre").forEach((pre, index) => {
+        const editorDiv = document.createElement("div");
+        editorDiv.id = `editor-${index}`;
+        editorDiv.style.height = "200px";
+        editorDiv.style.width = "100%";
+        pre.parentNode.insertBefore(editorDiv, pre);
+        const code = pre.textContent;
+        pre.style.display = "none";
+
+        const editor = ace.edit(editorDiv);
+        editor.setTheme("ace/theme/monokai");
+        editor.session.setMode("ace/mode/python");
+        editor.setValue(code.trim());
+        editor.setReadOnly(false);
+        editor.setOptions({
+          fontSize: "14px",
+          showPrintMargin: false,
+          showGutter: true,
+        });
+
+        // Sync editor content back to pre for form submission or other uses
+        editor.session.on("change", () => {
+          pre.textContent = editor.getValue();
+        });
+      });
+
+      // Make sidebar visible when clicking titles
+      document.querySelectorAll("nav button").forEach(button => {
+        button.addEventListener("click", () => {
+          const sidebar = document.getElementById("sidebar");
+          if (window.innerWidth <= 768) {
+            sidebar.classList.add("visible");
+            sidebar.classList.remove("hidden");
+          }
+        });
+      });
+
+      // Back to Top button visibility
+      const backToTopButton = document.getElementById("back-to-top");
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.add("visible");
+        } else {
+          backToTopButton.classList.remove("visible");
+        }
+      });
+    });
+  </script>
+</head>
+<body class="font-sans">
+  <!-- Header -->
+  <header class="flex items-center justify-between p-4 shadow-md">
+    <div class="flex items-center space-x-4">
+      <button onclick="toggleMenu()" class="text-xl">☰</button>
+      <h1 class="text-xl font-bold">Theoretical Basics: Image Analysis</h1>
+    </div>
+    <div class="flex items-center space-x-4">
+      <input type="text" placeholder="Search..." class="px-4 py-2 rounded-md bg-gray-200 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500" />
+      <button id="theme-toggle" onclick="toggleTheme()" class="px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600">🌙 Dark Mode</button>
+      <span class="text-sm text-gray-400">Image Analysis Guide</span>
+    </div>
+  </header>
+
+  <div class="flex">
+    <!-- Sidebar -->
+    <aside id="sidebar" class="w-64 p-4 hidden md:block">
+      <nav>
+        <div class="mt-4">
+          <button onclick="toggleSection('overview')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📖</span> Overview
+          </button>
+          <ul id="overview" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#overview" class="text-blue-400 hover:underline">Overview</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('load-images')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🖼️</span> Load Images
+          </button>
+          <ul id="load-images" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#load-images" class="text-blue-400 hover:underline">Load images</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('metadata')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📋</span> Metadata
+          </button>
+          <ul id="metadata" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#metadata" class="text-blue-400 hover:underline">Metadata</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('plot-images')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📊</span> Plot Images
+          </button>
+          <ul id="plot-images" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#plot-images" class="text-blue-400 hover:underline">Plot images</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('load-volumes')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">📚</span> Load Volumes
+          </button>
+          <ul id="load-volumes" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#load-volumes" class="text-blue-400 hover:underline">Load volumes</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('field-of-view')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🔭</span> Field of View
+          </button>
+          <ul id="field-of-view" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#field-of-view" class="text-blue-400 hover:underline">Field of view</a></li>
+          </ul>
+        </div>
+
+        <div class="mt-4">
+          <button onclick="toggleSection('data-normalization')" class="font-bold w-full text-left flex items-center">
+            <span class="mr-2">🛠️</span> Data Normalization
+          </button>
+          <ul id="data-normalization" class="ml-4 mt-1 space-y-1 hidden">
+            <li><a href="#data-normalization" class="text-blue-400 hover:underline">Data Normalization</a></li>
+          </ul>
+        </div>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 space-y-12">
+      <section id="overview">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('overview-content')">Overview</h2>
+        <div id="overview-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300"><strong>We will not go into the physical principles of image creation in this chapter!</strong></p>
+          <p class="text-gray-700 dark:text-gray-300">Biomedical image analysis is a field that focuses on extracting meaningful information from medical images. These images capture various aspects of the human body, ranging from microscopic to macroscopic scales. Here are some key points about biomedical image analysis:</p>
+          <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
+            <li><strong>Types of Biomedical Images:</strong>
+              <ul class="list-disc ml-6">
+                <li>Biomedical images are acquired using different imaging modalities, such as CT (computed tomography), MRI (magnetic resonance imaging), ultrasound, and X-rays.</li>
+                <li>These images represent physical properties of the body, such as radiodensity (how well tissues absorb X-rays) or tissue structure.</li>
+              </ul>
+            </li>
+            <li><strong>Clinical Importance:</strong>
+              <ul class="list-disc ml-6">
+                <li>Domain experts, such as radiologists, analyze these images for clinical purposes.</li>
+                <li>Biomedical images play a crucial role in medical decision-making, aiding in diagnoses, treatment planning, and monitoring patient progress.</li>
+              </ul>
+            </li>
+            <li><strong>Image Characteristics:</strong>
+              <ul class="list-disc ml-6">
+                <li>Biomedical images are often volumetric (3D), capturing structures in three dimensions.</li>
+                <li>Some images may have an additional time dimension (4D) or multiple channels (4-5D), as seen in multi-sequence MRIs.</li>
+                <li>Unlike natural images (e.g., photographs), biomedical images follow specific acquisition protocols (e.g., patient positioning) to ensure consistency.</li>
+              </ul>
+            </li>
+            <li><strong>Challenges in Analysis:</strong>
+              <ul class="list-disc ml-6">
+                <li>Detecting subtle differences is essential. For instance, identifying small regions indicating abnormalities.</li>
+                <li>Researchers and practitioners develop algorithms to automate tasks like segmentation (identifying regions of interest), registration (aligning images), and feature extraction.</li>
+              </ul>
+            </li>
+          </ol>
+          <p class="text-gray-700 dark:text-gray-300">In summary, biomedical image analysis bridges the gap between medical imaging technology and clinical practice.</p>
+        </div>
+      </section>
+
+      <section id="load-images">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('load-images-content')">Load images</h2>
+        <div id="load-images-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">There are many ways to load a corresponding DICOM image (2D) or later an entire volume (3D), one of which is offered by the <code>imageio</code> package. To warm up, we load a single DICOM image from the scan volume and check out a few of its attributes:</p>
+          <pre>
+im = imageio.imread('dataset/slice_000.dcm')
+
+# Print image attributes
+print('Image type:', type(im))
+print('Shape of image array:', im.shape)
+          </pre>
+          <pre>
+Image type: &lt;class 'imageio.core.util.Array'&gt;
+Shape of image array: (256, 256)
+          </pre>
+        </div>
+      </section>
+
+      <section id="metadata">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('metadata-content')">Metadata</h2>
+        <div id="metadata-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">ImageIO reads in data as <code>Image</code> objects. These are standard NumPy arrays with a dictionary of metadata.</p>
+          <p class="text-gray-700 dark:text-gray-300">Metadata can be quite rich in medical images and can include:</p>
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li>Patient demographics: name, age, sex, clinical information</li>
+            <li>Acquisition information: image shape, sampling rates, data type, modality (such as X-Ray, CT or MRI)</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="plot-images">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('plot-images-content')">Plot images</h2>
+        <div id="plot-images-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">The most critical principle of image analysis is: look at your images!</p>
+          <p class="text-gray-700 dark:text-gray-300">Matplotlib's <code>imshow()</code> function gives you a simple way to do this. Knowing a few simple arguments will help:</p>
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li><code>cmap</code> controls the color mappings for each value. The "gray" colormap is common, but many others are available.</li>
+            <li><code>vmin</code> and <code>vmax</code> control the color contrast between values. Changing these can reduce the influence of extreme values.</li>
+            <li><code>plt.axis('off')</code> removes axis and tick labels from the image.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="load-volumes">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('load-volumes-content')">Load volumes</h2>
+        <div id="load-volumes-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">ImageIO's <code>volread()</code> function can load multi-dimensional datasets and create 3D volumes from a folder of images. It can also aggregate metadata across these multiple images.</p>
+          <pre>
+vol = imageio.volread('dataset/')
+
+# Print image shape
+print('Shape of image array:', vol.shape)
+          </pre>
+          <pre>
+Reading DICOM (examining files): 1/192 files
+  Found 1 correct series.
+Reading DICOM (loading data): 192/192  (100.0%)
+Shape of image array: (192, 256, 256)
+          </pre>
+        </div>
+      </section>
+
+      <section id="field-of-view">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('field-of-view-content')">Field of view</h2>
+        <div id="field-of-view-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">The amount of physical space covered by an image is its field of view, which is calculated from two properties:</p>
+          <ul class="list-disc ml-6 text-gray-700 dark:text-gray-300">
+            <li>Array shape, the number of data elements on each axis.</li>
+            <li>Sampling resolution, the amount of physical space covered by each pixel.</li>
+          </ul>
+          <p class="text-gray-700 dark:text-gray-300">[Note: The original content included an image of Image Shape and Sampling here, which is not included in this document.]</p>
+        </div>
+      </section>
+
+      <section id="data-normalization">
+        <h2 class="text-2xl font-bold mb-2 cursor-pointer toggle-arrow" onclick="toggleSubsection('data-normalization-content')">Data Normalization</h2>
+        <div id="data-normalization-content" class="subsection-content">
+          <p class="text-gray-700 dark:text-gray-300">Data normalization is a crucial step in preparing biomedical image data for analysis. Its purpose is to reduce unwanted variations while preserving relevant information. Here are the most common forms of normalization:</p>
+          <ol class="list-decimal ml-6 text-gray-700 dark:text-gray-300">
+            <li><strong>Intensity Normalization:</strong>
+              <ul class="list-disc ml-6">
+                <li>Biomedical images often exhibit variations in intensity due to factors like imaging equipment, patient positioning, and lighting conditions.</li>
+                <li>Intensity normalization aims to standardize pixel values across different images.</li>
+              </ul>
+            </li>
+            <li><strong>Spatial Normalization:</strong>
+              <ul class="list-disc ml-6">
+                <li>Biomedical images may have variations in spatial orientation (e.g., subject pose, rotation, and scaling).</li>
+                <li>Spatial normalization aligns images to a common reference space. Techniques include:</li>
+                <ul class="list-circle ml-6">
+                  <li>Affine transformations: Rotation, translation, and scaling to align images.</li>
+                  <li>Non-rigid registration: Deformable transformations to account for local variations.</li>
+                </ul>
+              </ul>
+            </li>
+            <li><strong>Contrast Enhancement:</strong>
+              <ul class="list-disc ml-6">
+                <li>Enhancing image contrast improves visibility of structures.</li>
+                <li>Methods include histogram equalization, adaptive histogram equalization, and gamma correction.</li>
+              </ul>
+            </li>
+            <li><strong>Tissue-Specific Normalization:</strong>
+              <ul class="list-disc ml-6">
+                <li>Some tissues or regions of interest may require specific normalization.</li>
+                <li>For instance, normalizing brain images might involve specific brain tissue segmentation and normalization within each tissue type.</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </section>
+    </main>
+  </div>
+  <button id="back-to-top" onclick="scrollToTop()" title="Back to Top">↑</button>
+</body>
+</html>
