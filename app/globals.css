@@ -41,3 +41,188 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #3a3a3a;
 }
+
+/* =========================================
+   Theoretical Basics Pages
+   ========================================= */
+
+/* Sidebar */
+.theory-page aside {
+  background-color: #0a0a0a;
+  border-right: 1px solid #1a1a1a;
+  min-height: calc(100vh - 56px);
+}
+
+@media (max-width: 767px) {
+  .theory-page aside {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    bottom: 0;
+    z-index: 50;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    overflow-y: auto;
+  }
+  .theory-page aside.visible {
+    display: block !important;
+    transform: translateX(0);
+  }
+}
+
+/* Subsection collapse animation — overrides Tailwind's `hidden: display:none` */
+.theory-page .subsection-content {
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, opacity 0.3s ease-out;
+  max-height: 10000px;
+  opacity: 1;
+}
+.theory-page .subsection-content.hidden {
+  display: block !important;
+  max-height: 0 !important;
+  opacity: 0;
+}
+
+/* Collapse arrow indicator */
+.theory-page .toggle-arrow::after {
+  content: '▼';
+  display: inline-block;
+  margin-left: 0.4rem;
+  font-size: 0.65rem;
+  color: #444;
+  transition: transform 0.3s ease;
+}
+.theory-page .toggle-arrow.collapsed::after {
+  transform: rotate(-90deg);
+}
+
+/* Section headings */
+.theory-page main h2 {
+  font-family: var(--font-mono);
+  color: #f0f0f0;
+}
+.theory-page main h3 {
+  font-family: var(--font-mono);
+  color: #c0c0c0;
+}
+
+/* Body text */
+.theory-page main p,
+.theory-page main li {
+  color: #999;
+  line-height: 1.7;
+}
+.theory-page main strong {
+  color: #c0c0c0;
+}
+
+/* Inline code */
+.theory-page main code {
+  font-family: var(--font-mono);
+  color: #00ff88;
+  background-color: #0f0f0f;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+  font-size: 0.875em;
+}
+
+/* Links inside main content */
+.theory-page main a {
+  color: #00ff88;
+  text-decoration: none;
+}
+.theory-page main a:hover {
+  text-decoration: underline;
+}
+
+/* Tables */
+.theory-page table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+}
+.theory-page th,
+.theory-page td {
+  border: 1px solid #1a1a1a;
+  padding: 8px 12px;
+  text-align: left;
+  color: #999;
+}
+.theory-page th {
+  background-color: #0f0f0f;
+  font-family: var(--font-mono);
+  color: #666;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Pre / code blocks (before Ace editor replaces them) */
+.theory-page pre {
+  background-color: #0f0f0f;
+  border: 1px solid #1a1a1a;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  overflow-x: auto;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: #f0f0f0;
+}
+
+/* Images */
+.theory-page main img {
+  max-width: 100%;
+  border-radius: 0.5rem;
+  border: 1px solid #1a1a1a;
+  margin: 1rem 0;
+}
+
+/* Sidebar nav */
+.theory-page aside nav button {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: #555;
+  transition: color 0.2s;
+}
+.theory-page aside nav button:hover {
+  color: #f0f0f0;
+}
+.theory-page aside nav a {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: #444;
+  text-decoration: none;
+  transition: color 0.2s;
+  display: block;
+  padding: 0.1rem 0;
+}
+.theory-page aside nav a:hover {
+  color: #00ff88;
+}
+
+/* Back to top button */
+.theory-back-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: none;
+  background-color: #0f0f0f;
+  border: 1px solid #1a1a1a;
+  color: #00ff88;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 1000;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  transition: background-color 0.2s;
+  align-items: center;
+  justify-content: center;
+}
+.theory-back-to-top:hover {
+  background-color: #1a1a1a;
+}
+.theory-back-to-top.visible {
+  display: flex;
+}

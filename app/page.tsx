@@ -156,20 +156,7 @@ export default function HomePage() {
             <p className="text-[#444] text-xs leading-relaxed">Run notebooks in your browser — no install needed</p>
           </a>
 
-          <a
-            href={`${GITHUB_REPO}/wiki/Installation-guide-(offline)`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="group p-5 border border-[#141414] rounded-lg hover:border-[#222] hover:bg-[#0a0a0a] transition-all"
-          >
-            <span className="inline-block font-mono text-xs border border-[#1f1f1f] text-[#38bdf8] px-2 py-0.5 rounded mb-4">
-              LOCAL
-            </span>
-            <p className="font-mono text-sm text-[#c0c0c0] group-hover:text-white transition-colors mb-1">
-              Local Installation
-            </p>
-            <p className="text-[#444] text-xs leading-relaxed">Set up Jupyter and Anaconda offline</p>
-          </a>
+
         </div>
       </section>
     </div>

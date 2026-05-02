@@ -33,7 +33,7 @@ By the end of these notebooks, you should feel more comfortable with:
     announcements:
       'This directory contains a few basic notebooks to get you going. It is recommended to start with these before tackling any of the others.',
     requirements: [
-      'Make sure that Google Colab or your local installation (Jupyter notebooks, Anaconda) is working',
+      'Make sure that Google Colab is working',
       'These notebooks are intended as an introduction to the syntax and functionality of Python',
       'Have a look at the theoretical basics before you start with the notebooks',
     ],
@@ -51,7 +51,7 @@ By the end of these notebooks, you should feel more comfortable with:
         colabUrl: `${COLAB}/notebooks/Introductory/01.03-Python-Error-Handling.ipynb`,
       },
     ],
-    theoryLink: '/theoretical_basics/basics.html',
+    theoryLink: '/theoretical_basics/basics',
   },
   {
     slug: 'dicom',
@@ -83,7 +83,7 @@ By the end of these notebooks, you should feel more comfortable with:
         colabUrl: `${COLAB}/notebooks/DICOM/03_optional.ipynb`,
       },
     ],
-    theoryLink: '/theoretical_basics/dicom.html',
+    theoryLink: '/theoretical_basics/dicom',
   },
   {
     slug: 'image-analysis',
@@ -120,7 +120,7 @@ By the end of these notebooks, you should feel more comfortable with:
         colabUrl: `${COLAB}/notebooks/ImageAnalysis/04_measurements.ipynb`,
       },
     ],
-    theoryLink: '/theoretical_basics/image_analysis.html',
+    theoryLink: '/theoretical_basics/image_analysis',
     references:
       'CT scan: The Cancer Imaging Archive · Hand radiograph: RSNA 2017 Pediatric Bone Age Challenge · MRI: Sunnybrook Cardiac Dataset · Head MRI: Lionheart et al. (2015), Zenodo · OASIS: Marcus et al., J. Cogn. Neurosci. (2007)',
   },
@@ -160,7 +160,7 @@ By the end of these notebooks, you should feel more comfortable with:
         colabUrl: `${COLAB}/notebooks/DataManagement/04_sleep_data_analysis.ipynb`,
       },
     ],
-    theoryLink: '/theoretical_basics/data_management.html',
+    theoryLink: '/theoretical_basics/data_management',
     references: 'Chest X-Ray CXR8: Wang et al., CVPR 2017 · Sleep EEG: Kemp et al., IEEE Trans. Biomed. Eng. (2000)',
   },
   {
@@ -263,7 +263,7 @@ By the end of these notebooks, you should feel more comfortable with:
         colabUrl: `${COLAB}/notebooks/DeepLearning/03_introduction_MNIST.ipynb`,
       },
     ],
-    theoryLink: '/theoretical_basics/deeplearning.html',
+    theoryLink: '/theoretical_basics/deeplearning',
     references:
       'MedMNIST v2: Jiancheng Yang et al. (2023), Scientific Data · Jiancheng Yang et al. (2021), IEEE ISBI',
   },
@@ -317,7 +317,7 @@ By the end of these notebooks, you should feel more comfortable with:
         colabUrl: `${COLAB}/notebooks/PrmptEng/4.ipynb`,
       },
     ],
-    theoryLink: '/theoretical_basics/prompt.html',
+    theoryLink: '/theoretical_basics/prompt',
     references: 'Parts of this course were created with the help of ChatGPT.',
   },
   {
@@ -333,7 +333,7 @@ By the end of these notebooks, you should feel more comfortable with:
       "We are currently working on notebooks. Please check back later and stay tuned for what's coming next.",
     requirements: [
       'Basic Python knowledge: variables, data types, functions, loops, conditionals',
-      'You should be able to work with a Python tool of your choice (Jupyter, Google Colab)',
+      'Make sure that Google Colab is set up and working',
     ],
     notebooks: [],
     underConstruction: true,
