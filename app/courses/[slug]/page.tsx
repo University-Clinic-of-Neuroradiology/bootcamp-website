@@ -3,8 +3,6 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import type { Metadata } from 'next'
 
-const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? ''
-
 export function generateStaticParams() {
   return courses.map((c) => ({ slug: c.slug }))
 }
@@ -138,15 +136,13 @@ export default async function CoursePage({ params }: { params: Promise<{ slug: s
         {course.theoryLink && (
           <div className="mb-10">
             <p className="font-mono text-[#444] text-xs mb-4 tracking-widest uppercase">Theoretical Basics</p>
-            <a
-              href={`${BASE_PATH}${course.theoryLink}`}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href={course.theoryLink}
               className="inline-flex items-center gap-2 border border-[#1a1a1a] text-[#777] font-mono text-sm px-5 py-3 rounded-lg hover:border-[#2a2a2a] hover:text-[#f0f0f0] hover:bg-[#0a0a0a] transition-all"
             >
               <span className="text-[#00ff88] text-xs">▶</span>
               View Slide Deck
-            </a>
+            </Link>
           </div>
         )}
 

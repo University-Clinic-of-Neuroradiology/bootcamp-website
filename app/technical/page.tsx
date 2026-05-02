@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
   title: 'Technical Notes',
-  description: 'Setup guides for running Python Bootcamp notebooks — Google Colab and local installation.',
+  description: 'Setup guide for running Python Bootcamp notebooks in Google Colab.',
 }
 
 const GITHUB_REPO = 'https://github.com/University-Clinic-of-Neuroradiology/python-bootcamp'
@@ -23,22 +23,8 @@ const guides = [
     link: `${GITHUB_REPO}/wiki/Instructions-for-Google-Colab`,
     linkLabel: 'Full Colab guide on GitHub Wiki ↗',
   },
-  {
-    badge: 'LOCAL',
-    badgeColor: 'text-[#38bdf8]',
-    title: 'Local Installation',
-    description:
-      'Run notebooks offline using Anaconda and Jupyter. Recommended if you prefer a local development environment or have limited internet access.',
-    steps: [
-      'Download and install Anaconda from anaconda.com',
-      'Open the Anaconda Navigator and launch Jupyter Notebook',
-      'Clone or download the course notebooks from GitHub',
-      'Open the .ipynb files in Jupyter and run them locally',
-    ],
-    link: `${GITHUB_REPO}/wiki/Installation-guide-(offline)`,
-    linkLabel: 'Full installation guide on GitHub Wiki ↗',
-  },
 ]
+
 
 export default function TechnicalPage() {
   return (
@@ -47,7 +33,7 @@ export default function TechnicalPage() {
         <p className="font-mono text-[#444] text-xs mb-4 tracking-widest uppercase">technical notes</p>
         <h1 className="font-mono text-3xl md:text-4xl font-bold text-[#f0f0f0] mb-4">Setup Guides</h1>
         <p className="text-[#555] text-sm mb-16 max-w-xl leading-relaxed">
-          Choose how you want to run the course notebooks. Google Colab is recommended for its zero-setup experience.
+          Everything runs in Google Colab — no local install needed. All you need is a browser and a free Google Account.
         </p>
 
         <div className="space-y-6">

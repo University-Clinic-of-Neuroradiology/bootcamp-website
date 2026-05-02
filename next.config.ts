@@ -1,6 +1,5 @@
 import type { NextConfig } from 'next'
 
-const isProd = process.env.NODE_ENV === 'production'
 const basePath = '/bootcamp-website'
 
 const nextConfig: NextConfig = {
@@ -9,7 +8,7 @@ const nextConfig: NextConfig = {
   images: { unoptimized: true },
   trailingSlash: true,
   env: {
-    NEXT_PUBLIC_BASE_PATH: isProd ? basePath : '',
+    NEXT_PUBLIC_BASE_PATH: basePath,
   },
 }
 
